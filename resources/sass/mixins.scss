@@ -1,0 +1,8 @@
+@mixin boxShadow($propertyOne, $propertyTwo, $propertyThree, $color) {
+  -webkit-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+  -moz-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+  -ms-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+  -o-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+  -khtml-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+  box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+}

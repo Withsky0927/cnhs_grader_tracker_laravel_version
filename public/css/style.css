@@ -1,0 +1,438 @@
+a:active,
+a:focus {
+  outline: 0 !important;
+  border: none;
+  -moz-outline-style: none !important;
+  -webkit-outline-style: none !important;
+  -o-outline-style: none !important;
+  -ms-outline-style: none !important;
+  -khtml-outline-style: none !important;
+  outline-style: none !important;
+}
+
+html {
+  background-color: #8a2a2b;
+}
+
+#loginform {
+  background: white;
+  -ms-box-shadow: 0px, 0px, 5px, #000;
+  -o-box-shadow: 0px, 0px, 5px, #000;
+  box-shadow: 0px, 0px, 5px, #000;
+}
+
+#buttonoutside {
+  background-color: #b81c1e;
+  -ms-box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px, 0px, 2px, gray;
+  box-shadow: 0px, 0px, 2px, gray;
+}
+
+.login-links,
+.login-links:active,
+.login-links:focus {
+  color: black;
+}
+
+.login-links:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+@media all and (max-width: 767px) and (orientation: portrait) {
+  #loginform {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  #loginlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 100% !important;
+  }
+}
+
+@media all and (max-height: 767px) and (orientation: landscape) {
+  #loginform {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+
+  #loginlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50% !important;
+  }
+}
+
+@media all and (min-height: 768px) and (orientation: portrait) {
+  #loginform {
+    margin-top: 11rem;
+    padding: 1.5rem;
+  }
+
+  #loginlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 30%;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  #loginform {
+    margin-top: 3.2rem;
+    padding: 1.5rem;
+  }
+
+  #loginlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 2559px) {
+  #loginform {
+    margin-top: 7rem;
+    padding: 1.5rem;
+  }
+
+  #loginlogo img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  #buttonoutside {
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 2560px) {
+  #loginform {
+    margin-top: 10rem;
+    padding: 1.5rem;
+  }
+
+  #loginlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50%;
+    background-color: #b81c1e;
+  }
+}
+
+#registrationform {
+  background-color: white;
+}
+
+.register-links,
+.register-links:active,
+.register-links:focus {
+  color: black;
+}
+
+.register-links:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+#registrationbutton {
+  -ms-box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px, 0px, 2px, gray;
+  box-shadow: 0px, 0px, 2px, gray;
+}
+
+@media all and (max-width: 767px) and (orientation: portrait) {
+  #registrationform {
+    margin-top: 2rem !important;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #registrationbutton {
+    width: 100% !important;
+    background-color: #b81c1e;
+  }
+
+  #link-centering {
+    text-align: center;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+    height: auto;
+  }
+}
+
+@media all and (max-height: 767px) and (orientation: landscape) {
+  #registrationform {
+    margin-top: 2rem !important;
+    padding: 1.5rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #registrationbutton {
+    width: 25% !important;
+    background-color: #b81c1e;
+  }
+
+  .register-links {
+    text-align: left !important;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+    height: auto;
+  }
+}
+
+@media all and (min-height: 768px) and (orientation: portrait) {
+  #registrationform {
+    margin-top: 11rem;
+    padding: 1.5rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #registrationbutton {
+    width: 20%;
+    background-color: #b81c1e;
+  }
+
+  .register-links {
+    text-align: left !important;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+    height: auto;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  #registrationform {
+    margin-top: 3.2rem;
+    padding: 1.5rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #registrationbutton {
+    width: 20% !important;
+    background-color: #b81c1e;
+  }
+
+  .register-links {
+    text-align: left !important;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+    height: auto;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 2559px) {
+  #registrationform {
+    margin-top: 3.3rem !important;
+    padding: 1.5rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  #registrationbutton {
+    width: 13% !important;
+    background-color: #b81c1e;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+  }
+}
+
+@media all and (min-width: 2560px) {
+  #registrationform {
+    margin-top: 3rem !important;
+    padding: 1.5rem;
+  }
+
+  #registerlogo .column .field h1 img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #registrationbutton {
+    width: 10% !important;
+    background-color: #b81c1e;
+  }
+
+  #errornotification {
+    border: 1px solid black;
+    height: auto;
+  }
+}
+
+html {
+  background-color: #8a2a2b;
+}
+
+#forgotform {
+  background: white;
+  -ms-box-shadow: 0px, 0px, 5px, #000;
+  -o-box-shadow: 0px, 0px, 5px, #000;
+  box-shadow: 0px, 0px, 5px, #000;
+}
+
+#buttonoutside {
+  background-color: #b81c1e;
+  -ms-box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px, 0px, 2px, gray;
+  box-shadow: 0px, 0px, 2px, gray;
+}
+
+.forgotpasssword-links,
+.forgotpasssword-links:active,
+.forgotpasssword-links:focus {
+  color: black;
+}
+
+.forgotpasssword-links:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+@media all and (max-width: 767px) and (orientation: portrait) {
+  #forgotform {
+    margin-top: 4rem;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 100% !important;
+  }
+}
+
+@media all and (max-height: 767px) and (orientation: landscape) {
+  #forgotform {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50% !important;
+  }
+}
+
+@media all and (min-height: 768px) and (orientation: portrait) {
+  #forgotform {
+    margin-top: 11rem;
+    padding: 1.5rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 30%;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  #forgotform {
+    margin-top: 3.2rem;
+    padding: 1.5rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 2559px) {
+  #forgotform {
+    margin-top: 7rem;
+    padding: 1.5rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  #buttonoutside {
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 2560px) {
+  #forgotform {
+    margin-top: 10rem;
+    padding: 1.5rem;
+  }
+
+  #forgotpasswordlogo img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  #buttonoutside {
+    width: 50%;
+    background-color: #b81c1e;
+  }
+}
+
