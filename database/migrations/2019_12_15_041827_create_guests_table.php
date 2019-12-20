@@ -32,14 +32,14 @@ class CreateGuestsTable extends Migration
             $table->string('lastname', 30);
             $table->string('address', 500);
             $table->date('birthday');
-            $table->integer('age')->unsigned()->change();
+            $table->integer('age')->unsigned();
             $table->string('gender', 20);
             $table->string('civil_status', 30);
             $table->string('status', 20);
             $table->string('role', 50);
             $table->string('graduate_id', 255)->nullable();
             $table->unique('graduate_id');
-            $table->string('account_id', 255);
+            $table->string('account_id', 255)->nullable();
             $table->unique('account_id');
             $table->string('account_status', 20);
             $table->date('createdAt');

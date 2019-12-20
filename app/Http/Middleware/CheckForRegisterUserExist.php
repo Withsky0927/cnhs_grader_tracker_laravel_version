@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\DB;
 
-
 class CheckForRegisterUserExist
 {
     /**
@@ -23,25 +22,27 @@ class CheckForRegisterUserExist
         $email = $request->input('email');
         $phone = $request->input('phone');
 
-        /*
+
+
         $checkUsername = DB::table('guests')
-            ->where('username')
-            ->get('username', $username);
+            ->where('username', $username)
+            ->get()
+            ->first();
 
         $checkLRN = DB::table('guests')
-            ->where('lrn')
-            ->get('lrn', $lrn);
-
+            ->where('lrn', $lrn)
+            ->get()
+            ->first();
 
         $checkEmail = DB::table('guests')
-            ->where('email')
-            ->get('email', $email);
-
+            ->where('email', $email)
+            ->get()
+            ->first();
 
         $checkPhone = DB::table('guests')
-            ->where('phone')
-            ->get('phone', $phone);
-
+            ->where('phone', $phone)
+            ->get()
+            ->first();
 
         if ($checkUsername) {
             $errors['username'] = 'Username already Exist! Please Contact Administrator for Assistance';
@@ -59,8 +60,12 @@ class CheckForRegisterUserExist
             $errors['phone'] = 'Phone already Exist! Please use Another Number';
         }
 
-        return redirect('register')->with($errors);
-        */
-        return $next($request);
+
+
+        if ($errors != null) {
+            return redirect('register')->with('userexist', $errors);
+        } else {
+            return $next($request);
+        }
     }
 }

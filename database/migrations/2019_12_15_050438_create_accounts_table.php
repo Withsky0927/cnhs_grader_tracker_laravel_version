@@ -13,8 +13,7 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            //
+        Schema::create('accounts', function (Blueprint $table) {
         });
     }
 

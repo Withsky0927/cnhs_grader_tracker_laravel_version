@@ -59,8 +59,8 @@ class Kernel extends HttpKernel
         'sendVerificationCode' => \App\Http\Middleware\sendVerificationCode::class,
 
 
-
-
+        // for Student confirmation Code Midleware
+        'validateConfirmationCode' => \App\Http\Middleware\validateConfirmationCode::class,
         'IPBlock' => \App\Http\Middleware\IPBlock::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

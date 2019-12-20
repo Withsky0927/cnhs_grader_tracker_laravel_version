@@ -3,7 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+
 
 class sendVerificationCode
 {
@@ -14,7 +18,16 @@ class sendVerificationCode
      * @param  \Closure  $next
      * @return mixed
      */
+    private function SendEmail($firstname, $lastname, $emailAddress, $digit)
+    {
+        $toEmail = $emailAddress;
+        $toName = $lastname . ', ' . $firstname;
 
+        $data = ['name' => $toName, 'body' => $digit];
+        Mail::send('guestconfirmationemail', $data, function ($message) use ($toName, $toEmail) {
+            $message->to($toEmail)->subject('CNHS - Senior High Graduate Tracer Confirmation Code');
+        });
+    }
     private function HashPassword($Password)
     {
         $hash = Hash::make($Password, [
@@ -43,12 +56,12 @@ class sendVerificationCode
         $gender = $request->input('gender');
         $civilStatus = $request->input('civilStatus');
         $status = $request->input('status');
+        $role = "student";
         $accountStatus = "pending";
-        $createdAt = $year . '-' . $month . '-' . $day;
+        $birthday = $year . '-' . $month . '-' . $day;
 
 
-
-        $request->session()->push('guests_confirmation', ['guest' . $username => [
+        $request->session()->put('guests_confirmation', ['guest' => [
             'username' => $username,
             'confirmPassword' => $confirmPassword,
             'hashedPassword' => $hashedPassword,
@@ -67,13 +80,18 @@ class sendVerificationCode
             'gender' => $gender,
             'civilStatus' => $civilStatus,
             'status' => $status,
+            'role' => $role,
             'accountStatus' => $accountStatus,
-            'createdAt' => $createdAt
+            'birthday' => $birthday
         ]]);
-        $request->session()->put('confirmation-' . $username, $username);
-        $sessionId = $request->session()->all();
-        var_dump($sessionId);
 
+        $randomNumber = mt_rand(100000, 999999);
+
+        $this->SendEmail($firstname, $lastname, $email, $randomNumber);
+
+        $request->session()->put('confirmation-' . $username, $username);
+        $request->session()->put('confirmation_code', $randomNumber);
+        Session::save();
         return $next($request);
     }
 }

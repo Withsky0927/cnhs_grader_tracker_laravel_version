@@ -33,7 +33,8 @@ class CreateAdminsTable extends Migration
             $table->string('email', 100);
             $table->unique('email');
             $table->string('phone', 20);
-            $table->string('account_id', 255);
+            $table->string('account_id', 255)->nullable();
+            $table->unique('account_id');
         });
     }
 

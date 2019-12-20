@@ -17,7 +17,8 @@
         </section>
         <section class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input" maxlength="10" type="text" required placeholder="Username" name="username">
+                <input class="input has-text-centered" maxlength="10" type="text" required placeholder="Username"
+                    name="username">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -25,8 +26,8 @@
         </section>
         <section aria-label="forgot new password" class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input" maxlength="150" type="password" required placeholder="New Password"
-                    name="new_password">
+                <input class="input has-text-centered" maxlength="150" type="password" required
+                    placeholder="New Password" name="new_password">
                 <span class="icon is-small is-left">
                     <i class="fas fa-key"></i>
                 </span>
@@ -34,8 +35,8 @@
         </section>
         <section aria-label="forgot cofirm password" class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input" maxlength="150" type="password" required placeholder="Confirm Password"
-                    name="confirm_old_password">
+                <input class="input has-text-centered" maxlength="150" type="password" required
+                    placeholder="Confirm Password" name="confirm_old_password">
                 <span class="icon is-small is-left">
                     <i class="fas fa-key"></i>
                 </span>

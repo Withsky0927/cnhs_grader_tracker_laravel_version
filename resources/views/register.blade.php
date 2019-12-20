@@ -17,18 +17,27 @@
                 </div>
             </div>
         </section>
-        <section class="columns">
-            @if ($errors != '')
-            @foreach ($errors->all() as $error)
-            <p>{{$error}}</p>
-            @endforeach
-            @endif
+        <section class="columns is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+            <div class="column">
+                @if ($errors != '')
+                @foreach ($errors->all() as $error)
+                <p>{{$error}}</p>
+                @endforeach
+                @endif
 
-            @if ($data != '')
-            @foreach ($data as $item)
-            <p>{{$item}}</p>
-            @endforeach
-            @endif
+                <!--check if user exists throw an error -->
+                @if (session('userexist'))
+                @foreach (session('userexist') as $error)
+                <p>{{$error}}</p>
+                @endforeach
+                @endif
+
+                @if ($data != '')
+                @foreach ($data as $item)
+                <p>{{$item}}</p>
+                @endforeach
+                @endif
+            </div>
         </section>
         <!-- first field -->
 
@@ -363,161 +372,4 @@
         </section>
     </form>
 </main>
-
-<script type="text/javascript">
-    'use strict';
-        (() => {
-
-            // compute birthday
-            function getAge(dateString) {
-                let today = new Date();
-                let birthDate = new Date(dateString);
-                let age = today.getFullYear() - birthDate.getFullYear();
-                let m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-
-                return age;
-            };
-
-            // get yyyymmdd
-            function getBirthday() {
-                const fullBday = document.querySelectorAll(".bday");
-                const year = document.querySelector("#year");
-                const month = document.querySelector("#month");
-                const day = document.querySelector("#day");
-                const age = document.querySelector("#age");
-
-                const BirthdayValues = () => {
-                    const yearValue = year.options[year.selectedIndex].value;
-                    const monthValue = month.options[month.selectedIndex].value;
-                    const dayValue = day.options[day.selectedIndex].value;
-                    let Age = 0;
-
-                    if ((yearValue !== '' && yearValue !== 'Year')
-                        && (monthValue !== '' && monthValue !== 'Month')
-                        && (dayValue !== '' && dayValue !== 'Day')) {
-                        const birthday = `${yearValue}/${monthValue}/${dayValue}`;
-                        console.log(birthday);
-                        Age = parseInt(getAge(birthday));
-                    } else {
-                        return false;
-                    }
-                    age.value = Age + 0;
-                };
-
-                for (let i = 0, index = fullBday.length; i < index; i++) {
-                    fullBday[i].addEventListener('change', BirthdayValues, false);
-                }
-            };
-
-            // get the year - from 1950 to present
-            function CreateYear() {
-                const year = document.querySelector("#year");
-                let allDate = "";
-                const currentYear = new Date().getFullYear();
-                for (let yearCompute = 1949; yearCompute <= currentYear; yearCompute++) {
-                    let option = document.createElement('option');
-                    if (yearCompute === 1949) {
-                        option.setAttribute('selected', '');
-                        option.setAttribute('disabled', '');
-                        option.innerText = 'Year';
-                        allDate += option.outerHTML + "\n";
-                    } else {
-                        option.setAttribute('value', yearCompute);
-                        option.innerText = yearCompute;
-                        allDate += option.outerHTML + "\n";
-                    }
-                }
-                year.innerHTML += allDate;
-                getBirthday();
-            }
-
-            function checkForProfilePic() {
-                const profilePic = document.querySelector('#profile_picture');
-                let width = '';
-
-                if (innerWidth in window && innerHeight in window) {
-                    width = window.innerWidth;
-                    if (width <= 1023) {
-                        profilePic.classList.add('is-medium');
-                        profilePic.classList.remove('is-small');
-                        profilePic.classList.add('is-centered');
-                    } else if (width >= 1024) {
-                        profilePic.classList.add('is-small');
-                        profilePic.classList.remove('is-medium');
-                        profilePic.classList.add('is-remove');
-                    }
-                } else {
-                    if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
-                        width = document.documentElement.clientWidth;
-                        if (width <= 1023) {
-                            profilePic.classList.add('is-medium');
-                            profilePic.classList.remove('is-small');
-                            profilePic.classList.add('is-centered');
-                        } else if (width >= 1024) {
-                            profilePic.classList.add('is-small');
-                            profilePic.classList.remove('is-medium');
-                            profilePic.classList.add('is-remove');
-                        }
-                    } else {
-                        if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
-                            width = document.body.clientWidth;
-                            if (width <= 1023) {
-                                profilePic.classList.add('is-medium');
-                                profilePic.classList.remove('is-small');
-                                profilePic.classList.add('is-centered');
-                            } else if (width >= 1024) {
-                                profilePic.classList.add('is-small');
-                                profilePic.classList.remove('is-medium');
-                                profilePic.classList.add('is-remove');
-                            }
-                        }
-                    }
-                }
-            }
-
-            function fileUploadName() {
-
-                const fileInput = document.querySelectorAll('input[type=file]');
-                const putFileName = function (e) {
-                    if (e.target.files.length > 0) {
-                        const Filename = document.querySelectorAll('.file-name');
-                        const profilePic = document.querySelectorAll('.profile-pic');
-                        for (let j = 0, indexj = Filename.length; j < indexj; j++) {
-
-                            Filename[j].innerText = e.target.files[j].name;
-                        }
-                    }
-                };
-
-                for (let i = 0, index = fileInput.length; i < index; i++) {
-                    fileInput[i].addEventListener('change', putFileName, false);
-                }
-                window.addEventListener('resize', checkForProfilePic, false);
-            };
-
-
-            /*ajaxCall data */
-
-
-
-            function sendData() {
-                const ajaxRequest = new XMLHttpRequest();
-                const registrationform = document.querySelector('#registrationform');
-                registrationform.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    ajaxRequest.open('post', 'http://localhost:5000/register', true);
-                    ajaxRequest.send(new FormData(registrationform));
-                }, false);
-
-            }
-
-
-            CreateYear();
-            fileUploadName();
-            //sendData();
-        })();
-</script>
 @endsection

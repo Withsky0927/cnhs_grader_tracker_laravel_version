@@ -16,7 +16,8 @@
 </head>
 
 <body>
-
+    @yield('content')
+    @yield('templates.admin.scripts')
 </body>
 
 </html>

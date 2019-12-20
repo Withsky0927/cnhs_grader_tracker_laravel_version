@@ -21,12 +21,15 @@ Route::get('/register', 'register@getRegisterForm');
 Route::post('/register', 'register@submitRegisterForm')->middleware(
     'ValidateRegisterInputs',
     'CheckForRegisterUserExist',
-    'ResizeGuestProfilePic'
+    'ResizeGuestProfilePic',
+    'sendVerificationCode'
 );
 
 // for confirmation code
-Route::get('/confirm', 'confirmation@getConfirmation');
-Route::post('/confirm', 'confirmation@submitConfimation');
+Route::post('/resend', 'confirmation@resendConfirmation');
+
+Route::get('/confirmation', 'confirmation@getConfirmation');
+Route::post('/confirmation', 'confirmation@submitConfirmation')->middleware('validateConfirmationCode');
 
 // for forgotPasswordForm
 Route::get('/forgotpassword', 'forgotpassword@getForgotPasswordForm');

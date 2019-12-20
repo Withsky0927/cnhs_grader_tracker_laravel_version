@@ -17,7 +17,7 @@
 
 <body>
     @yield('content')
-    @include('templates.scripts')
+    @include('templates.student.scripts')
 </body>
 
 </html>
