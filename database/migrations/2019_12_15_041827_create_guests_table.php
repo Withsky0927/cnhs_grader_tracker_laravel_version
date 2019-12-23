@@ -41,7 +41,6 @@ class CreateGuestsTable extends Migration
             $table->unique('graduate_id');
             $table->string('account_id', 255)->nullable();
             $table->unique('account_id');
-            $table->string('account_status', 20);
             $table->date('createdAt');
             $table->date('updatedAt')->nullable();
         });

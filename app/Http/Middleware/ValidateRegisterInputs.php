@@ -23,7 +23,7 @@ class ValidateRegisterInputs
             'profile_pic' => 'mimes:jpeg,png|image|required|between:1,5000',
             'username' => [
                 'required',
-                'between:10,50',
+                'between:5,50',
                 'string',
                 function ($attribute, $value, $fail) {
                     $regex = '/^\d|^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';

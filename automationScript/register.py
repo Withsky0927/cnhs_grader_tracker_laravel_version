@@ -8,7 +8,7 @@ def RegistrationForm():
     confirmPassword = "withmore1234"
     lrn = 2013105251
     strand = "STEM"
-    email = "withmoreglenda@gmail.com"
+    email = "gladysramosmarquez@gmail.com"
     phone = "09354075756"
     firstName = "George David"
     middleName = "Baylon"

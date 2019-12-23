@@ -59,9 +59,25 @@ class Kernel extends HttpKernel
         'sendVerificationCode' => \App\Http\Middleware\sendVerificationCode::class,
 
 
-        // for Student confirmation Code Midleware
+        // for Student confirmation Code Middleware
         'validateConfirmationCode' => \App\Http\Middleware\validateConfirmationCode::class,
+
+
+        // for login middleware
+        'validateLoginInputs' => \App\Http\Middleware\validateLoginInputs::class,
+        'loginCheckAccountExist' => \App\Http\Middleware\loginCheckAccountExist::class,
+        'checkAccountRole' => \App\Http\Middleware\checkAccountRole::class,
+        'checkIFLogin' => \App\Http\Middleware\checkIFLogin::class,
+        'checkAccountStatus' => \App\Http\Middleware\checkAccountStatus::class,
+
+        // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,
+
+
+        // for loginCheckin Middleware
+        'checkIfLogout' => \App\Http\Middleware\checkIfLogout::class,
+
+        // provided by laravel 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

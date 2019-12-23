@@ -31,12 +31,6 @@
                 <p>{{$error}}</p>
                 @endforeach
                 @endif
-
-                @if ($data != '')
-                @foreach ($data as $item)
-                <p>{{$item}}</p>
-                @endforeach
-                @endif
             </div>
         </section>
         <!-- first field -->

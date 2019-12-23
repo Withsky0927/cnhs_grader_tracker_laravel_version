@@ -29,6 +29,7 @@ class CreateAdminsTable extends Migration
             $table->string('profile_pic', 1024)->nullable();
             $table->string('username', 50);
             $table->unique('username');
+            $table->string('password', 150);
             $table->string('role', 50);
             $table->string('email', 100);
             $table->unique('email');

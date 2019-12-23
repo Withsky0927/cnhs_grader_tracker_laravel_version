@@ -12,7 +12,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/normalize.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('student/css/student.css')}}" />
+
+
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css"
+        integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+        integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
+    -->
+
+    <link rel="stylesheet" type="text/css" href="{{asset('student/css/style.css')}}" />
 </head>
 
 <body>

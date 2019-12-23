@@ -14,6 +14,11 @@ class CreateAccountsTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
+            $table->uuid('account_id')->unique();
+            $table->string('username', 50)->unique();
+            $table->string('password', 150);
+            $table->string('role', 30);
+            $table->string('account_status', 30);
         });
     }
 
@@ -24,8 +29,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('accounts');
     }
 }

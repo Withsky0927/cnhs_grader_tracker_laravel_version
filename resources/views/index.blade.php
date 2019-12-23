@@ -7,18 +7,28 @@
     <form id="loginform"
         class="animated fadeInDownBig column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
         action="{{url('/')}}" autocomplete="off" method="POST">
-        @csrf
         <section aria-label="brandname" class="field level">
             <h1 id="loginlogo" class="level-item">
                 <img src="{{asset('img/logo.png')}}" alt="Cavite National high School Graduate Tracer System">
             </h1>
         </section>
         <section>
+            {{-- check if there no errors  in other middleware--}}
+            @if(session('notification'))
+            <p>{{session('notification')}}</p>
+            @endif
 
+            {{-- check if there are validations errors --}}
+            @if ($errors != '')
+            @foreach ($errors->all() as $error)
+            <p>{{$error}}</p>
+            @endforeach
+            @endif
         </section>
         <section class="field">
             <h2 class="is-small">Please Login:</h2>
         </section>
+        @csrf
         <section class="field">
             <div class="control has-icons-left has-icons-right">
                 <input class="input has-text-centered has-text-centered" maxlength="50" type="text" required

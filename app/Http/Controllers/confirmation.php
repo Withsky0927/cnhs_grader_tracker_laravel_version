@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
+
 
 class confirmation extends Controller
 {
 
     private function FlushRegisterDataInSession()
     {
-
         Session::forget('guests_confirmation');
         Session::forget('imagepath');
         Session::forget('confirmation_code');
@@ -23,11 +22,11 @@ class confirmation extends Controller
     public function addNewUser()
     {
         $RegistrationData = Session::get('guests_confirmation');
-
+        $NewGuestUserId = Str::uuid()->toString();
         $imagePath = Session::get('imagepath');
-        $ADD = DB::table('guests')
+        DB::table('guests')
             ->insert([
-                'guest_id' => Str::uuid()->toString(),
+                'guest_id' => $NewGuestUserId,
                 'profile_pic' => $imagePath,
                 'username' => $RegistrationData['guest']['username'],
                 'password' => $RegistrationData['guest']['hashedPassword'],
@@ -45,9 +44,20 @@ class confirmation extends Controller
                 'civil_status' => $RegistrationData['guest']['civilStatus'],
                 'status' => $RegistrationData['guest']['status'],
                 'role' => $RegistrationData['guest']['role'],
-                'account_status' => $RegistrationData['guest']['accountStatus'],
                 'createdAt' => date('Y-m-d')
             ]);
+
+
+        DB::table('accounts')
+            ->insert([
+                'account_id' => $NewGuestUserId,
+                'username' => $RegistrationData['guest']['username'],
+                'password' => $RegistrationData['guest']['hashedPassword'],
+                'role' => $RegistrationData['guest']['role'],
+                'account_status' => 'approved'
+            ]);
+
+
         $notification = 'Account Succcesfully Created, Check for account';
 
         $this->FlushRegisterDataInSession();
@@ -81,9 +91,6 @@ class confirmation extends Controller
 
         if (!Session::has('confirmation_stay')) {
             return redirect('/');
-        }
-        if (Session::has('isLogin')) {
-            return back();
         }
 
         return view('confirmation');

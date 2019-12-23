@@ -31,7 +31,9 @@ class sendVerificationCode
     private function HashPassword($Password)
     {
         $hash = Hash::make($Password, [
-            'rounds' => 12
+            'memory' => 1024,
+            'time' => 2,
+            'threads' => 2,
         ]);
 
         return $hash;
@@ -57,11 +59,10 @@ class sendVerificationCode
         $civilStatus = $request->input('civilStatus');
         $status = $request->input('status');
         $role = "student";
-        $accountStatus = "pending";
         $birthday = $year . '-' . $month . '-' . $day;
 
 
-        $request->session()->put('guests_confirmation', ['guest' => [
+        Session::put('guests_confirmation', ['guest' => [
             'username' => $username,
             'confirmPassword' => $confirmPassword,
             'hashedPassword' => $hashedPassword,
@@ -81,7 +82,6 @@ class sendVerificationCode
             'civilStatus' => $civilStatus,
             'status' => $status,
             'role' => $role,
-            'accountStatus' => $accountStatus,
             'birthday' => $birthday
         ]]);
 
@@ -89,8 +89,8 @@ class sendVerificationCode
 
         $this->SendEmail($firstname, $lastname, $email, $randomNumber);
 
-        $request->session()->put('confirmation-' . $username, $username);
-        $request->session()->put('confirmation_code', $randomNumber);
+        Session::put('confirmation-' . $username, $username);
+        Session::put('confirmation_code', $randomNumber);
         Session::save();
         return $next($request);
     }
