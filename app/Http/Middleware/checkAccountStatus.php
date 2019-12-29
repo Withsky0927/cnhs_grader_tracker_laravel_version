@@ -18,7 +18,7 @@ class checkAccountStatus
     public function handle($request, Closure $next)
     {
 
-        $username = $request->username;
+        $username = $request->input('username');
 
         $checkAccountStatus = DB::table('accounts')->where('username', $username)->value('account_status');
 

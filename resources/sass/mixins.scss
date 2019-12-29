@@ -1,8 +1,10 @@
-@mixin boxShadow($propertyOne, $propertyTwo, $propertyThree, $color) {
-  -webkit-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
-  -moz-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
-  -ms-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
-  -o-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
-  -khtml-box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
-  box-shadow: $propertyOne, $propertyTwo, $propertyThree, $color;
+/* for navbar shaddow*/
+
+@mixin boxShadow($shadowOne, $shadowTwo, $radius, $color) {
+    -webkit-box-shadow: $shadowOne $shadowTwo $radius $color;
+    -moz-box-shadow: $shadowOne $shadowTwo $radius $color;
+    -o-box-shadow: $shadowOne $shadowTwo $radius $color;
+    -ms-box-shadow: $shadowOne $shadowTwo $radius $color;
+    -khtml-box-shadow: $shadowOne $shadowTwo $radius $color;
+    box-shadow: $shadowOne $shadowTwo $radius $color;
 }

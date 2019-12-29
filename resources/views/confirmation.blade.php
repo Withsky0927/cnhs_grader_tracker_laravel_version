@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Account Confirmation')
+@section('title', 'New Account Confirmation')
 @section('content')
 <main class="columns is-mobile is-centered">
     <form id="confirmationForm"

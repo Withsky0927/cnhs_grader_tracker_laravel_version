@@ -9,10 +9,9 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
         integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/normalize.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
     <!--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -27,8 +26,10 @@
 </head>
 
 <body>
+    @include('templates.student_header_content');
     @yield('content')
-    @include('templates.student.scripts')
+    @include('templates.student_footer_content')
+    @include('templates.student_scripts')
 </body>
 
 </html>

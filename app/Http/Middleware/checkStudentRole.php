@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 
-class CheckForRegisterRegex
+class checkStudentRole
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,12 @@ class CheckForRegisterRegex
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+
+        $checkIfStudent = $request->session()->get('user_role');
+        if ($checkIfStudent == 'student') {
+            return $next($request);
+        } else {
+            return back();
+        }
     }
 }

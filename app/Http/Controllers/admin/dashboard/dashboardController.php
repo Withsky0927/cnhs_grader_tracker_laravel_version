@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class dashboardController extends Controller
 {
-    public function getDashboard() {
+    public function getDashboard()
+    {
         return view("admin.dashboard.dashboard");
     }
 
     public function submitDashboard(Request $request)
     {
-
     }
 }

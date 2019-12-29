@@ -11,7 +11,7 @@ class jobfairController extends Controller
 
     public function getJobFair()
     {
-        return view('admin.announcement.jobfair');
+        return view('admin.announcement.jobjair');
     }
     public function addJobFair(Request $request)
     {

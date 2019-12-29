@@ -70,6 +70,17 @@ class Kernel extends HttpKernel
         'checkIFLogin' => \App\Http\Middleware\checkIFLogin::class,
         'checkAccountStatus' => \App\Http\Middleware\checkAccountStatus::class,
 
+
+        //forgot password middleware
+        'validateForgotPass' => \App\Http\Middleware\validateForgotPass::class,
+        'checkUserExistsForgotPassword' => \App\Http\Middleware\checkUserExistsForgotPassword::class,
+        'sendForgotPasswordVerification' => \App\Http\Middleware\sendForgotPasswordVerification::class,
+        'validateForGotPassConfirmation' => \App\Http\Middleware\validateForGotPassConfirmation::class,
+
+        // for authorizatin middleware
+        'checkAdminRole' => \App\Http\Middleware\checkAdminRole::class,
+        'checkStudentRole' => \App\Http\Middleware\checkStudentRole::class,
+
         // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,
 

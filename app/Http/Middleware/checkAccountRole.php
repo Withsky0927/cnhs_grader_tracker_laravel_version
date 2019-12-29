@@ -21,13 +21,11 @@ class checkAccountRole
     public function handle($request, Closure $next)
     {
 
-        $username = $request->username;
-
+        $username = $request->input('username');
         $role = DB::table('accounts')->where('username', $username)->value('role');
+        $request->session()->put('user_role', $role);
+        $request->session()->put('login_username', $username);
 
-        Session::put('user_role', $role);
-        Session::put('login_username', $username);
-        Session::save();
 
         return $next($request);
     }

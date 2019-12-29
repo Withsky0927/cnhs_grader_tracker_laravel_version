@@ -20,7 +20,7 @@ class validateLoginInputs
         $notification = Validator::make($request->all(), [
             'username' => [
                 'required',
-                'between:10,50',
+                'between:5,50',
                 'string',
                 function ($attribute, $value, $fail) {
                     $regex = '/^\d|^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
@@ -41,6 +41,7 @@ class validateLoginInputs
                 }
             ]
         ]);
+
         if ($notification->fails()) {
 
             return redirect('/')

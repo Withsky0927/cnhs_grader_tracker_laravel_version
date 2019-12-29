@@ -20,22 +20,24 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+/* for navbar shaddow*/
+
 html {
   background-color: #8a2a2b;
 }
 
 #loginform {
   background: white;
-  -ms-box-shadow: 0px, 0px, 5px, #000;
-  -o-box-shadow: 0px, 0px, 5px, #000;
-  box-shadow: 0px, 0px, 5px, #000;
+  -o-box-shadow: 0px 0px 5px #000;
+  -ms-box-shadow: 0px 0px 5px #000;
+  box-shadow: 0px 0px 5px #000;
 }
 
 #buttonoutside {
   background-color: #b81c1e;
-  -ms-box-shadow: 0px, 0px, 2px, gray;
-  -o-box-shadow: 0px, 0px, 2px, gray;
-  box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
 }
 
 .login-links,
@@ -148,6 +150,8 @@ html {
   }
 }
 
+/* for navbar shaddow*/
+
 #registrationform {
   background-color: white;
 }
@@ -164,9 +168,9 @@ html {
 }
 
 #registrationbutton {
-  -ms-box-shadow: 0px, 0px, 2px, gray;
-  -o-box-shadow: 0px, 0px, 2px, gray;
-  box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
 }
 
 @media all and (max-width: 767px) and (orientation: portrait) {
@@ -318,22 +322,24 @@ html {
   }
 }
 
+/* for navbar shaddow*/
+
 html {
   background-color: #8a2a2b;
 }
 
 #forgotform {
   background: white;
-  -ms-box-shadow: 0px, 0px, 5px, #000;
-  -o-box-shadow: 0px, 0px, 5px, #000;
-  box-shadow: 0px, 0px, 5px, #000;
+  -o-box-shadow: 0px 0px 5px #000;
+  -ms-box-shadow: 0px 0px 5px #000;
+  box-shadow: 0px 0px 5px #000;
 }
 
 #buttonoutside {
   background-color: #b81c1e;
-  -ms-box-shadow: 0px, 0px, 2px, gray;
-  -o-box-shadow: 0px, 0px, 2px, gray;
-  box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
 }
 
 .forgotpasssword-links,
@@ -446,22 +452,24 @@ html {
   }
 }
 
+/* for navbar shaddow*/
+
 html {
   background-color: #8a2a2b;
 }
 
 #confirmationForm {
   background: white;
-  -ms-box-shadow: 0px, 0px, 5px, #000;
-  -o-box-shadow: 0px, 0px, 5px, #000;
-  box-shadow: 0px, 0px, 5px, #000;
+  -o-box-shadow: 0px 0px 5px #000;
+  -ms-box-shadow: 0px 0px 5px #000;
+  box-shadow: 0px 0px 5px #000;
 }
 
 .confirmationbuttonoutside {
   background-color: #b81c1e !important;
-  -ms-box-shadow: 0px, 0px, 2px, gray;
-  -o-box-shadow: 0px, 0px, 2px, gray;
-  box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
 }
 
 #hidesubmitconfirm {
@@ -476,9 +484,198 @@ html {
 
 #resend button {
   background-color: #b81c1e !important;
-  -ms-box-shadow: 0px, 0px, 2px, gray;
-  -o-box-shadow: 0px, 0px, 2px, gray;
-  box-shadow: 0px, 0px, 2px, gray;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
+  color: white;
+}
+
+@media all and (max-width: 767px) and (orientation: portrait) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 9rem;
+    padding: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 100% !important;
+  }
+
+  #resend {
+    top: 21.5rem;
+    width: 82%;
+  }
+
+  #resend section button {
+    width: 100%;
+    height: 100%;
+  }
+
+  #resend section:hover {
+    cursor: pointer;
+  }
+}
+
+@media all and (max-height: 767px) and (orientation: landscape) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 50% !important;
+  }
+
+  #resend {
+    top: 13.8rem;
+    width: 43.2%;
+  }
+
+  #resend section button {
+    width: 100%;
+    height: 100%;
+  }
+
+  #resend section:hover {
+    cursor: pointer;
+  }
+}
+
+@media all and (min-height: 768px) and (orientation: portrait) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 11rem;
+    padding: 1.5rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 30%;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 5.2rem;
+    padding: 1.5rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 2559px) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 12rem;
+    padding: 1.5rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 100%;
+  }
+}
+
+@media all and (min-width: 2560px) {
+  .confirmationButton {
+    margin-top: 2rem;
+  }
+
+  #confirmationForm {
+    margin-top: 10rem;
+    padding: 1.5rem;
+  }
+
+  #confirmationFormLogo img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .confirmationbuttonoutside {
+    width: 50%;
+    background-color: #b81c1e;
+  }
+}
+
+/* for navbar shaddow*/
+
+html {
+  background-color: #8a2a2b;
+}
+
+#confirmationForm {
+  background: white;
+  -o-box-shadow: 0px 0px 5px #000;
+  -ms-box-shadow: 0px 0px 5px #000;
+  box-shadow: 0px 0px 5px #000;
+}
+
+.confirmationbuttonoutside {
+  background-color: #b81c1e !important;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
+}
+
+#hidesubmitforgotconfirm {
+  visibility: hidden;
+}
+
+#resend {
+  height: 2.5rem;
+  position: absolute;
+  z-index: 3;
+}
+
+#resend button {
+  background-color: #b81c1e !important;
+  -o-box-shadow: 0px 0px 2px gray;
+  -ms-box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 0px 2px gray;
   color: white;
 }
 

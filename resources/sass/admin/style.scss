@@ -1,1 +1,4 @@
-@import '../colors.scss';
+@import "../colors";
+@import "../mixins";
+@import "../general";
+@import "./dashboard/dashboard";

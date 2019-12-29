@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
 use Closure;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,35 +21,33 @@ class loginCheckAccountExist
     {
         $checkUsername = DB::table('accounts')->where('username', $username)->value('username');
         $hashedPassword = DB::table('accounts')->where('username', $username)->value('password');
-        $error  = NULL;
+        $errors  = "";
         if ($checkUsername) {
             // check password 
             if (Hash::check($password, $hashedPassword)) {
                 return true;
-            } else {
-                $error = "Password Mismatch";
+            } elseif (!Hash::check($password, $hashedPassword)) {
+                $errors = "Password Mismatch";
             }
         } elseif (!$checkUsername) {
-            $error = "Username Does not Exist";
+            $errors = "Username Does not Exist";
         }
 
 
         // if account does not exist or password mismatch
-        if ($error) {
-            return $error;
+        if ($errors) {
+            return $errors;
         }
     }
     public function handle($request, Closure $next)
     {
-        $errors = [];
-        $username = $request->username;
-        $password = $request->password;
+        $username = $request->input('username');
+        $password = $request->input('password');
         $accountExist = $this->checkAccount($username, $password);
 
-
-        if ($accountExist == true) {
-            return next($request);
-        } elseif ($accountExist == false) {
+        if (gettype($accountExist) !== "string" && gettype($accountExist) == "boolean") {
+            return $next($request);
+        } elseif (gettype($accountExist) == "string") {
             return back()->with('notification',  $accountExist);
         }
     }

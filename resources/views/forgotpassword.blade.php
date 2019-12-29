@@ -13,12 +13,22 @@
                 <img src="{{asset('img/logo.png')}}" alt="Cavite National high School Graduate Tracer System">
             </h1>
         </section>
-        <section class="field"></section>
+        <section class="field">
+            @if(session('notifications'))
+            @foreach (session('notifications')->all() as $error)
+            <p>{{$error}}</p>
+            @endforeach
+            @endif
+
+            @if(session('notification'))
+            <p>{{session('notification')}}</p>
+            @endif
+        </section>
         </section>
         <section class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input has-text-centered" maxlength="10" type="text" required placeholder="Username"
-                    name="username">
+                <input class="input has-text-centered" minlength="5" maxlength="50" type="text" required
+                    placeholder="Username" name="username">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
@@ -26,7 +36,7 @@
         </section>
         <section aria-label="forgot new password" class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input has-text-centered" maxlength="150" type="password" required
+                <input class="input has-text-centered" minlength="8" maxlength="150" type="password" required
                     placeholder="New Password" name="new_password">
                 <span class="icon is-small is-left">
                     <i class="fas fa-key"></i>
@@ -35,7 +45,7 @@
         </section>
         <section aria-label="forgot cofirm password" class="field">
             <div class="control has-icons-left has-icons-right">
-                <input class="input has-text-centered" maxlength="150" type="password" required
+                <input class="input has-text-centered" minlength="8" maxlength="150" type="password" required
                     placeholder="Confirm Password" name="confirm_old_password">
                 <span class="icon is-small is-left">
                     <i class="fas fa-key"></i>

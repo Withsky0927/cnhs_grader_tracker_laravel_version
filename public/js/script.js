@@ -199,7 +199,7 @@
         //forMultipartForm("post", "http://localhost:5000/register", "#registrationform" , "submit");
     }
 
-    const ConfirmationForm = function() {
+    const ConfirmationForm = () => {
         const ConfirmationButton = document.querySelector("#hidesubmitconfirm");
         const ConfirmationInput = document.querySelector("#confirmationinput");
         const checkConfirmationValue = function(event) {
@@ -207,16 +207,43 @@
                 ConfirmationButton.click();
             }
         };
-        ConfirmationInput.addEventListener(
-            "keyup",
-            checkConfirmationValue,
-            false
+        if (ConfirmationInput) {
+            ConfirmationInput.addEventListener(
+                "keyup",
+                checkConfirmationValue,
+                false
+            );
+        }
+    };
+
+    const ForGotPasswordConfirmation = () => {
+        const ConfirmationForgotInput = document.querySelector(
+            "#forgotconfirmationinput"
         );
+        const hidesubmitforgotconfirm = document.querySelector(
+            "#hidesubmitforgotconfirm"
+        );
+        const checkForgotConfirmationValue = function(event) {
+            if (event.target.value.length === 6) {
+                alert("Hello World");
+            }
+        };
+        if (ConfirmationForgotInput) {
+            ConfirmationForgotInput.addEventListener(
+                "keyup",
+                checkForgotConfirmationValue,
+                false
+            );
+        }
     };
 
     // check for pages
-    (() => {
-        if (document.querySelector("#registrationform")) RegistrationForm();
-        else if (document.querySelectorAll(".resendForm")) ConfirmationForm();
-    })();
+
+    if (document.querySelector("#registrationform")) {
+        RegistrationForm();
+    } else if (document.querySelectorAll(".resendForm")) {
+        ConfirmationForm();
+    } else if (document.querySelectorAll(".resendConfirmForm")) {
+        ForGotPasswordConfirmation();
+    }
 })();

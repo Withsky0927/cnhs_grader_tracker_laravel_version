@@ -18,8 +18,10 @@ class login extends Controller
     public function submitLoginForm(Request $request)
     {
 
-        $userRole = Session::get('user_role');
+        $userRole = $request->session()->get('user_role');
 
+        Session::forget('isLogin');
+        Session::put('isLogin', true);
         if ($userRole == 'superadmin' || $userRole == 'admin') {
             return redirect('admin/dashboard');
         } elseif ($userRole == 'student') {
