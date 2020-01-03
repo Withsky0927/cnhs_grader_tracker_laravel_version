@@ -12,9 +12,13 @@
             </h1>
         </section>
         <section class="field">
+
+            <?php // for middleware errors ?>
             @if(session('notification'))
             <p>{{session('notification')}}</p>
             @endif
+
+            <?php // for validation errors ?>
             @if($errors)
             @foreach ($errors as $error)
             <p>{{$error}}</p>
@@ -24,7 +28,7 @@
         <section class="field">
             <div class="control has-icons-left has-icons-right">
                 <input class="input has-text-centered has-text-weight-bold" id="forgotconfirmationinput" maxlength="10"
-                    type="number" minlength="6" required placeholder="Confirmation Code" name="forgotconfirmation">
+                    type="number" minlength="6" required placeholder="Confirmation Code" name="forgotconfirm">
                 <span class="icon is-small is-left">
                     <i class="fas fa-shield-alt"></i>
                 </span>

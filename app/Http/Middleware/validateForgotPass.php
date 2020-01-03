@@ -57,6 +57,8 @@ class validateForgotPass
             return redirect('/')
                 ->withErrors($notification)
                 ->withInput();
+
         }
+        return $next($request);
     }
 }

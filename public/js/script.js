@@ -217,6 +217,7 @@
     };
 
     const ForGotPasswordConfirmation = () => {
+        console.log("Hello World");
         const ConfirmationForgotInput = document.querySelector(
             "#forgotconfirmationinput"
         );
@@ -225,7 +226,7 @@
         );
         const checkForgotConfirmationValue = function(event) {
             if (event.target.value.length === 6) {
-                alert("Hello World");
+                hidesubmitforgotconfirm.click();
             }
         };
         if (ConfirmationForgotInput) {
@@ -241,9 +242,9 @@
 
     if (document.querySelector("#registrationform")) {
         RegistrationForm();
-    } else if (document.querySelectorAll(".resendForm")) {
+    } else if (document.querySelectorAll(".resendForm")[0]) {
         ConfirmationForm();
-    } else if (document.querySelectorAll(".resendConfirmForm")) {
+    } else if (document.querySelectorAll(".resendConfirmForm")[0]) {
         ForGotPasswordConfirmation();
     }
 })();

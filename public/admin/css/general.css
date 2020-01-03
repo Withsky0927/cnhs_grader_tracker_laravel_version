@@ -56,6 +56,11 @@ body {
     #navigationbar .navbarbutton .navbar-start .navbar-item:hover {
       background-color: #8a2a2b;
       text-decoration: underline; }
+    #navigationbar .navbarbutton .navbar-start .navbar-item:active {
+      background-color: #8a2a2b;
+      text-decoration: underline; }
+    #navigationbar .navbarbutton .navbar-start .navbar-item:focus {
+      background-color: #8a2a2b; }
   #navigationbar .navbarbutton .navbar-end .navbar-item {
     color: whitesmoke; }
     #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link {
@@ -78,7 +83,14 @@ body {
           #navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item:hover .navbar-link {
             background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:hover {
-      background-color: #8a2a2b; }
+      background-color: #8a2a2b;
+      text-decoration: underline; }
+    #navigationbar .navbarbutton .navbar-end .navbar-item:active {
+      background-color: #8a2a2b;
+      text-decoration: underline; }
+    #navigationbar .navbarbutton .navbar-end .navbar-item:focus {
+      background-color: #8a2a2b;
+      text-decoration: underline; }
 
 .no-underline:hover {
   text-decoration: none !important;

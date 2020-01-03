@@ -36,7 +36,10 @@ Route::post('/register', 'register@submitRegisterForm')->middleware(
 
 /* Confirmation Routes */
 Route::post('/resend', 'confirmation@resendConfirmation')->middleware('checkIFLogin');
-Route::get('/confirmation', 'confirmation@getConfirmation')->middleware('checkIFLogin');
+Route::get('/confirmation', 'confirmation@getConfirmation')->middleware(
+    'checkIFLogin',
+    'checkRegisterConfirmationCodeExist'
+);
 Route::post('/confirmation', 'confirmation@submitConfirmation')->middleware(
     'checkIFLogin',
     'validateConfirmationCode'
@@ -44,7 +47,10 @@ Route::post('/confirmation', 'confirmation@submitConfirmation')->middleware(
 
 /* forgotPassword Routes */
 Route::post('/forgotresend', 'forgotPasswordConfirmationController@resendConfirmation')->middleware('checkIFLogin');
-Route::get('/forgotconfirmation', 'forgotPasswordConfirmationController@getConfirmation')->middleware('checkIFLogin');
+Route::get('/forgotconfirmation', 'forgotPasswordConfirmationController@getConfirmation')->middleware(
+    'checkIFLogin',
+    'checkForgotConfirmationCodeExist'
+);
 Route::post('/forgotconfirmation', 'forgotPasswordConfirmationController@submitConfirmation')->middleware(
     'checkIFLogin',
     'validateForGotPassConfirmation'
@@ -78,6 +84,19 @@ Route::get('/admin/dashboard', 'admin\dashboard\dashboardController@getDashboard
     'checkAdminRole'
 );
 Route::post('/admin/dashboard', 'admin\dashboard\dashboardController@submitDashboard')->middleware('checkIfLogout');
+
+
+// for graduateGraph in dashboard
+Route::get('/admin/dashboard/graduates', 'admin\dashboard\dashboardController@getGraduatesGraphData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+// for employment status in dashboard
+Route::get('/admin/dashboard/status', 'admin\dashboard\dashboardController@getEmploymentStatusData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
 
 // graduates module
 Route::get('/admin/graduates', 'admin\graduates\graduatesController@getGraduates')->middleware(

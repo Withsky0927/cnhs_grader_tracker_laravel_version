@@ -56,7 +56,7 @@ class forgotPasswordConfirmationController extends Controller
 
     public function submitConfirmation(Request $request)
     {
-        $confirmationCodeFromInput = $request->input('forgotconfirmation');
+        $confirmationCodeFromInput = $request->input('forgotconfirm');
         $confirmationCode = Session::get('confirmationcode');
         if ($confirmationCodeFromInput == $confirmationCode) {
             $this->ChangePassword();

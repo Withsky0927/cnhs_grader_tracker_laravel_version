@@ -17,7 +17,7 @@ class validateForGotPassConfirmation
     public function handle($request, Closure $next)
     {
         $errors = Validator::make($request->all(), [
-            'forgotconfirmation' => 'required|numeric|digits:6',
+            'forgotconfirm' => 'required|numeric|digits:6',
         ]);
         if ($errors->fails()) {
             return redirect('forgotconfirmation')

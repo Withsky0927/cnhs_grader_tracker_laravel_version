@@ -24,42 +24,41 @@ class CheckForRegisterUserExist
 
 
 
-        $checkUsername = DB::table('guests')
+        $checkAdminUsername = DB::table('admins')
             ->where('username', $username)
-            ->get()
-            ->first();
+            ->value('username');
+
+        $checkStudentUsername = DB::table('guests')
+            ->where('username', $username)
+            ->value('username');
+
+        if ($checkAdminUsername || $checkStudentUsername) {
+            $errors['username'] = 'Username already Exist!';
+        }
 
         $checkLRN = DB::table('guests')
             ->where('lrn', $lrn)
-            ->get()
-            ->first();
+            ->value('lrn');
 
         $checkEmail = DB::table('guests')
             ->where('email', $email)
-            ->get()
-            ->first();
+            ->value('email');
 
         $checkPhone = DB::table('guests')
             ->where('phone', $phone)
-            ->get()
-            ->first();
-
-        if ($checkUsername) {
-            $errors['username'] = 'Username already Exist! Please Contact Administrator for Assistance';
-        }
+            ->value('phone');
 
         if ($checkEmail) {
             $errors['email'] = 'Email already Exist! Please Contact Administrator for Assistance';
         }
 
         if ($checkLRN) {
-            $errors['lrn'] = 'LRN is already Exist! Please Contact Administrator';
+            $errors['lrn'] = 'LRN is already Exist! Please Contact Administrator for Assistance';
         }
 
         if ($checkPhone) {
-            $errors['phone'] = 'Phone already Exist! Please use Another Number';
+            $errors['phone'] = 'Phone already Exist!';
         }
-
 
 
         if ($errors != null) {

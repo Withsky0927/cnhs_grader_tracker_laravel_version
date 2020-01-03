@@ -17,7 +17,7 @@ class checkUserExistsForgotPassword
      * @param  \Closure  $next
      * @return mixed
      */
-
+    private $errors = NULL;
     public function checkIfPasswordMatch($new, $confirmnew)
     {
         if ($new == $confirmnew) {
@@ -40,43 +40,45 @@ class checkUserExistsForgotPassword
     private function checkAccountRole($account, $newPassword, $newConfirmPassword)
     {
         $checkIfAdmin = DB::table('admins')->where('username', $account)->value('username');
-        $checkIfGuest = DB::table('guests')->where('username', $account)->value('usenmame');
+        $checkIfGuest = DB::table('guests')->where('username', $account)->value('username');
 
         $checkIfPasswordMatch = $this->checkIfPasswordMatch($newPassword, $newConfirmPassword);
 
 
+
         if (!$checkIfAdmin && $checkIfGuest) {
             // student account
+
+
             if ($checkIfPasswordMatch == true) {
                 $email = DB::table('guests')->where('username', $checkIfGuest)->value('email');
-                Session::push('forgotPasswordCredential', ['forgotpassword_credential' => [
+                Session::put('forgotPasswordCredential', ['forgotpassword_credential' => [
                     'username' => $checkIfGuest,
                     'email' => $email,
                     'newPassword' => $this->hashPassword($newConfirmPassword),
                     'accountType' => 'student'
                 ]]);
             } elseif ($checkIfPasswordMatch == false) {
-                return back()->with('notification', 'Password Mismatch');
+                $this->errors = 'Password Mismatch';
             }
         } elseif ($checkIfAdmin && !$checkIfGuest) {
             // admin account
 
             if ($checkIfPasswordMatch == true) {
                 $email  = DB::table('admins')->where('username', $checkIfAdmin)->value('email');
-                Session::push('forgotPasswordCredential', ['forgotpassword_credential' => [
+                Session::put('forgotPasswordCredential', ['forgotpassword_credential' => [
                     'username' => $checkIfGuest,
                     'email' => $email,
-                    'newPassword' => $newPassword,
+                    'newPassword' => $this->hashPassword($newConfirmPassword),
                     'accountType' => 'admin'
                 ]]);
             } elseif ($checkIfPasswordMatch == false) {
-                return back()->with('notification', 'Password Mismatch');
+                $this->errors = 'Password Mismatch';
             }
         }
     }
     public function handle($request, Closure $next)
     {
-        $errors = NULL;
         $username = $request->input('username');
         $newPassword = $request->input('new_password');
         $confirmNewPassword = $request->input('confirm_old_password');
@@ -86,13 +88,12 @@ class checkUserExistsForgotPassword
         if ($checkUsernameExist) {
             $this->checkAccountRole($username, $newPassword, $confirmNewPassword);
         } elseif (!$checkUsernameExist) {
-            $errors = "Account Does not exist";
+            $this->errors = 'Account Does not exist';
         }
 
-        if ($errors) {
-            return back()->with('notification', $errors);
-        } else {
-            return $next($request);
+        if ($this->errors) {
+            return back()->with('notification', $this->errors);
         }
+        return $next($request);
     }
 }

@@ -1,129 +1,3 @@
-/* admin page general style*/
-#maincontainer {
-  border: 1px solid black; }
-  #maincontainer #logocontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer h1 {
-      border: 1px solid black;
-      width: 8rem;
-      height: 8rem; }
-      #maincontainer #logocontainer h1 img {
-        width: 100%;
-        height: 100%; }
-    #maincontainer #logocontainer #subtitle {
-      font-weight: bold;
-      border: 1px solid black; }
-      #maincontainer #logocontainer #subtitle h2 {
-        font-size: 0.8rem;
-        font-weight: bold; }
-      #maincontainer #logocontainer #subtitle h3 {
-        font-size: 0.7rem;
-        font-weight: bold; }
-
-@media all and (max-width: 768px) {
-  #maincontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer {
-      border: 1px solid black; }
-      #maincontainer #logocontainer #logo {
-        margin: auto auto;
-        margin-top: 1rem;
-        width: 8rem;
-        height: 8rem; }
-        #maincontainer #logocontainer #logo img {
-          width: 100%;
-          height: 100%; }
-      #maincontainer #logocontainer #subtitle {
-        text-align: center;
-        font-weight: bold; } }
-
-@media all and (min-width: 769px) and (max-width: 1023px) {
-  #maincontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer {
-      border: 1px solid black; }
-      #maincontainer #logocontainer #logo {
-        margin: auto auto;
-        margin-top: 1rem;
-        width: 8rem;
-        height: 8rem; }
-        #maincontainer #logocontainer #logo img {
-          width: 100%;
-          height: 100%; }
-      #maincontainer #logocontainer #subtitle {
-        text-align: center;
-        font-weight: bold;
-        line-height: 1.2rem; } }
-
-@media all and (min-width: 1024px) and (max-width: 1215px) {
-  #maincontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer {
-      border: 1px solid black; }
-      #maincontainer #logocontainer #logo {
-        margin: auto auto;
-        margin-top: 1rem;
-        margin-right: 0.5rem;
-        width: 8rem;
-        height: 8rem;
-        padding: 0.5rem; }
-        #maincontainer #logocontainer #logo img {
-          width: 100%;
-          height: 100%; }
-      #maincontainer #logocontainer #subtitle {
-        height: 3.3rem;
-        margin-top: 3rem;
-        line-height: 1.2rem;
-        text-align: left;
-        margin-right: 3rem;
-        font-weight: bold; } }
-
-@media all and (min-width: 1216px) and (max-width: 1407px) {
-  #maincontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer {
-      border: 1px solid black; }
-      #maincontainer #logocontainer #logo {
-        margin: auto auto;
-        margin-top: 1rem;
-        width: 8rem;
-        height: 8rem;
-        margin-right: 0.5rem; }
-        #maincontainer #logocontainer #logo img {
-          width: 100%;
-          height: 100%; }
-      #maincontainer #logocontainer #subtitle {
-        height: 3.3rem;
-        margin-top: 3rem;
-        line-height: 1.2rem;
-        text-align: left;
-        margin-right: 3rem;
-        font-weight: bold; } }
-
-@media all and (min-width: 1408px) {
-  #maincontainer {
-    border: 1px solid black; }
-    #maincontainer #logocontainer {
-      border: 1px solid black; }
-      #maincontainer #logocontainer #logo {
-        margin: auto auto;
-        margin-top: 1rem;
-        margin-right: 0.5rem;
-        width: 8rem;
-        height: 8rem;
-        padding: 0.5rem; }
-        #maincontainer #logocontainer #logo img {
-          width: 100%;
-          height: 100%; }
-      #maincontainer #logocontainer #subtitle {
-        height: 3.3rem;
-        margin-top: 3rem;
-        line-height: 1.2rem;
-        text-align: left;
-        margin-right: 3rem;
-        font-weight: bold; } }
-
-/* for navbar shaddow*/
 /* for navbar shaddow*/
 /* add custom scrollbar to webkit based browser*/
 html {
@@ -168,6 +42,10 @@ body {
       background-color: #8a2a2b; }
       #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:hover {
         background-color: #8a2a2b; }
+      #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:active {
+        background-color: #8a2a2b; }
+      #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:focus {
+        background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover {
       -webkit-box-shadow: 0px 0px 3px #000;
       -moz-box-shadow: 0px 0px 3px #000;
@@ -194,6 +72,10 @@ body {
       background-color: #8a2a2b; }
       #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:hover {
         background-color: #8a2a2b; }
+      #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:active {
+        background-color: #8a2a2b; }
+      #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:focus {
+        background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover {
       -webkit-box-shadow: 0px 0px 3px #000;
       -moz-box-shadow: 0px 0px 3px #000;
@@ -209,14 +91,12 @@ body {
           #navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item:hover .navbar-link {
             background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:hover {
-      background-color: #8a2a2b;
-      text-decoration: underline; }
+      background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:active {
       background-color: #8a2a2b;
       text-decoration: underline; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:focus {
-      background-color: #8a2a2b;
-      text-decoration: underline; }
+      background-color: #8a2a2b; }
 
 .no-underline:hover {
   text-decoration: none !important;
@@ -241,5 +121,3 @@ body {
   #navigationbar {
     padding-left: 1.5rem;
     padding-right: 1.5rem; } }
-
-/* for navbar shaddow*/

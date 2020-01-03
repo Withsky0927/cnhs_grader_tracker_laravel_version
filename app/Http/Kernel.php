@@ -61,6 +61,7 @@ class Kernel extends HttpKernel
 
         // for Student confirmation Code Middleware
         'validateConfirmationCode' => \App\Http\Middleware\validateConfirmationCode::class,
+        'checkRegisterConfirmationCodeExist' => \App\Http\Middleware\checkRegisterConfirmationCodeExist::class,
 
 
         // for login middleware
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         'checkUserExistsForgotPassword' => \App\Http\Middleware\checkUserExistsForgotPassword::class,
         'sendForgotPasswordVerification' => \App\Http\Middleware\sendForgotPasswordVerification::class,
         'validateForGotPassConfirmation' => \App\Http\Middleware\validateForGotPassConfirmation::class,
+        'checkForgotConfirmationCodeExist' => \App\Http\Middleware\checkForgotConfirmationCodeExist::class,
 
         // for authorizatin middleware
         'checkAdminRole' => \App\Http\Middleware\checkAdminRole::class,

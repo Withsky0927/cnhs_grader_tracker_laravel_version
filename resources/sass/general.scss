@@ -61,6 +61,13 @@ body {
                     background-color: $mainbackgroundcolor;
                     text-decoration: underline;
                 }
+                &:active {
+                    background-color: $mainbackgroundcolor;
+                    text-decoration: underline;
+                }
+                &:focus {
+                    background-color: $mainbackgroundcolor;
+                }
             }
         }
         .navbar-end {
@@ -88,6 +95,15 @@ body {
                 }
                 &:hover {
                     background-color: $mainbackgroundcolor;
+                    text-decoration: underline;
+                }
+                &:active {
+                    background-color: $mainbackgroundcolor;
+                    text-decoration: underline;
+                }
+                &:focus {
+                    background-color: $mainbackgroundcolor;
+                    text-decoration: underline;
                 }
             }
         }
