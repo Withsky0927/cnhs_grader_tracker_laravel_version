@@ -39,7 +39,7 @@
 </head>
 
 <body>
-  @include('template.disabled_javascript')
+  @include('templates.disabled_javascript')
   @yield('content')
   @include('templates.scripts')
 </body>

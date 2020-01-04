@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    @include('template.disabled_javascript')
+    @include('templates.disabled_javascript')
     @include('templates.student_header_content');
     @yield('content')
     @include('templates.student_footer_content')

@@ -42,10 +42,6 @@ body {
       background-color: #8a2a2b; }
       #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:hover {
         background-color: #8a2a2b; }
-      #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:active {
-        background-color: #8a2a2b; }
-      #navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:focus {
-        background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover {
       -webkit-box-shadow: 0px 0px 3px #000;
       -moz-box-shadow: 0px 0px 3px #000;
@@ -56,6 +52,10 @@ body {
       #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item {
         color: black; }
         #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:hover {
+          background-color: white; }
+        #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:active {
+          background-color: white; }
+        #navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:focus {
           background-color: white; }
     #navigationbar .navbarbutton .navbar-start .navbar-item:hover {
       background-color: #8a2a2b;
@@ -73,9 +73,9 @@ body {
       #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:hover {
         background-color: #8a2a2b; }
       #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:active {
-        background-color: #8a2a2b; }
+        background-color: white; }
       #navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:focus {
-        background-color: #8a2a2b; }
+        background-color: white; }
     #navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover {
       -webkit-box-shadow: 0px 0px 3px #000;
       -moz-box-shadow: 0px 0px 3px #000;
@@ -91,12 +91,14 @@ body {
           #navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item:hover .navbar-link {
             background-color: #8a2a2b; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:hover {
-      background-color: #8a2a2b; }
+      background-color: #8a2a2b;
+      text-decoration: underline; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:active {
       background-color: #8a2a2b;
       text-decoration: underline; }
     #navigationbar .navbarbutton .navbar-end .navbar-item:focus {
-      background-color: #8a2a2b; }
+      background-color: #8a2a2b;
+      text-decoration: underline; }
 
 .no-underline:hover {
   text-decoration: none !important;

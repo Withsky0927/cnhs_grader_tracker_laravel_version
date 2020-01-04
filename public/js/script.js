@@ -239,12 +239,11 @@
     };
 
     // check for pages
-
-    if (document.querySelector("#registrationform")) {
-        RegistrationForm();
-    } else if (document.querySelectorAll(".resendForm")[0]) {
+    if (window.location.pathname === "/confirmation") {
         ConfirmationForm();
-    } else if (document.querySelectorAll(".resendConfirmForm")[0]) {
+    } else if (window.location.pathname === "/register") {
+        RegistrationForm();
+    } else if (window.location.pathname === "/forgotconfirmation") {
         ForGotPasswordConfirmation();
     }
 })();

@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class dashboardController extends Controller
 {
+    public function getUsersNumber()
+    {
+        $getUsersCount = DB::table('accounts')->where('account_status', 'approved')->count();
+
+        return response()->json(['userscount' => $getUsersCount]);
+    }
 
     public function getGraduatesGraphData(Request $request)
     {

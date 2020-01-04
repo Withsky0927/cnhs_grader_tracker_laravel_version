@@ -4,10 +4,11 @@
 <!--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"
     integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
--->
-<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.3.1/jodit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
 -->
+
 <script type="text/javascript" src="{{asset('admin/js/axios.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/js/Chart.bundle.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('jodit-3.3.8/build/jodit.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/js/script.js')}}"></script>

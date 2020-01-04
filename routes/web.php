@@ -96,7 +96,10 @@ Route::get('/admin/dashboard/status', 'admin\dashboard\dashboardController@getEm
     'checkIfLogout',
     'checkAdminRole'
 );
-
+Route::get('/admin/dashboard/users', 'admin\dashboard\dashboardController@getUsersNumber')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
 
 // graduates module
 Route::get('/admin/graduates', 'admin\graduates\graduatesController@getGraduates')->middleware(

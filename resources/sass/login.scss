@@ -1,124 +1,124 @@
-@import 'colors';
-@import 'mixins';
+@import "colors";
+@import "mixins";
 html {
-  background-color: $mainbackgroundcolor;
+    background-color: $mainbackgroundcolor;
 }
 #loginform {
-  background: white;
-  @include boxShadow(0px, 0px, 5px, #000);
+    background: white;
+    @include boxShadow(0px, 0px, 5px, #000);
 }
 #buttonoutside {
-  background-color: $outsidebtncolor;
-  @include boxShadow(0px, 0px , 2px , gray);
+    background-color: $outsidebtncolor;
+    @include boxShadow(0px, 0px, 2px, gray);
 }
 .login-links,
 .login-links:active,
 .login-links:focus {
-  color: black;
+    color: black;
 }
 .login-links:hover {
-  text-decoration: underline;
-  color: black;
+    text-decoration: underline;
+    color: black;
 }
 
 // for mobile devices
 @media all and (max-width: 767px) and (orientation: portrait) {
-  #loginform {
-    margin-top: 4rem;
-    padding: 1.5rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  #loginlogo {
-    img {
-      width: 10rem;
-      height: 10rem;
+    #loginform {
+        margin-top: 4rem;
+        padding: 1.5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
-  }
+    #loginlogo {
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
 
-  #buttonoutside {
-    width: 100% !important;
-  }
+    #buttonoutside {
+        width: 100% !important;
+    }
 }
 @media all and (max-height: 767px) and (orientation: landscape) {
-  #loginform {
-    margin-top: 2rem;
-    padding: 1.5rem;
-  }
-  #loginlogo {
-    img {
-      width: 10rem;
-      height: 10rem;
+    #loginform {
+        margin-top: 2rem;
+        padding: 1.5rem;
     }
-  }
-  #buttonoutside {
-    width: 50% !important;
-  }
+    #loginlogo {
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+    #buttonoutside {
+        width: 50% !important;
+    }
 }
 
 // for tablet resolution
 @media all and (min-height: 768px) and (orientation: portrait) {
-  #loginform {
-    margin-top: 11rem;
-    padding: 1.5rem;
-  }
-  #loginlogo {
-    img {
-      width: 10rem;
-      height: 10rem;
+    #loginform {
+        margin-top: 11rem;
+        padding: 1.5rem;
     }
-  }
-  #buttonoutside {
-    width: 30%;
-  }
+    #loginlogo {
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+    #buttonoutside {
+        width: 30%;
+    }
 }
 @media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
-  #loginform {
-    margin-top: 3.2rem;
-    padding: 1.5rem;
-  }
-  #loginlogo {
-    img {
-      width: 10rem;
-      height: 10rem;
+    #loginform {
+        margin-top: 3.2rem;
+        padding: 1.5rem;
     }
-  }
-  #buttonoutside {
-    width: 50%;
-  }
+    #loginlogo {
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+    #buttonoutside {
+        width: 50%;
+    }
 }
 
 // for desktop to 1080 monitor
 @media all and (min-width: 1024px) and (max-width: 2559px) {
-  #loginform {
-    margin-top: 7rem;
-    padding: 1.5rem;
-  }
-  #loginlogo {
-    img {
-      width: 8rem;
-      height: 8rem;
+    #loginform {
+        margin-top: 7rem;
+        padding: 1.5rem;
     }
-  }
-  #buttonoutside {
-    width: 100%;
-  }
+    #loginlogo {
+        img {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+    #buttonoutside {
+        width: 100%;
+    }
 }
 
 // for 4k resolution
 @media all and (min-width: 2560px) {
-  #loginform {
-    margin-top: 10rem;
-    padding: 1.5rem;
-  }
-  #loginlogo {
-    img {
-      width: 10rem;
-      height: 10rem;
+    #loginform {
+        margin-top: 10rem;
+        padding: 1.5rem;
     }
-  }
-  #buttonoutside {
-    width: 50%;
-    background-color: $outsidebtncolor;
-  }
+    #loginlogo {
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+    #buttonoutside {
+        width: 50%;
+        background-color: $outsidebtncolor;
+    }
 }

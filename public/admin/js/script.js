@@ -59,24 +59,16 @@ function dashBoardModule() {
             let year = new Date();
             let previousYear = year.getFullYear() - 1;
             let currentYear = year.getFullYear();
-
             const graduatesCanvas = document
                 .querySelector("#graduatechart")
                 .getContext("2d");
             const graduatesChart = new Chart(graduatesCanvas, {
                 type: "bar",
                 data: {
-                    labels: [
-                        "ABM",
-                        "GAS",
-                        "HUMSS",
-                        "ARTS & SCIENCE",
-                        "TVL",
-                        "STEM"
-                    ],
+                    labels: ["ABM", "GAS", "HUMSS", "ARTS", "TVL", "STEM"],
                     datasets: [
                         {
-                            label: `Graduates: ${previousYear} - ${currentYear}`,
+                            label: "",
                             data: [
                                 abmData,
                                 gasData,
@@ -85,9 +77,54 @@ function dashBoardModule() {
                                 tvlData,
                                 stemData
                             ],
-                            backgroundColor: []
+                            backgroundColor: [
+                                "rgb(255, 99, 132)",
+                                "rgb(54, 162, 235)",
+                                "rgb(255, 206, 86)",
+                                "rgb(75, 192, 192)",
+                                "rgb(153, 102, 255)",
+                                "rgb(255, 159, 64)"
+                            ],
+                            borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)"
+                            ],
+                            borderWidth: 3
                         }
                     ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+                                    precision: 0
+                                }
+                            }
+                        ]
+                    },
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: "black",
+                            defaultFontFamily:
+                                "'Open Sans','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                            defaultFontSize: 3,
+                            defaultFontStyle: "normal"
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: `Graduates: ${previousYear} - ${currentYear}`,
+                        position: "top"
+                    }
                 }
             });
         };
@@ -101,20 +138,22 @@ function dashBoardModule() {
             }
         };
 
-        let responseData = await axios(axiosOptonsForGraduates);
-        GraduatesData = responseData.data;
-        console.log(GraduatesData);
+        try {
+            let responseData = await axios(axiosOptonsForGraduates);
+            GraduatesData = responseData.data;
+            stem = GraduatesData.studentCounts.stem;
+            abm = GraduatesData.studentCounts.abm;
+            gas = GraduatesData.studentCounts.gas;
+            tvl = GraduatesData.studentCounts.tvl;
+            humss = GraduatesData.studentCounts.humss;
+            artsScience = GraduatesData.studentCounts.arts_science;
 
-        // put data in place for graph usage
-        stem = GraduatesData.stem;
-        abm = GraduatesData.abm;
-        gas = GraduatesData.gas;
-        tvl = GraduatesData.tvl;
-        humss = GraduatesData.humss;
-        artsScience = GraduatesData.arts_and_science;
+            // get data in all graduates
 
-        // get data in all graduates
-        addGraduateChart(stem, abm, gas, tvl, humss, artsScience);
+            addGraduateChart(stem, abm, gas, tvl, humss, artsScience);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const getEmploymentStatusData = async () => {
@@ -133,19 +172,43 @@ function dashBoardModule() {
             }
         };
 
-        let responseData = await axios(axiosOptonsForEmployment);
-        EmploymentData = responseData.status;
+        try {
+            let responseData = await axios(axiosOptonsForEmployment);
+            EmploymentData = responseData.data;
 
-        //put data in place for graph usage
-        waiting = EmploymentData.waiting;
-        employed = EmploymentData.employed;
-        unemployed = EmploymentData.unemployed;
+            //put data in place for graph usage
+            waiting = EmploymentData.status.waiting;
+            employed = EmploymentData.status.employed;
+            unemployed = EmploymentData.status.unemployed;
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    setTimeout(function() {
-        getGraduateGraphData();
-        getEmploymentStatusData();
-    }, 1000);
+    const getUsersAccountsCountData = async () => {
+        let userCount = 0;
+        //const userElement = document.querySelector("#users-count");
+        const axiosOptionsforUsersCount = {
+            url: "/admin/dashboard/users",
+            method: "get",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json;charset=UTF-8"
+            }
+        };
+        try {
+            let responseData = await axios(axiosOptionsforUsersCount);
+            userCount = responseData.data;
+            console.log(userCount.userscount);
+        } catch (error) {
+            console.log(error);
+        }
+        //userCount.innerText = userCount;
+    };
+
+    getGraduateGraphData();
+    getEmploymentStatusData();
+    getUsersAccountsCountData();
 }
 
 function gradutesModule() {}
@@ -153,18 +216,17 @@ function gradutesModule() {}
 function AccountsModule() {}
 
 function checkIfPageExist() {
-    if (window.location.pathname === "admin/dashboard") {
-        //dashBoardModule();
+    if (window.location.pathname === "/admin/dashboard") {
+        dashBoardModule();
     }
-
     // graduates module
-    if (window.location.pathname === "admin/graduates") {
-        gradutesModule();
+    if (window.location.pathname === "/admin/graduates") {
+        // gradutesModule();
     }
 
     // check if inside of accounts module
-    if (window.location.pathname === "admin/accounts/admin") {
-    } else if (window.location.pathname === "admin/accounts/student") {
+    if (window.location.pathname === "/admin/accounts/admin") {
+    } else if (window.location.pathname === "/admin/accounts/student") {
     }
 }
 
