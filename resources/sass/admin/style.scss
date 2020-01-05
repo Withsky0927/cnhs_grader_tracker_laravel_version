@@ -3,11 +3,11 @@
 
 /* admin page general style */
 #maincontainer {
-    border: 1px solid black;
-    height: auto;
+    //border: 1px solid black;
     margin-bottom: 0px !important;
+    background-color: #f1f1f1;
     #logocontainer {
-        border: 1px solid black;
+        //border: 1px solid black;
         #logo {
             //border: 1px solid black;
             width: 7rem;
@@ -90,10 +90,10 @@
 // for desktop
 @media all and (min-width: 1024px) and (max-width: 1215px) {
     #maincontainer {
-        border: 1px solid black;
+        //border: 1px solid black;
 
         #logocontainer {
-            border: 1px solid black;
+            //border: 1px solid black;
             #logo {
                 margin: auto auto;
                 margin-top: 1rem;
@@ -122,10 +122,10 @@
 // for widescreen
 @media all and (min-width: 1216px) and (max-width: 1407px) {
     #maincontainer {
-        border: 1px solid black;
+        //border: 1px solid black;
 
         #logocontainer {
-            border: 1px solid black;
+            //border: 1px solid black;
 
             #logo {
                 margin: auto auto;
@@ -154,7 +154,7 @@
 // for fullhd
 @media all and (min-width: 1408px) {
     #maincontainer {
-        border: 1px solid black;
+        //border: 1px solid black;
 
         #logocontainer {
             border: 1px solid black;

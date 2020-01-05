@@ -1,13 +1,45 @@
 @import "../../mixins";
 @import "../../colors";
 
-#dashboard-content {
-    border: 1px solid red;
-}
 .dashboard-devider {
     padding: 1rem;
-    height: 29rem;
-    background-color: #f1f1f1;
+    height: auto;
+}
+
+#usersnotification {
+    background-color: rgb(255, 107, 129);
+}
+#pendingnotification {
+    background-color: rgb(30, 144, 255);
+    &:hover {
+        cursor: pointer;
+    }
+}
+#notifycontainer {
+    background-color: rgb(46, 213, 115);
+    &:hover {
+        cursor: pointer;
+    }
+}
+.options {
+    background-color: white;
+}
+
+.notificationcontainer {
+    height: 100%;
+    width: 100%;
+    color: white;
+    @include boxShadow(0px, 0px, 1px, #000);
+    border: 1px solid gray;
+    .notificationicon {
+        text-align: center;
+    }
+    .datacount {
+        text-align: center;
+    }
+    .notificationtitle {
+        text-align: center;
+    }
 }
 // for mobile devices
 @media all and (max-width: 768px) {
@@ -20,25 +52,39 @@
         #graphscontainer {
             margin-bottom: 0px !important;
             .graph {
-                height: 15rem;
-                border: 1px solid black;
+                height: 14.3rem;
                 .canvascontainer {
                     height: 100%;
                     width: 17rem;
-                    border: 1px solid black;
                 }
             }
         }
     }
+    .notificationcontainer {
+        padding: 1rem;
+
+        .notificationicon {
+            i {
+                font-size: 3rem;
+            }
+        }
+    }
+    .options {
+        height: 10rem;
+        width: 5rem;
+    }
 }
 
 @media all and (min-width: 769px) and (max-width: 1023px) {
+    #removemargin {
+        margin-bottom: 0px !important;
+    }
     .dashboard-devider {
         border: 0px none;
         #graphscontainer {
             .graph {
                 height: 10rem;
-                border: 1px solid black;
+                //border: 1px solid black;
                 .canvascontainer {
                     height: 100%;
                     width: 19rem;
@@ -47,24 +93,109 @@
             }
         }
     }
+    .options {
+        height: 10rem;
+        width: 5rem;
+    }
 }
 // for desktop
 @media all and (min-width: 1024px) and (max-width: 1215px) {
+    #removemargin {
+        margin-bottom: 0px !important;
+    }
     .dashboard-devider {
-        border: 1px solid black;
+        //border: 1px solid black;
+        #graphscontainer {
+            .graph {
+                height: 14rem;
+                //border: 1px solid black;
+                .canvascontainer {
+                    height: 100%;
+                    width: 22rem;
+                }
+            }
+        }
+    }
+    .notificationcontainer {
+        padding: 1rem;
+        .notificationicon {
+            i {
+                font-size: 3rem;
+            }
+        }
+    }
+    .options {
+        height: 10rem;
+        margin-top: 0.6rem;
+        width: 5rem;
     }
 }
 
 // for widescreen
 @media all and (min-width: 1216px) and (max-width: 1407px) {
+    #removemargin {
+        margin-bottom: 0px !important;
+    }
     .dashboard-devider {
-        border: 1px solid black;
+        //border: 1px solid black;
+        #graphscontainer {
+            .graph {
+                height: 18rem;
+                //border: 1px solid black;
+                .canvascontainer {
+                    height: 100%;
+                    width: 33rem;
+                }
+            }
+        }
+    }
+    .notificationcontainer {
+        padding: 1rem;
+
+        .notificationicon {
+            i {
+                font-size: 3rem;
+            }
+        }
+    }
+    .options {
+        height: 10rem;
+        width: 5rem;
+        margin-top: 0.6rem;
     }
 }
 
 // for fullhd
 @media all and (min-width: 1408px) {
+    #removemargin {
+        margin-bottom: 0px !important;
+    }
     .dashboard-devider {
-        border: 1px solid black;
+        //border: 1px solid black;
+        #graphscontainer {
+            .graph {
+                height: 17rem;
+                //border: 1px solid black;
+                .canvascontainer {
+                    height: 100%;
+                    width: 31rem;
+                }
+            }
+        }
+    }
+
+    .notificationcontainer {
+        padding: 2rem;
+
+        .notificationicon {
+            i {
+                font-size: 3rem;
+            }
+        }
+    }
+    .options {
+        height: 10rem;
+        width: 5rem;
+        margin-top: 0.6rem;
     }
 }
