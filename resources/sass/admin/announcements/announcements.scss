@@ -1,0 +1,63 @@
+@import "../../mixins";
+@import "../../colors";
+
+#announcements-content {
+    border: 1px solid black !important;
+    height: 100%;
+    #announcements-container {
+        border: 1px solid black;
+    }
+}
+
+// for mobile devices
+@media all and (max-width: 768px) {
+    #announcements-content {
+        width: 100%;
+    }
+    #announcements-container {
+        width: 100%;
+        height: 28rem;
+    }
+}
+
+@media all and (min-width: 769px) and (max-width: 1023px) {
+    #announcements-content {
+        width: 100%;
+        #announcements-container {
+            width: 100%;
+            height: 28rem;
+        }
+    }
+}
+// for desktop
+@media all and (min-width: 1024px) and (max-width: 1215px) {
+    #announcements-content {
+        width: 100%;
+        #announcements-container {
+            width: 100%;
+            height: 30rem;
+        }
+    }
+}
+
+// for widescreen
+@media all and (min-width: 1216px) and (max-width: 1407px) {
+    #announcements-content {
+        width: 100%;
+        #announcements-container {
+            width: 100%;
+            height: 30rem;
+        }
+    }
+}
+
+// for fullhd
+@media all and (min-width: 1408px) {
+    #announcements-content {
+        width: 100%;
+        #announcements-container {
+            width: 100%;
+            height: 30rem;
+        }
+    }
+}

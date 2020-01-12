@@ -1,0 +1,103 @@
+@import "../../mixins";
+@import "../../colors";
+
+#graduates-modal-container {
+    height: auto;
+    border: 1px solid black;
+}
+
+#graduate-modal-content {
+    width: 80%;
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#graduates-content {
+    border: 1px solid black !important;
+    height: auto;
+    #graduates-container {
+        height: auto;
+        @include boxShadow(0px, 0px, 2px, #000);
+        background-color: white;
+        padding-top: 1.7rem;
+        padding-bottom: 1.7rem;
+        .table-header {
+            height: auto;
+            padding: 5px;
+            border: 1px solid lightgray;
+            .table-title {
+                padding: 1rem;
+                padding-bottom: 0.1rem;
+                h2 {
+                    font-size: 1.2rem;
+                    color: black;
+                }
+            }
+            .table-option {
+                padding: 1rem;
+            }
+        }
+        .table-container {
+            margin-bottom: 0;
+            #graduates-table {
+                margin-bottom: 0;
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            font-size: 0.8rem;
+                        }
+                        th {
+                            color: black;
+                            font-weight: bold;
+                        }
+                        td {
+                            color: white;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+        }
+        .table-footer {
+            height: auto;
+            padding: 1rem;
+            border: 1px solid lightgray;
+        }
+    }
+}
+
+// for mobile devices
+@media all and (max-width: 768px) {
+    #graduates-content {
+        text-align: center;
+    }
+
+    #graduates-container {
+    }
+}
+
+@media all and (min-width: 769px) and (max-width: 1023px) {
+    #graduates-content {
+        text-align: center;
+    }
+}
+// for desktop
+@media all and (min-width: 1024px) and (max-width: 1215px) {
+    #graduates-content {
+    }
+}
+
+// for widescreen
+@media all and (min-width: 1216px) and (max-width: 1407px) {
+    #graduates-content {
+    }
+}
+
+// for fullhd
+@media all and (min-width: 1408px) {
+    #graduates-content {
+    }
+}

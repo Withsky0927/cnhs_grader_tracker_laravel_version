@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.3.1/jodit.min.css" />
     -->
     <link rel="stylesheet" type="text/css" href="{{asset('admin/css/style.css')}}" />
+
 </head>
 
 <body>

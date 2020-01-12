@@ -16,7 +16,6 @@ class forgotpassword extends Controller
     public function submitForgotPasswordForm(Request $request)
     {
         $message = 'please open the email that has been used on this account for confirmation code';
-        Session::put('confirmationcode');
-        return redirect('/forgotconfirmation')->with('code', $message);
+        return redirect('/forgotconfirmation')->with('notification', $message);
     }
 }

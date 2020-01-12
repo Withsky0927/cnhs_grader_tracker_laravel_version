@@ -31,7 +31,6 @@ class sendForgotPasswordVerification
         });
 
         Session::put('confirmationcode', $digit);
-
         return $next($request);
     }
 }

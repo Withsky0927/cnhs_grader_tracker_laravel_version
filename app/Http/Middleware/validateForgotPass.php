@@ -54,10 +54,9 @@ class validateForgotPass
 
         if ($notification->fails()) {
 
-            return redirect('/')
+            return back()
                 ->withErrors($notification)
                 ->withInput();
-
         }
         return $next($request);
     }

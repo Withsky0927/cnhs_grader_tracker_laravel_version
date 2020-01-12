@@ -16,8 +16,6 @@ class CreateGraduatesTable extends Migration
         Schema::create('graduates', function (Blueprint $table) {
             $table->uuid('graduate_id');
             $table->primary('graduate_id');
-            $table->bigInteger('#');
-            $table->unique('#');
             $table->string('profile_pic', 500);
             $table->bigInteger('lrn');
             $table->unique('lrn');
@@ -30,10 +28,6 @@ class CreateGraduatesTable extends Migration
             $table->integer('age');
             $table->string('gender', 15);
             $table->string('civil_status', 15);
-            $table->string('email', 150);
-            $table->unique('email', 150);
-            $table->string('phone', 20);
-            $table->unique('phone', 20);
             $table->string('status', 20);
         });
     }

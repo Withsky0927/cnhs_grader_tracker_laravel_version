@@ -25,6 +25,10 @@
     background-color: white;
 }
 
+.modalheader {
+    padding: 0.8rem !important;
+}
+
 .notificationcontainer {
     height: 100%;
     width: 100%;
@@ -69,6 +73,7 @@
             }
         }
     }
+
     .options {
         height: 10rem;
         width: 5rem;

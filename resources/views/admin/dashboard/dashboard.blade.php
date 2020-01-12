@@ -2,11 +2,12 @@
 
 @section('title' , 'Dashboard')
 @section('content')
-<main class="columns is-multiline is-desktop" id="maincontainer">
+@include('templates.disabled_javascript')
+<main class="columns is-centered is-multiline is-desktop" id="maincontainer">
     @if(session('user_role') == 'superadmin')
     @include("templates.admin_logo")
     <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd" id="dashboard-content">
-        <div class="columns is-multiline is-desktop" id="removemargin">
+        <div class="columns is-centered is-multiline is-desktop" id="removemargin">
             <div class="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd dashboard-devider">
                 <div class="columns is-multiline is-centered is-desktop" id="graphscontainer">
                     <div class="column is-11 graph">
@@ -33,7 +34,7 @@
                                         <i class="fas fa-users"></i>
                                     </div>
                                     <div class="datacount">
-                                        <span class="countnumber" id="userscount"></span>
+                                        <span class="countnumber" id="userscount">0</span>
                                     </div>
                                     <div class="notificationtitle">
                                         <span class="titlenamenotif">Users</span>
@@ -47,7 +48,7 @@
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </div>
                                     <div class="datacount">
-                                        <span class="countnumber" id="pendingcount">2</span>
+                                        <span class="countnumber" id="pendingcount">0</span>
                                     </div>
                                     <div class="notificationtitle">
                                         <span class="titlenamenotif">Pending</span>
@@ -61,7 +62,7 @@
                                         <i class="fas fa-bell"></i>
                                     </div>
                                     <div class="datacount">
-                                        <span class="countnumber" id="notifycount"></span>
+                                        <span class="countnumber" id="notifycount">0</span>
                                     </div>
                                     <div class="notificationtitle">
                                         <span class="titlenamenotif">Notification</span>

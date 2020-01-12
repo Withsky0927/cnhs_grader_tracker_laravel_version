@@ -101,11 +101,39 @@ Route::get('/admin/dashboard/users', 'admin\dashboard\dashboardController@getUse
     'checkAdminRole'
 );
 
+// notification in dashboard modals
+// pending notitication
+Route::get('/admin/dashboard/pending', 'admin\dashboard\dashboardController@getPendingsNumber')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::get('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@approvedAccount')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::put('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@approvedAccount')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::delete('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@disaprovedAccount')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
 // graduates module
 Route::get('/admin/graduates', 'admin\graduates\graduatesController@getGraduates')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
+Route::get('/admin/graduates/pages', 'admin\graduates\graduatesController@getGraduatePages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::get('/admin/graduates/view/student', 'admin\graduates\graduatesController@getGraduateStudent')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
 Route::post('/admin/graduates', 'admin\graduates\graduatesController@AddGraduates')->middleware(
     'checkIfLogout',
     'checkAdminRole'

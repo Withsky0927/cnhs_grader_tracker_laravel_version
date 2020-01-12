@@ -7,16 +7,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-
-
 class dashboardController extends Controller
 {
+
+    /*
+     *  get all notification icon numbers
+     */
     public function getUsersNumber()
     {
         $getUsersCount = DB::table('accounts')->where('account_status', 'approved')->count();
 
         return response()->json(['userscount' => $getUsersCount]);
     }
+
+
+    public function getPendingsNumber()
+    {
+        $pendingAccounts = DB::table('accounts')->where('account_status', 'pending')->count();
+        //$pendingReports = DB::table('reports')->where('report_status' ,'pending')->count();
+
+        $PendintNumbers = $pendingAccounts +  0;
+
+
+
+        return response()->json(['pending_count' => $PendintNumbers]);
+    }
+
+    public function getNotifyNumber()
+    {
+    }
+
+    /*
+     *  get all data for graphs
+    */
 
     public function getGraduatesGraphData(Request $request)
     {
@@ -37,9 +60,11 @@ class dashboardController extends Controller
             'humss' => $humssStudents,
             'tvl' => $tvlStudents,
             'arts_science' => $artsScienceStudents
-        ]]);
-    }
 
+        ]]);
+
+    }
+    
     public function getEmploymentStatusData(Request $request)
     {
 

@@ -1,6 +1,6 @@
 @import "../colors";
 @import "../mixins";
-
+@import "../overide";
 /* admin page general style */
 #maincontainer {
     //border: 1px solid black;
@@ -186,3 +186,8 @@
 
 @import "../general";
 @import "dashboard/dashboard";
+@import "graduates/graduates";
+@import "reports/reports";
+@import "announcements/announcements";
+@import "accounts/accounts";
+@import "settings/settings";

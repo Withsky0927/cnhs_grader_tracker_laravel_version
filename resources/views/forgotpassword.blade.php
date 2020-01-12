@@ -19,7 +19,11 @@
             <p>{{$error}}</p>
             @endforeach
             @endif
-
+            @if($errors != '')
+            @foreach ($errors->all() as $error)
+            <p>{{$error}}</p>
+            @endforeach
+            @endif
             @if(session('notification'))
             <p>{{session('notification')}}</p>
             @endif

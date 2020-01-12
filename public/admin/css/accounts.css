@@ -1,0 +1,19 @@
+/* for navbar shaddow*/
+#accounts-content { border: 1px solid black !important; height: 100%; }
+
+#accounts-content #accounts-container { border: 1px solid black; }
+
+@media all and (max-width: 768px) { #accounts-content { width: 100%; }
+  #accounts-container { width: 100%; height: 28rem; } }
+
+@media all and (min-width: 769px) and (max-width: 1023px) { #accounts-content { width: 100%; }
+  #accounts-content #accounts-container { width: 100%; height: 28rem; } }
+
+@media all and (min-width: 1024px) and (max-width: 1215px) { #accounts-content { width: 100%; }
+  #accounts-content #accounts-container { width: 100%; height: 30rem; } }
+
+@media all and (min-width: 1216px) and (max-width: 1407px) { #accounts-content { width: 100%; }
+  #accounts-content #accounts-container { width: 100%; height: 30rem; } }
+
+@media all and (min-width: 1408px) { #accounts-content { width: 100%; }
+  #accounts-content #accounts-container { width: 100%; height: 30rem; } }

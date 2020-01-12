@@ -63,11 +63,10 @@ class checkUserExistsForgotPassword
             }
         } elseif ($checkIfAdmin && !$checkIfGuest) {
             // admin account
-
             if ($checkIfPasswordMatch == true) {
                 $email  = DB::table('admins')->where('username', $checkIfAdmin)->value('email');
                 Session::put('forgotPasswordCredential', ['forgotpassword_credential' => [
-                    'username' => $checkIfGuest,
+                    'username' => $checkIfAdmin,
                     'email' => $email,
                     'newPassword' => $this->hashPassword($newConfirmPassword),
                     'accountType' => 'admin'
@@ -86,7 +85,7 @@ class checkUserExistsForgotPassword
         $checkUsernameExist = DB::table('accounts')->where('username', $username)->value('username');
 
         if ($checkUsernameExist) {
-            $this->checkAccountRole($username, $newPassword, $confirmNewPassword);
+            $this->checkAccountRole($checkUsernameExist, $newPassword, $confirmNewPassword);
         } elseif (!$checkUsernameExist) {
             $this->errors = 'Account Does not exist';
         }

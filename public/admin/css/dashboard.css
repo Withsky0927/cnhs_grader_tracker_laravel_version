@@ -19,6 +19,9 @@
 .options {
   background-color: white; }
 
+.modalheader {
+  padding: 0.8rem !important; }
+
 .notificationcontainer {
   height: 100%;
   width: 100%;

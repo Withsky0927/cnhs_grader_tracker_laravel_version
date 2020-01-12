@@ -2,15 +2,64 @@
 @if (session('user_role') == 'superadmin')
 {{-- for dashboard modals--}}
 @if (Request::is('admin/dashboard'))
-<div class="modal" id="pendingmodal">
+<div class="modal is-radiusless" id="pendingmodal">
     <div class="modal-background"></div>
     <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Pending Approval</p>
-            <button class="delete" id="pending-close" aria-label="close"></button>
+        <header class="modal-card-head modalheader">
+            <p class="modal-card-title is-size-6 is-dark">Pending Approval</p>
+            <button class="delete is-small" id="pending-close" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-            <!-- Content ... -->
+            <nav class="panel">
+                <p class="panel-tabs">
+                    <a class="is-active modal-page-link">Accounts</a>
+                    <a class="modal-page-link">Reports</a>
+                    <a class="modal-page-link"></a>
+                    <a class="modal-page-link">Sources</a>
+                    <a class="modal-page-link">Forks</a>
+                </p>
+                <a class="panel-block is-active">
+                    <div class="table-container">
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th colspan="2" class="has-text-centered">status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>1</th>
+                                    <td>superadmin</td>
+                                    <td>superadmin</td>
+                                    <td>Pending</td>
+                                    <td><button class="button is-success is-small">Approve</button></td>
+                                    <td><button class="button is-danger is-small">Discard</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav class="pagination is-small" role="navigation" aria-label="pagination">
+                        <a class="pagination-previous" disabled>Previous</a>
+                        <a class="pagination-next">Next page</a>
+                        <ul class="pagination-list" id="accountsApprovalPagination">
+                            <li>
+                                <a class="pagination-link is-current is-danger" aria-label="Page 1"
+                                    aria-current="page">1</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 2">2</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 3">3</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </a>
+            </nav>
         </section>
         <footer class="modal-card-foot">
             <button class="button is-small is-danger">Save changes</button>
@@ -20,24 +69,118 @@
 </div>
 @endif
 {{-- for accounts modals --}}
-@if (Request::is('/admin/accounts/admin'))
+@if (Request::is('admin/accounts/admin'))
 @endif
-@if (Request::is('/admin/accounts/student'))
+@if (Request::is('admin/accounts/student'))
 @endif
 {{-- for settings modals --}}
-@if (Request::is('/admin/settings/variables'))
+@if (Request::is('admin/settings/variables'))
 @endif
-@if (Request::is('/admin/settings/audittrail'))
+@if (Request::is('admin/settings/audittrail'))
 @endif
-@if (Request::is('/admin/settings/backup'))
+@if (Request::is('admin/settings/backup'))
 @endif
-@endif {{-- end of superadmin scope--}}
+@endif{{-- end of superadmin scope--}}
+
+
+
 @if(session('user_role') == 'superadmin' || session('user_role') == 'admin')
-@if (Request::is('/admin/graduates'))
+@if (Request::is('admin/graduates'))
+<div class="modal is-radiusless animated fadeIn" id="graduates-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content" id="graduate-modal-content">
+        <div class="container" id="graduates-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-grad-modal-column">
+                            <div class="columns is-desktop">
+                                <div class="column">
+                                    <div id="graduate-profile-pic">
+                                        <img id="graduate-profile-pic">
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">LRN:</span>
+                                    <span id="graduate-lrn"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Strand:</span>
+                                    <span id="graduate-strand"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Status:</span>
+                                    <span id="graduate-status"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-grad-modal-column">
+                            <div class="columns is-desktop">
+                                <div class="column">
+                                    <span class="graduate-modal-title">Firstname:</span>
+                                    <span id="graduate-firstname"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Middlename:</span>
+                                    <span id="graduate-middlename"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Lastname:</span>
+                                    <span id="graduate-lastname"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Address:</span>
+                                    <span id="graduate-address"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="third-grad-modal-column">
+                            <div class="columns is-desktop">
+                                <div class="column">
+                                    <span class="graduate-modal-title">Birthday:</span>
+                                    <span id="graduate-birthday"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Age:</span>
+                                    <span id="graduate-age"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Gender:</span>
+                                    <span id="graduate-gender"></span>
+                                </div>
+                                <div class="column">
+                                    <span class="graduate-modal-title">Civil Status:</span>
+                                    <span id="graduate-civil-status"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        
+    -->
+    <button class="modal-close is-large" id="graduates-modal-close" aria-label="close"></button>
+</div>
 @endif
+
 @if (Request::is('/admin/reports'))
+<div class="modal is-radiusless animated fadeIn" id="graduates-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content" id="graduates-modal-content">
+        s
+    </div>
+    <button class="modal-close is-large" id="graduates-modal-close" aria-label="close"></button>
+</div>
 @endif
 @endif
+
 <nav class="navbar" id="navigationbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a role="button" class="navbar-burger burger burgercolor" aria-label="menu" aria-expanded="false"
