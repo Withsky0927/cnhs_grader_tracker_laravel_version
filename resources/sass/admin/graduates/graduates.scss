@@ -4,15 +4,36 @@
 #graduates-modal-container {
     height: auto;
     border: 1px solid black;
+    padding: 1rem;
 }
 
 #graduate-modal-content {
     width: 80%;
-    padding: 1rem;
     background-color: white;
     border: 1px solid black;
+    padding: 1rem;
 }
 
+#graduate-search-selected {
+    option {
+        text-transform: uppercase;
+        &:focus {
+            text-transform: uppercase;
+        }
+        &:active {
+            text-transform: uppercase;
+        }
+    }
+}
+
+#first-grad-modal-column,
+#second-grad-modal-column,
+#third-grad-modal-column {
+    padding: 0.5rem;
+    .graduates-data-column {
+        padding: 1rem;
+    }
+}
 #graduates-content {
     border: 1px solid black !important;
     height: auto;

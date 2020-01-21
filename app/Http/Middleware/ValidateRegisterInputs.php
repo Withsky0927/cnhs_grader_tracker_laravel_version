@@ -67,7 +67,7 @@ class ValidateRegisterInputs
                 function ($attribute, $value, $fail) {
                     $regex = '/^\d|^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
                     if (preg_match_all($regex, $value)) {
-                        $fail('Invalid Password: Numeric, Special character as first entry and space is not allowed');
+                        $fail('Invalid Strand: Numeric, Special character as first entry and space is not allowed');
                     }
                 }
             ],

@@ -118,9 +118,9 @@
                         <div class="select is-small">
                             <select required name="strand" id="strand" class="strand">
                                 <option selected disabled>Strand</option>
-                                <option value="STEM">STEM</option>
-                                <option value="GAS">GAS</option>
-                                <option value="ARTSSCIENCE">Arts and Science</option>
+                                @foreach ($Strands as $strand)
+                                <option value="{{$strand->strand_name}}">{{$strand->strand_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="icon is-small is-left">

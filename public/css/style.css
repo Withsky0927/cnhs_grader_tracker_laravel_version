@@ -849,3 +849,16 @@ html {
   }
 }
 
+#disabled-javascript {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  padding-top: 1.5rem;
+}
+

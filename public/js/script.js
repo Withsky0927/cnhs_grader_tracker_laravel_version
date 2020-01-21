@@ -239,11 +239,17 @@
     };
 
     // check for pages
-    if (window.location.pathname === "/confirmation") {
+    if (window.location.pathname === "confirmation") {
         ConfirmationForm();
-    } else if (window.location.pathname === "/register") {
+        window.RegistrationForm = undefined;
+        window.ForGotPasswordConfirmation = undefined;
+    } else if (window.location.pathname === "register") {
         RegistrationForm();
-    } else if (window.location.pathname === "/forgotconfirmation") {
+        window.ForGotPasswordConfirmation = undefined;
+        window.ConfirmationForm = undefined;
+    } else if (window.location.pathname === "forgotconfirmation") {
         ForGotPasswordConfirmation();
+        window.RegistrationForm = undefined;
+        window.ConfirmationForm = undefined;
     }
 })();

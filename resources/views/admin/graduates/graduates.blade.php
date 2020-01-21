@@ -12,25 +12,22 @@
                 <div class="container is-centered is-fluid" id="graduates-container">
                     <header class="table-header">
                         <div class="table-title">
-                            <h2>Graduates</h2>
+                            <h2>Graduates: {{(date("Y") - 1).' - '.date("Y")}}</h2>
                         </div>
                         <div class="table-option" id="graduates-table-options">
-                            <form method="post" autocomplete="off">
+                            <form id="graduate-form" autocomplete="off">
                                 <div class="columns is-centered is-desktop">
                                     <div class="column">
                                         <div class="control">
-
                                             <div class="control">
                                                 <div class="select is-small">
-                                                    <select id="">
-                                                        <option value="all">All</option>
-                                                        <option value="stem">STEM</option>
-                                                        <option value="artsscience">ARTS AND SCIENCE</option>
-                                                        {{--
-                                                        @foreach()
-                                                        <option value="{{}}">{{}}</option>
+                                                    <select id="graduate-search-selected">
+                                                        <option disabled>STRAND</option>
+                                                        <option value="all">ALL</option>
+                                                        @foreach($Strands as $strand)
+                                                        <option value="{{$strand->strand_name}}">
+                                                            {{strtoupper($strand->strand_name)}}</option>
                                                         @endforeach
-                                                        --}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -70,7 +67,7 @@
                                     <th class="has-text-centered">GENDER</th>
                                     <th class="has-text-centered">CIVIL STATUS</th>
                                     <th class="has-text-centered">STATUS</th>
-                                    <th class="has-text-centered">OPTION</th>
+                                    <th class="has-text-centered" colspan="2">OPTION</th>
                                 </tr>
                             </thead>
                             <tbody id="graduates-data">
@@ -90,20 +87,6 @@
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -124,20 +107,6 @@
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -158,20 +127,6 @@
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -192,20 +147,6 @@
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -226,6 +167,9 @@
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>*</td>
@@ -240,6 +184,89 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>

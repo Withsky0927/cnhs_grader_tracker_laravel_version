@@ -3,7 +3,6 @@
 @section('title' , 'Reports')
 
 @section('content')
-@include('templates.disabled_javascript')
 <main class="columns is-desktop is-multiline is-centered" id="maincontainer">
     @include("templates.admin_logo")
     <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd" id="reports-content">

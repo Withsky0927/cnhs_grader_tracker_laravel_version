@@ -82,10 +82,18 @@ class Kernel extends HttpKernel
         // for authorizatin middleware
         'checkAdminRole' => \App\Http\Middleware\checkAdminRole::class,
         'checkStudentRole' => \App\Http\Middleware\checkStudentRole::class,
+        'checkIfSuperadmin' => \App\Http\Middleware\admin\checkIfSuperadmin::class,
+
+
+        // for anouncements middlewares
+        'validateJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\validateJobFairData::class,
+        'sanitizeJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\sanitizeJobFairData::class,
+
+
+
 
         // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,
-
 
         // for loginCheckin Middleware
         'checkIfLogout' => \App\Http\Middleware\checkIfLogout::class,

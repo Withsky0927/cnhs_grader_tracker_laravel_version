@@ -35,6 +35,50 @@
     @include('templates.admin_header_content')
     @yield('content')
     @include('templates.admin_scripts')
+    {{-- for dashboard js --}}
+    @if (Request::is('admin/dashboard'))
+    @if (session('user_role') == 'superadmin')
+    <script type="text/javascript" src="{{asset('admin/js/dashboard/1/dashboard.js')}}"></script>
+    @elseif (session('user_role') == 'admin')
+    <script type="text/javascript" src="{{asset('admin/js/dashboard/2/dashboard.js')}}"></script>
+    @endif
+    @endif
+    {{-- for reports js --}}
+    @if (Request::is('admin/reports'))
+    @if (session('user_role') == 'superadmin')
+    <script type="text/javascript" src="{{asset('admin/js/reports/1/reports.js')}}"></script>
+    @elseif (session('user_role') == 'admin')
+    <script type="text/javascript" src="{{asset('admin/js/reports/2/reports.js')}}"></script>
+    @endif
+    @endif
+    {{-- for graduates js --}}
+    @if (Request::is('admin/graduates'))
+    @if (session('user_role') == 'superadmin' || session('user_role') == 'admin')
+    <script type="text/javascript" src="{{asset('admin/js/graduates/graduates.js')}}"></script>
+    @endif
+    @endif
+    {{-- for announcement js --}}
+    @if (session('user_role') == 'superadmin')
+    @if (Request::is('admin/announcement/examination'))
+    <script type="text/javascript" src="{{asset('admin/js/announcement/examination.js')}}"></script>
+    @elseif (Request::is('admin/announcement/jobfair'))
+    <script type="text/javascript" src="{{asset('admin/js/announcement/jobfair.js')}}"></script>
+    @elseif (Request::is('admin/announcement/scholarship'))
+    <script type="text/javascript" src="{{asset('admin/js/announcement/scholarship.js')}}"></script>
+    @elseif(Request::is('admin/announcement/alumni'))
+    <script type="text/javascript" src="{{asset('admin/js/announcement/alumni.js')}}"></script>
+    @endif
+    @endif
+    {{--for settings js --}}
+    @if (session('user_role') == 'superadmin')
+    @if (Request::is('admin/settings/backup'))
+    <script type="text/javascript" src="{{asset('admin/settings/backup.js')}}"></script>
+    @elseif (Request::is('admin/settings/variables'))
+    <script type="text/javascript" src="{{asset('admin/settings/variable.js')}}"></script>
+    @elseif (Request::is('admin/settings/audittrail'))
+    <script type="text/javascript" src="{{asset('admin/js/settings/audittrail.js')}}"></script>
+    @endif
+    @endif
 </body>
 
 </html>

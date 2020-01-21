@@ -3,7 +3,6 @@
 @section('title' , 'Scholarships')
 
 @section('content')
-@include('templates.disabled_javascript')
 <main class="columns is-centered is-multiline is-desktop" id="maincontainer">
     @include("templates.admin_logo")
     <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"

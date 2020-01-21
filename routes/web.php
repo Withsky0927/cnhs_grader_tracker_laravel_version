@@ -134,96 +134,167 @@ Route::get('/admin/graduates/view/student', 'admin\graduates\graduatesController
     'checkAdminRole'
 );
 
+Route::get('/admin/graduates/search', 'admin\graduates\graduatesController@searchStudentData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
+Route::get('/admin/graduates/selected', 'admin\graduates\graduatesController@selectStudentStrand')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
+
 Route::post('/admin/graduates', 'admin\graduates\graduatesController@AddGraduates')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
 
-// reports module
+
+//* reports module
 Route::get('/admin/reports', 'admin\reports\reportsController@getReports')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
 
 
-// announcement modules
-Route::get('/admin/announcement/scholarship', 'admin\announcement\scholarshipController@getScholarship')->middleware(
-    'checkIfLogout',
-    'checkAdminRole'
-);
-Route::get('/admin/announcement/examination', 'admin\announcement\examinationController@getExamination')->middleware(
-    'checkIfLogout',
-    'checkAdminRole'
-);
-Route::get('/admin/announcement/alumni', 'admin\announcement\alumniController@getAlumni')->middleware(
-    'checkIfLogout',
-    'checkAdminRole'
-);
+/* announcement modules */
+//* jobfair routes
 Route::get('/admin/announcement/jobfair', 'admin\announcement\jobfairController@getJobFair')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
-
+Route::get('/admin/announcement/jobfair/pages', 'admin\announcement\jobfairController@getJobFairPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/jobfair/search', 'admin\announcement\jobfairController@searchJobFairData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/jobfair/selected', 'admin\announcement\jobfairController@selectJobFairStrand')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
 Route::post('/admin/announcement/jobfair', 'admin\announcement\jobfairController@addJobFair')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateJobFairData',
+    'sanitizeJobFairData'
+);
+//* jobfair modal routes
+Route::get('/admin/announcement/jobfair/view/job', 'admin\announcement\jobfairController@viewJobFairModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::put('/admin/announcement/jobfair/edit/job/{id}', 'admin\announcement\jobfairController@editJobFairModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::delete('/admin/announcement/jobfair/delete/job/{id}', 'admin\announcement\jobfairController@deleteJobFairModal')
+    ->middleware(
+        'checkIfLogout',
+        'checkAdminRole',
+        'checkIfSuperadmin'
+    );
+
+
+//* scholarship routes
+Route::get('/admin/announcement/scholarship', 'admin\announcement\scholarshipController@getScholarship')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::post('/admin/announcement/scholarship', 'admin\announcement\scholarshipController@addScholarship')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin',
+);
+
+
+//* examination routes
+Route::get('/admin/announcement/examination', 'admin\announcement\examinationController@getExamination')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::post('/admin/announcement/examination', 'admin\announcement\examinationController@addExamination')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+
+
+//* alumni routes
+Route::get('/admin/announcement/alumni', 'admin\announcement\alumniController@getAlumni')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::post('/admin/announcement/alumni', 'admin\announcement\alumniController@addAlumni')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
-// settings module
+//* settings module
 Route::get('/admin/settings/backup', 'admin\settings\backupController@getBackup')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::get('/admin/settings/restore', 'admin\settings\restoreController@getRestore')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
 Route::post('/admin/settings/backup', 'admin\settings\backupController@addBackup')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::post('/admin/settings/restore', 'admin\settings\restoreController@addRestore')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
-// accounts module
+//* accounts module
 Route::get('/admin/accounts/admin', 'admin\accounts\adminsController@getAdmins')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::get('/admin/accounts/student', 'admin\accounts\studentsController@getStudents')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
 Route::post('/admin/accounts/admin', 'admin\accounts\adminsController@addAdmins')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 Route::post('/admin/accounts/students', 'admin\accounts\studentsController@addStudents')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
-// Profile module
+//* Profile module
 
 Route::get('/admin/profile', 'admin\profileinfo\profileInfoController@getProfile')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
 
 Route::put('/admin/profile/{id}', 'admin\profileinfo\profileInfoController@editProfile')->middleware(
@@ -235,7 +306,7 @@ Route::put('/admin/profile/{id}', 'admin\profileinfo\profileInfoController@editP
 
 
 /* for Student Routes */
-// home module
+//* home routes
 Route::get('/student/home', 'student\home\homeController@getHomepage')->middleware(
     'checkIfLogout',
     'checkStudentRole'
@@ -245,7 +316,7 @@ Route::post('/student/home', 'student\home\homeController@submitHomepage')->midd
     'checkStudentRole'
 );
 
-// profileinfo module
+// profileinfo routes
 Route::get('/student/profile', 'student\profileinfo\profileInfoController@getProfile')->middleware(
     'checkIfLogout',
     'checkStudentRole'

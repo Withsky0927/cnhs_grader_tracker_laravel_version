@@ -2,7 +2,6 @@
 
 @section('title' , 'Dashboard')
 @section('content')
-@include('templates.disabled_javascript')
 <main class="columns is-centered is-multiline is-desktop" id="maincontainer">
     @if(session('user_role') == 'superadmin')
     @include("templates.admin_logo")
