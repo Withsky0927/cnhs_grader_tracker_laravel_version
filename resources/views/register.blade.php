@@ -17,20 +17,24 @@
                 </div>
             </div>
         </section>
-        <section class="columns is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
-            <div class="column">
+        <section class="columns is-mobile is-centered">
+            <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd outside-notification-container"
+                id="outside-error-container">
                 @if ($errors != '')
                 @foreach ($errors->all() as $error)
-                <p>{{$error}}</p>
+                <p class="has-text-centered">{{$error}}</p>
                 @endforeach
                 @endif
-
-                <!--check if user exists throw an error -->
                 @if (session('userexist'))
                 @foreach (session('userexist') as $error)
-                <p>{{$error}}</p>
+                <p class="has-text-centered">{{$error}}</p>
                 @endforeach
                 @endif
+            </div>
+            <!--check if user exists throw an error -->
+            <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd outside-notification-container"
+                id="outside-success-container">
+
             </div>
         </section>
         <!-- first field -->

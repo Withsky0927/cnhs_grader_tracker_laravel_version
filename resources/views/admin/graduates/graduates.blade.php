@@ -58,6 +58,7 @@
                                     <th class="has-text-centered">#</th>
                                     <th class="has-text-centered">LRN</th>
                                     <th class="has-text-centered">STRAND</th>
+                                    <th class="has-text-centered">BATCH</th>
                                     <th class="has-text-centered">FIRSTNAME</th>
                                     <th class="has-text-centered">MIDDLENAME</th>
                                     <th class="has-text-centered">LASTNAME</th>
@@ -67,7 +68,7 @@
                                     <th class="has-text-centered">GENDER</th>
                                     <th class="has-text-centered">CIVIL STATUS</th>
                                     <th class="has-text-centered">STATUS</th>
-                                    <th class="has-text-centered" colspan="2">OPTION</th>
+                                    <th class="has-text-centered">OPTION</th>
                                 </tr>
                             </thead>
                             <tbody id="graduates-data">
@@ -84,9 +85,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -104,9 +103,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -124,9 +121,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -144,9 +139,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -164,9 +157,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -184,9 +175,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -204,12 +193,11 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>*</td>
@@ -224,12 +212,11 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>*</td>
@@ -244,12 +231,11 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>*</td>
@@ -264,9 +250,7 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
+                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>

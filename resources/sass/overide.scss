@@ -11,3 +11,23 @@
         order: 1px solid transparent;
     }
 }
+
+html {
+    --scrollbarBG: #cfd8dc;
+    --thumbBG: gray;
+}
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+.modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.modal-content::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+}

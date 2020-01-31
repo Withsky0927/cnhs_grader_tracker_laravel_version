@@ -88,9 +88,10 @@ class Kernel extends HttpKernel
         // for anouncements middlewares
         'validateJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\validateJobFairData::class,
         'sanitizeJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\sanitizeJobFairData::class,
-
-
-
+        'validateExaminationData' => \App\Http\Middleware\admin\announcement\examination\validateExaminationData::class,
+        'sanitizeExaminationData' => \App\Http\Middleware\admin\announcement\examination\sanitizeExaminationData::class,
+        'validateScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\validateScholarshipData::class,
+        'sanitizeScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\sanitizeScholarshipData::class,
 
         // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,

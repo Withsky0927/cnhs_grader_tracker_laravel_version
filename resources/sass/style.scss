@@ -19,3 +19,15 @@
     z-index: 100;
     padding-top: 1.5rem;
 }
+.outside-notification-container {
+    padding: 1rem;
+    border: 1px solid black;
+    display: none;
+}
+#outside-success-container {
+    color: white;
+}
+#outside-error-container {
+    color: white;
+    background-color: red;
+}

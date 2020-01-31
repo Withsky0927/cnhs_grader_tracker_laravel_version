@@ -21,6 +21,7 @@ class confirmation extends Controller
     }
     public function addNewUser()
     {
+
         $RegistrationData = Session::get('guests_confirmation');
         $NewGuestUserId = Str::uuid()->toString();
         $imagePath = Session::get('imagepath');
@@ -46,7 +47,6 @@ class confirmation extends Controller
                 'role' => $RegistrationData['guest']['role'],
                 'createdAt' => date('Y-m-d')
             ]);
-
 
         DB::table('accounts')
             ->insert([

@@ -152,10 +152,53 @@ Route::post('/admin/graduates', 'admin\graduates\graduatesController@AddGraduate
 
 
 //* reports module
-Route::get('/admin/reports', 'admin\reports\reportsController@getReports')->middleware(
+Route::get('/admin/rerports', 'admin\announcement\reportsController@getReport')->middleware(
     'checkIfLogout',
-    'checkAdminRole'
+    'checkAdminRole',
+    'checkIfSuperadmin'
 );
+Route::get('/admin/reports/pages', 'admin\announcement\scholarshipController@getReportPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/reports/search', 'admin\announcement\scholarshipController@searchReportData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/reports/selected', 'admin\announcement\scholarshipController@selectReportName')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::post('/admin/reports', 'admin\announcement\scholarshipController@addReport')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateReportsData',
+    'sanitizeReportsData',
+    'checkIfReportsIsAdmin'
+);
+
+Route::get('/admin/reports/view/report', 'admin\announcement\scholarshipController@viewReportModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::put('/admin/reports/edit/report/{id}', 'admin\announcement\scholarshipController@editReportModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateReportsData',
+    'sanitizeReportsData'
+);
+Route::delete('/admin/reports/delete/report/{id}', 'admin\announcement\scholarshipController@deleteReportModal')
+    ->middleware(
+        'checkIfLogout',
+        'checkAdminRole',
+        'checkIfSuperadmin'
+    );
 
 
 /* announcement modules */
@@ -195,7 +238,9 @@ Route::get('/admin/announcement/jobfair/view/job', 'admin\announcement\jobfairCo
 Route::put('/admin/announcement/jobfair/edit/job/{id}', 'admin\announcement\jobfairController@editJobFairModal')->middleware(
     'checkIfLogout',
     'checkAdminRole',
-    'checkIfSuperadmin'
+    'checkIfSuperadmin',
+    'validateJobFairData',
+    'sanitizeJobFairData'
 );
 Route::delete('/admin/announcement/jobfair/delete/job/{id}', 'admin\announcement\jobfairController@deleteJobFairModal')
     ->middleware(
@@ -211,11 +256,47 @@ Route::get('/admin/announcement/scholarship', 'admin\announcement\scholarshipCon
     'checkAdminRole',
     'checkIfSuperadmin'
 );
+Route::get('/admin/announcement/scholarship/pages', 'admin\announcement\scholarshipController@getScholarshipPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/scholarship/search', 'admin\announcement\scholarshipController@searchScholarshipData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/scholarship/selected', 'admin\announcement\scholarshipController@selectScholarshipName')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
 Route::post('/admin/announcement/scholarship', 'admin\announcement\scholarshipController@addScholarship')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin',
+    'validateScholarshipData',
+    'sanitizeScholarshipData'
 );
+
+Route::get('/admin/announcement/scholarship/view/scholar', 'admin\announcement\scholarshipController@viewScholarshipModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::put('/admin/announcement/scholarship/edit/scholar/{id}', 'admin\announcement\scholarshipController@editScholarshipModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateScholarshipData',
+    'sanitizeScholarshipData'
+);
+Route::delete('/admin/announcement/scholarship/delete/scholar/{id}', 'admin\announcement\scholarshipController@deleteScholarshipModal')
+    ->middleware(
+        'checkIfLogout',
+        'checkAdminRole',
+        'checkIfSuperadmin'
+    );
 
 
 //* examination routes
@@ -224,11 +305,47 @@ Route::get('/admin/announcement/examination', 'admin\announcement\examinationCon
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::post('/admin/announcement/examination', 'admin\announcement\examinationController@addExamination')->middleware(
+Route::get('/admin/announcement/examination/pages', 'admin\announcement\examinationController@getExaminationPages')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
+Route::get('/admin/announcement/examination/search', 'admin\announcement\examinationController@searchExaminationData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/examination/selected', 'admin\announcement\examinationController@selectSchoolName')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::post('/admin/announcement/examination', 'admin\announcement\examinationController@addExamination')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateExaminationData',
+    'sanitizeExaminationData'
+);
+Route::get('/admin/announcement/examination/view/exam', 'admin\announcement\examinationController@viewExaminationModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::put('/admin/announcement/examination/edit/exam/{id}', 'admin\announcement\examinationController@editExaminationModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateExaminationData',
+    'sanitizeExaminationData'
+);
+Route::delete('/admin/announcement/examination/delete/exam/{id}', 'admin\announcement\examinationController@deleteExaminationModal')
+    ->middleware(
+        'checkIfLogout',
+        'checkAdminRole',
+        'checkIfSuperadmin'
+    );
+
 
 
 //* alumni routes

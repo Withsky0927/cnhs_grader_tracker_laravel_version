@@ -14,10 +14,19 @@
                             <h2>Job Fair's</h2>
                         </div>
                         <div class="table-option" id="jobfair-table-options">
+
                             <form id="jobfair-form" autocomplete="off">
-                                <div class="columns is-centered is-desktop">
+                                <div class="columns is-desktop">
+                                    <div class="column is-1-desktop" id="add-jobfair">
+                                        <div class="columns is-desktop">
+                                            <div class="column">
+                                                <button class="button is-link is-small" id="jobfair-add-button">New
+                                                    Data</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="column">
-                                        <div class="control">
+                                        <div class="field">
                                             <div class="control">
                                                 <div class="select is-small">
                                                     <select id="jobfair-search-selected">
@@ -274,29 +283,20 @@
 
                     </div>
                     <footer class="table-footer" id="jobfair-table-footer">
-                        <div class="columns is-mobile is-multiline">
-                            <div class="column is-12" id="add-jobfair">
-                                <div class="columns is-mobile">
-                                    <div class="columns is-3">
-                                        <button class="button is-info is-normal" id="jobfair-add-button">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column is-12" id="pagination-container">
-                                <nav class="pagination is-small" role="navigation" aria-label="pagination"
-                                    id="jobfair-pagination">
-                                    <a class="pagination-previous" id="paginate-prev"
-                                        title="This is the first page">Previous</a>
-                                    <a class="pagination-next" id="paginate-next">Next</a>
-                                    <ul class="pagination-list" id="jobfair-pagination-list">
-                                        <li>
-                                            <a class="pagination-link is-current"
-                                                style="background-color: transparent; border:1px solid transparent"
-                                                aria-label="Page 1" aria-current="page">1</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
+                        <div class="column is-12" id="pagination-container">
+                            <nav class="pagination is-small" role="navigation" aria-label="pagination"
+                                id="jobfair-pagination">
+                                <a class="pagination-previous" id="paginate-prev"
+                                    title="This is the first page">Previous</a>
+                                <a class="pagination-next" id="paginate-next">Next</a>
+                                <ul class="pagination-list" id="jobfair-pagination-list">
+                                    <li>
+                                        <a class="pagination-link is-current"
+                                            style="background-color: transparent; border:1px solid transparent"
+                                            aria-label="Page 1" aria-current="page">1</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </footer>
                 </div>

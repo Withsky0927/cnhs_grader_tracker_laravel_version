@@ -20,7 +20,7 @@ class CreateScholarshipsTable extends Migration
             $table->longText('scholarship_desc');
             $table->longText('scholarship_req');
             $table->integer('grade');
-            $table->string('school_link', 50);
+            $table->string('school_link', 50)->nullable();
         });
     }
 

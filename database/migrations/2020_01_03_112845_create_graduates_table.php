@@ -20,6 +20,7 @@ class CreateGraduatesTable extends Migration
             $table->bigInteger('lrn');
             $table->unique('lrn');
             $table->string('strand', 20);
+            $table->string('batch', 30);
             $table->string('firstname', 30);
             $table->string('middlename', 30);
             $table->string('lastname', 30);

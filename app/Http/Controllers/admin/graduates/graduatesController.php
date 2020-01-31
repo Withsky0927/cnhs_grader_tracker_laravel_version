@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class graduatesController extends Controller
 {
-    //
 
     public function searchStudentData(Request $request)
     {
@@ -18,6 +17,7 @@ class graduatesController extends Controller
         $strandName = DB::table('graduates')
             ->where('lrn', 'like', '%' . $searchValue . '%')
             ->orWhere('strand', 'like', '%' . $searchValue . '%')
+            ->orWhere('batch', 'like', '%' . $searchValue . '%')
             ->orWhere('firstname', 'like', '%' . $searchValue . '%')
             ->orWhere('middlename', 'like', '%' . $searchValue . '%')
             ->orWhere('lastname', 'like', '%' . $searchValue . '%')
@@ -27,7 +27,7 @@ class graduatesController extends Controller
             ->orWhere('gender', 'like', '%' . $searchValue . '%')
             ->orWhere('civil_status', 'like', '%' . $searchValue . '%')
             ->orWhere('status', 'like', '%' . $searchValue . '%')
-            ->paginate(10);
+            ->paginate(1000);
 
         if (!$strandName) {
             $strandName = null;
@@ -50,7 +50,7 @@ class graduatesController extends Controller
         if ($strandOptions) {
             $strandData = DB::table('graduates')->where('strand', $strandOptions)
                 ->orderBy('lrn', 'ASC')
-                ->paginate(10);
+                ->paginate(1000);
             return response()->json(['selected_strand' => $strandData]);
         } elseif (!$strandOptions) {
             return response()->json(['selected_strand' => $strandData]);
@@ -68,7 +68,9 @@ class graduatesController extends Controller
     public function getGraduatePages(Request $request)
     {
         $page = $request->query('page');
-        $graduates = DB::table('graduates')->select('profile_pic', 'lrn', 'strand', 'firstname', 'middlename', 'lastname', 'address', 'birthday', 'age', 'gender', 'gender', 'civil_status', 'status')->orderBy('lrn', 'ASC')->paginate(10);
+        $graduates = DB::table('graduates')
+            ->select('profile_pic', 'lrn', 'strand', 'batch', 'firstname', 'middlename', 'lastname', 'address', 'birthday', 'age', 'gender', 'gender', 'civil_status', 'status')
+            ->orderBy('batch', 'DESC')->paginate(10);
         return response()->json(['page_url' => $graduates]);
     }
 

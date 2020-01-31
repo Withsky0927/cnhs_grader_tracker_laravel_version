@@ -185,6 +185,7 @@ function dashBoardModule() {
 
         try {
             let responseData = await axios(axiosOptonsForGraduates);
+            console.log(responseData);
             const graduateChartCanvasStyle = document.querySelector(
                 "#graduatechart"
             );
@@ -201,11 +202,19 @@ function dashBoardModule() {
 
             // get data in all graduates
 
+            // if there are no data put zero
+            if (!stem) stem = 0;
+            if (!abm) abm = 0;
+            if (!gas) gas = 0;
+            if (!tvl) tvl = 0;
+            if (!humss) humss = 0;
+            if (!artsScience) artsScience = 0;
+
             addGraduateChart(stem, abm, gas, tvl, humss, artsScience);
             graduateChartCanvasStyle.style.backgroundColor = "#fff";
             graduateCanvasContainer.style.boxShadow = "0px 0px 2px #000";
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
         }
     };
 
@@ -296,11 +305,15 @@ function dashBoardModule() {
             employed = EmploymentData.status.employed;
             unemployed = EmploymentData.status.unemployed;
 
+            if (!waiting) waiting = 0;
+            if (!employed) employed = 0;
+            if (!unemployed) unemployed = 0;
+
             addEmploymentChart(waiting, employed, unemployed);
             employmentChartCanvasStyle.style.backgroundColor = "#fff";
             employmentCanvasContainer.style.boxShadow = "0px 0px 2px #000";
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
         }
     };
 

@@ -14,16 +14,25 @@
         </section>
         <section>
             {{-- check if there no errors  in other middleware--}}
-            @if(session('notification'))
-            <p>{{session('notification')}}</p>
-            @endif
-
+            <div class="outside-notification-container" id="outside-success-container">
+                @if(session('notification'))
+                <p class="has-text-centered">{{session('notification')}}</p>
+                @endif
+            </div>
+            <div class="outside-notification-container" id="outside-error-container">
+                @if ($errors != '')
+                @foreach ($errors->all() as $error)
+                <p class="has-text-centered">{{$error}}</p>
+                @endforeach
+                @endif
+                @if ($errors != '')
+                @foreach ($errors->all() as $error)
+                <p class="has-text-centered">{{$error}}</p>
+                @endforeach
+                @endif
+            </div>
             {{-- check if there are validations errors --}}
-            @if ($errors != '')
-            @foreach ($errors->all() as $error)
-            <p>{{$error}}</p>
-            @endforeach
-            @endif
+
         </section>
         <section class="field">
             <h2 class="is-small">Please Login:</h2>

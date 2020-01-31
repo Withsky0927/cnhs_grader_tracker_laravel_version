@@ -29,13 +29,13 @@ function graduatesModule() {
             "Content-Type": "application/json;charset=UTF-8"
         }
     };
-    const viewGradPaginationData = () => {
+    function viewGradPaginationData() {
         const viewGradButtton = document.querySelectorAll(".view-grad");
         const graduatesModal = document.querySelector("#graduates-modal");
         const graduatesClose = document.querySelector("#graduates-modal-close");
         const htmlClipped = document.querySelector("#clippedmodifier");
 
-        const insertStudentViewData = data => {
+        function insertStudentViewData(data) {
             const gradPic = document.querySelector("#graduate-pic");
             const gradLRN = document.querySelector("#graduate-lrn");
             const gradStrand = document.querySelector("#graduate-strand");
@@ -55,23 +55,23 @@ function graduatesModule() {
 
             gradPic.src = data.profile_pic;
             gradPic.alt = `${data.firstname} ${data.middlename} ${data.lastname}`;
-            gradLRN.textContent = data.lrn;
-            gradStrand.textContent = data.strand;
-            gradFirstname.textContent = data.firstname;
-            gradMiddlename.textContent = data.middlename;
-            gradLastname.textContent = data.lastname;
-            gradAddress.textContent = data.address;
-            gradBirthDay.textContent = data.birthday;
-            gradAge.textContent = data.age;
-            gradGender.textContent = data.gender;
-            gradCivilStatus.textContent = data.civil_status;
-            gradStatus.textContent = data.status;
-        };
-        const removeModalContainer = () => {
+            gradLRN.value = data.lrn;
+            gradStrand.value = data.strand;
+            gradFirstname.value = data.firstname;
+            gradMiddlename.value = data.middlename;
+            gradLastname.value = data.lastname;
+            gradAddress.value = data.address;
+            gradBirthDay.value = data.birthday;
+            gradAge.value = data.age;
+            gradGender.value = data.gender;
+            gradCivilStatus.value = data.civil_status;
+            gradStatus.value = data.status;
+        }
+        function removeModalContainer() {
             graduatesModal.classList.remove("is-active");
             htmlClipped.classList.remove("is-clipped");
-        };
-        const showModalContainer = () => {
+        }
+        function showModalContainer() {
             graduatesModal.classList.add("is-active");
             htmlClipped.classList.add("is-clipped");
 
@@ -80,8 +80,8 @@ function graduatesModule() {
                 removeModalContainer,
                 false
             );
-        };
-        const setViewModal = async e => {
+        }
+        async function setViewModal(e) {
             const LRNView = parseInt(e.target.getAttribute("id"));
 
             let reponseViewData = "";
@@ -104,59 +104,28 @@ function graduatesModule() {
             } catch (error) {
                 console.log(error);
             }
-        };
+        }
         for (let i = 0, index = viewGradButtton.length; i < index; i++) {
             viewGradButtton[i].addEventListener("click", setViewModal, false);
         }
-    };
+    }
 
-    const removeGradPaginationData = () => {
-        const removeGradButtton = document.querySelectorAll(".delete-grad");
-        const graduatesDeletemodal = document.querySelector(
-            "#graduates-delete-modal"
-        );
-        const graduateDeleteClose = document.querySelector(
-            "#graduates-delete-modal-close"
-        );
-        const htmlClipped = document.querySelector("#clippedmodifier");
-
-        const setDeleteModal = event => {
-            const data = parseInt(event.target.getAttribute("id"));
-            graduatesDeletemodal.classList.add("is-active");
-            htmlClipped.classList.add("is-clipped");
-        };
-
-        const removeDeleteModal = () => {
-            graduatesDeletemodal.classList.remove("is-active");
-            htmlClipped.classList.remove("is-clipped");
-        };
-
-        for (let i = 0, index = removeGradButtton.length; i < index; i++) {
-            removeGradButtton[i].addEventListener(
-                "click",
-                setDeleteModal,
-                false
-            );
-        }
-        graduateDeleteClose.addEventListener("click", removeDeleteModal, false);
-    };
-
-    const removePrevAndNext = () => {
+    function removePrevAndNext() {
         paginateNext.style.visibility = "hidden";
         paginatePrev.style.visibility = "hidden";
 
         paginateNext.setAttribute("disabled", "");
         paginatePrev.setAttribute("disabled", "");
-    };
+    }
 
-    const addPrevAndNext = () => {
+    function addPrevAndNext() {
         const paginationNext = document.querySelectorAll(".pagination-next")[0];
         const paginationPrev = document.querySelectorAll(".pagination-prev")[0];
 
         paginationNext.setAttribute("id", "paginate-next");
         paginationPrev.setAttribute("id", "paginate-prev");
-    };
-    const loadPaginationPage = dataTotals => {
+    }
+    function loadPaginationPage(dataTotals) {
         let divquotient = Math.floor(dataTotals / 10);
         let remainder = dataTotals % 10;
         let count = divquotient;
@@ -179,18 +148,18 @@ function graduatesModule() {
             pageCount = pageCount + 1;
         }
         gradPaginationList.innerHTML = pageElement;
-    };
+    }
 
-    const loadSelectedPagination = () => {
+    function loadSelectedPagination() {
         const paginationLink = document.querySelectorAll(".pagination-link");
 
-        const removeIsCurrentClass = () => {
+        function removeIsCurrentClass() {
             for (let i = 0, index = paginationLink.length; i < index; i++) {
                 paginationLink[i].classList.remove("is-current");
             }
-        };
+        }
 
-        const loadPagePerClick = async event => {
+        async function loadPagePerClick(event) {
             // revert and add current data
             pageNextAndPrev = parseInt(event.target.textContent);
             checkNextAndPrevNumber();
@@ -198,7 +167,7 @@ function graduatesModule() {
             event.target.classList.add("is-current");
 
             let responseData = "";
-            let pageData = "";
+            let pagePerData = "";
             let perPage = 0;
             let total = 0;
 
@@ -215,7 +184,7 @@ function graduatesModule() {
             PagePerdata = responseData.data.page_url;
             data = PagePerdata.data;
             total = PagePerdata.total;
-            pagePage = PagePerdata.per_page;
+            perPage = PagePerdata.per_page;
             htmlData = "";
             dataCount = 1;
             let index = 10;
@@ -231,6 +200,9 @@ function graduatesModule() {
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
                                         data[i].strand
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].batch
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
                                         data[i].firstname
@@ -264,11 +236,6 @@ function graduatesModule() {
                                             data[i].lrn
                                         }" class="button is-small is-success view-grad">View</a>
                                     </td>
-                                    <td class="has-text-centered">
-                                        <a id="${
-                                            data[i].lrn
-                                        }" class="button is-small is-danger delete-grad">Delete</a>
-                                    </td>
                                 </tr>`;
                 dataCount += 1;
             }
@@ -276,7 +243,7 @@ function graduatesModule() {
 
             fillEmptyTable();
             viewGradPaginationData();
-        };
+        }
 
         for (let x = 0, index = paginationLink.length; x < index; x++) {
             paginationLink[x].addEventListener(
@@ -285,8 +252,8 @@ function graduatesModule() {
                 false
             );
         }
-    };
-    const loadInitialPagination = async () => {
+    }
+    async function loadInitialPagination() {
         const response = await axios(GraaduatesAxiosOption);
         const PaginationData = response.data.page_url;
         let datatotal = PaginationData.total;
@@ -294,15 +261,16 @@ function graduatesModule() {
         let data = PaginationData.data;
         let htmlData = "";
         let dataCount = 1;
-
-        const checkNextAndPrevNumber = () => {
+        let dataTotalRemainder = datatotal % 10 >= 1 ? 1 : 0;
+        let dataTotalWithRemainder = datatotal / 10 + dataTotalRemainder;
+        function checkNextAndPrevNumber() {
             if (pageNextAndPrev <= 1) {
                 paginatePrev.setAttribute("disabled", "");
                 paginateNext.removeAttribute("disabled");
                 pageNextAndPrev = 1;
             } else if (
                 pageNextAndPrev > 1 &&
-                pageNextAndPrev < datatotal / 10
+                pageNextAndPrev < Math.floor(dataTotalWithRemainder)
             ) {
                 paginatePrev.removeAttribute("disabled");
                 paginateNext.removeAttribute("disabled");
@@ -313,16 +281,16 @@ function graduatesModule() {
                     pageNextAndPrev = datatotal / 10;
                 } else if (
                     pageNextAndPrev >= 1 &&
-                    pageNextAndPrev > datatotal % 10
+                    pageNextAndPrev > dataTotalWithRemainder
                 ) {
                     pageNextAndPrev = pageNextAndPrev - 1;
                 }
             }
-        };
+        }
 
         // set style on next and previous page number box
 
-        const SetPaginatePageOnNextPrev = () => {
+        function SetPaginatePageOnNextPrev() {
             const paginationsLink = document.querySelectorAll(
                 ".pagination-link"
             );
@@ -339,11 +307,11 @@ function graduatesModule() {
             paginationsLink[paginationLinkIndex].classList.add("is-current");
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
-        };
+        }
 
         // initialize the first page
         checkNextAndPrevNumber();
-        const fillEmptyTable = () => {
+        function fillEmptyTable() {
             if (gradtabledata.childElementCount < 10) {
                 let remainder = datatotal % 10;
                 let emptyTd = "";
@@ -365,9 +333,7 @@ function graduatesModule() {
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered">
-                                            <a class="button is-small" style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                        </td>
+                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered">
                                             <a class="button is-small" style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                         </td>
@@ -385,9 +351,9 @@ function graduatesModule() {
                     dataStyle[i].style.color = "#fff";
                 }
             }
-        };
+        }
 
-        const loadFirstPagination = () => {
+        function loadFirstPagination() {
             for (let i = 0, index = PaginationData.to; i < index; i++) {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
@@ -396,6 +362,9 @@ function graduatesModule() {
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
                                         data[i].strand
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].batch
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
                                         data[i].firstname
@@ -429,22 +398,16 @@ function graduatesModule() {
                                             data[i].lrn
                                         }" class="button is-small is-success view-grad">View</a>
                                     </td>
-                                    <td class="has-text-centered">
-                                        <a id="${
-                                            data[i].lrn
-                                        }" class="button is-small is-danger delete-grad">Delete</a>
-                                    </td>
                                 </tr>`;
                 dataCount += 1;
             }
             gradtabledata.innerHTML = htmlData;
             fillEmptyTable();
             viewGradPaginationData();
-            removeGradPaginationData();
-        };
+        }
 
         // load
-        const loadPaginationPage = dataTotals => {
+        function loadPaginationPage(dataTotals) {
             let divquotient = Math.floor(dataTotals / 10);
             let remainder = dataTotals % 10;
             let count = divquotient;
@@ -467,20 +430,20 @@ function graduatesModule() {
                 pageCount = pageCount + 1;
             }
             gradPaginationList.innerHTML = pageElement;
-        };
+        }
 
-        const loadSelectedPagination = () => {
+        function loadSelectedPagination() {
             const paginationLink = document.querySelectorAll(
                 ".pagination-link"
             );
 
-            const removeIsCurrentClass = () => {
+            function removeIsCurrentClass() {
                 for (let i = 0, index = paginationLink.length; i < index; i++) {
                     paginationLink[i].classList.remove("is-current");
                 }
-            };
+            }
 
-            const loadPagePerClick = async event => {
+            async function loadPagePerClick(event) {
                 // revert and add current data
                 pageNextAndPrev = parseInt(event.target.textContent);
                 checkNextAndPrevNumber();
@@ -523,6 +486,9 @@ function graduatesModule() {
                                             data[i].strand
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            data[i].batch
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             data[i].firstname
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
@@ -554,11 +520,6 @@ function graduatesModule() {
                                                 data[i].lrn
                                             }" class="button is-small is-success view-grad">View</a>
                                         </td>
-                                        <td class="has-text-centered">
-                                            <a id="${
-                                                data[i].lrn
-                                            }" class="button is-small is-danger delete-grad">Delete</a>
-                                        </td>
                                     </tr>`;
                     dataCount += 1;
                 }
@@ -566,8 +527,7 @@ function graduatesModule() {
 
                 fillEmptyTable();
                 viewGradPaginationData();
-                removeGradPaginationData();
-            };
+            }
 
             for (let x = 0, index = paginationLink.length; x < index; x++) {
                 paginationLink[x].addEventListener(
@@ -576,10 +536,10 @@ function graduatesModule() {
                     false
                 );
             }
-        };
+        }
 
-        const loadGradNextPage = () => {
-            const setNextPage = async e => {
+        function loadGradNextPage() {
+            async function setNextPage(e) {
                 pageNextAndPrev += 1;
                 checkNextAndPrevNumber();
 
@@ -615,6 +575,9 @@ function graduatesModule() {
                                             nextData[i].strand
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].batch
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             nextData[i].firstname
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
@@ -646,11 +609,6 @@ function graduatesModule() {
                                                 nextData[i].lrn
                                             }" class="button is-small is-success view-grad">View</a>
                                         </td>
-                                        <td class="has-text-centered">
-                                            <a id="${
-                                                nextData[i].lrn
-                                            }" class="button is-small is-danger delete-grad">Delete</a>
-                                        </td>
                                     </tr>`;
                     dataCount += 1;
                 }
@@ -659,14 +617,13 @@ function graduatesModule() {
                 fillEmptyTable();
                 SetPaginatePageOnNextPrev();
                 viewGradPaginationData();
-                removeGradPaginationData();
-            };
+            }
 
             paginateNext.addEventListener("click", setNextPage, false);
-        };
+        }
 
-        const loadGradPrevPage = () => {
-            const setPrevPage = async e => {
+        function loadGradPrevPage() {
+            async function setPrevPage(e) {
                 pageNextAndPrev -= 1;
                 checkNextAndPrevNumber();
 
@@ -703,6 +660,9 @@ function graduatesModule() {
                                             prevData[i].strand
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].batch
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             prevData[i].firstname
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
@@ -734,11 +694,6 @@ function graduatesModule() {
                                                 prevData[i].lrn
                                             }" class="button is-small is-success view-grad">View</a>
                                         </td>
-                                        <td class="has-text-centered">
-                                            <a id="${
-                                                prevData[i].lrn
-                                            }" class="button is-small is-danger delete-grad">Delete</a>
-                                        </td>
                                     </tr>`;
                     dataCount += 1;
                 }
@@ -746,51 +701,16 @@ function graduatesModule() {
                 fillEmptyTable();
                 SetPaginatePageOnNextPrev();
                 viewGradPaginationData();
-                removeGradPaginationData();
-            };
+            }
             paginatePrev.addEventListener("click", setPrevPage, false);
-        };
+        }
         loadFirstPagination();
         loadPaginationPage(datatotal);
         loadGradNextPage();
         loadGradPrevPage();
         loadSelectedPagination();
-    };
-    const fillOptionEmptyTable = selectTotal => {
-        if (gradtabledata.childElementCount < 10) {
-            let remainder = selectTotal % 10;
-            let emptyTd = "";
-            for (let j = 0; j <= 10; j++) {
-                if (remainder == 10) {
-                    break;
-                } else if (remainder < 10) {
-                    emptyTd = `
-                                <tr>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                    <td class="data-style has-text-centered">
-                                        <a class="button is-small" style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td class="data-style has-text-centered">
-                                        <a class="button is-small" style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                </tr>
-                            `;
-                    gradtabledata.insertAdjacentHTML("beforeend", emptyTd);
-                }
-                remainder = remainder + 1;
-            }
-        }
+    }
+    function fillOptionEmptyTable(selectTotal) {
         const dataStyle = document.querySelectorAll(".data-style");
         for (let i = 0, index = dataStyle.length; i < index; i++) {
             dataStyle[i].style.color = "black";
@@ -799,8 +719,8 @@ function graduatesModule() {
             }
         }
         removePrevAndNext();
-    };
-    const loadOptionPaginationPage = dataTotals => {
+    }
+    function loadOptionPaginationPage(dataTotals) {
         let divquotient = Math.floor(dataTotals / 10);
         let remainder = dataTotals % 10;
         let count = divquotient;
@@ -823,14 +743,14 @@ function graduatesModule() {
             pageCount = pageCount + 1;
         }
         gradPaginationList.innerHTML = pageElement;
-    };
+    }
 
-    const loadOptionPagination = () => {
+    function loadOptionPagination() {
         const paginationOptionLink = document.querySelectorAll(
             ".pagination-link"
         );
 
-        const removeOptionIsCurrentClass = () => {
+        function removeOptionIsCurrentClass() {
             for (
                 let i = 0, index = paginationOptionLink.length;
                 i < index;
@@ -838,9 +758,9 @@ function graduatesModule() {
             ) {
                 paginationOptionLink[i].classList.remove("is-current");
             }
-        };
+        }
 
-        const loadOptionPagePerClick = async event => {
+        async function loadOptionPagePerClick(event) {
             // revert and add current data
             pageNextAndPrev = parseInt(event.target.textContent);
             removeOptionIsCurrentClass();
@@ -881,6 +801,9 @@ function graduatesModule() {
                                         data[i].strand
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
+                                        data[i].batch
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
                                         data[i].firstname
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${
@@ -912,11 +835,7 @@ function graduatesModule() {
                                             data[i].lrn
                                         }" class="button is-small is-success view-grad">View</a>
                                     </td>
-                                    <td class="has-text-centered">
-                                        <a id="${
-                                            data[i].lrn
-                                        }" class="button is-small is-danger delete-grad">Delete</a>
-                                    </td>
+                        
                                 </tr>`;
                 dataCount += 1;
             }
@@ -924,8 +843,7 @@ function graduatesModule() {
 
             fillOptionEmptyTable(selectTotal);
             viewGradPaginationData();
-            removeGradPaginationData();
-        };
+        }
 
         for (let x = 0, index = paginationLink.length; x < index; x++) {
             paginationLink[x].addEventListener(
@@ -934,15 +852,15 @@ function graduatesModule() {
                 false
             );
         }
-    };
+    }
 
-    const loadSearchPagination = () => {
+    function loadSearchPagination() {
         const graduateSearch = document.querySelector("#graduate-search");
         const graduateSelected = document.querySelector(
             "#graduate-search-selected"
         );
 
-        const setSelectedValue = checkData => {
+        function setSelectedValue(checkData) {
             let index = graduateSelected.options.length;
             if (checkData.length > 0) {
                 for (let i = 0; i < index; i++) {
@@ -955,8 +873,8 @@ function graduatesModule() {
 
                 graduateSelected.selectedIndex = 0;
             }
-        };
-        const setToDefault = () => {
+        }
+        function setToDefault() {
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
 
@@ -968,9 +886,9 @@ function graduatesModule() {
             paginateNext.removeAttribute("disabled");
             graduateSelected.options[0].setAttribute("disabled", "");
             graduateSelected.selectedIndex = 1;
-        };
+        }
 
-        const getgraduateSelected = async event => {
+        async function getgraduateSelected(event) {
             let selected = event.target.value.toString();
             let selectedresponseData = "";
             let selectedPerPage = 0;
@@ -1007,8 +925,8 @@ function graduatesModule() {
                 selectedData = selectedresponseData.data.selected_strand.data;
                 selectedTo = selectedresponseData.data.selected_strand.to;
 
-                if (selectedTo % 10 != 0) {
-                    index = selectedTo % 10;
+                if (selectedTo % 1000 != 0) {
+                    index = selectedTo % 1000;
                 }
 
                 for (let i = 0; i < index; i++) {
@@ -1019,6 +937,9 @@ function graduatesModule() {
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
                                             selectedData[i].strand
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].batch
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
                                             selectedData[i].firstname
@@ -1048,32 +969,28 @@ function graduatesModule() {
                                             selectedData[i].status
                                         }</td>
                                         <td class="has-text-centered">
-                                            <a id="${
-                                                selectedData[i].lrn
-                                            }" class="button is-small is-success view-grad">View</a>
-                                        </td>
-                                        <td class="has-text-centered">
-                                            <a id="${
-                                                selectedData[i].lrn
-                                            }" class="button is-small is-danger delete-grad">Delete</a>
-                                        </td>
+                                        <a id="${
+                                            selectedData[i].lrn
+                                        }" class="button is-small is-success view-grad">View</a>
+                                    </td>
+                    
                                     </tr>`;
                     selectCount += 1;
                 }
                 gradtabledata.innerHTML = htmlData;
 
-                fillOptionEmptyTable(selectTotal);
+                fillOptionEmptyTable();
                 viewGradPaginationData();
-                removeGradPaginationData();
             } catch (error) {
                 console.log(error);
             }
             loadOptionPaginationPage();
             loadOptionPagination();
-        };
+        }
 
-        const getGraduateSearch = async event => {
+        async function getGraduateSearch(event) {
             let searchval = event.target.value;
+            pageNextAndPrev = 1;
             let searchresponseData = "";
             let searchPerPage = 0;
             let searchTo = 0;
@@ -1106,9 +1023,9 @@ function graduatesModule() {
                 searchTo = searchresponseData.data.search_data.to;
                 searchData = searchresponseData.data.search_data.data;
 
-                let index = 10;
-                if (searchTo % 10 != 0) {
-                    index = searchTo % 10;
+                let index = 1000;
+                if (searchTo % 1000 != 0) {
+                    index = searchTo % 1000;
                 }
 
                 for (let i = 0; i < index; i++) {
@@ -1119,6 +1036,9 @@ function graduatesModule() {
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
                                             searchData[i].strand
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].batch
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${
                                             searchData[i].firstname
@@ -1152,29 +1072,24 @@ function graduatesModule() {
                                                 searchData[i].lrn
                                             }" class="button is-small is-success view-grad">View</a>
                                         </td>
-                                        <td class="has-text-centered">
-                                            <a id="${
-                                                searchData[i].lrn
-                                            }" class="button is-small is-danger delete-grad">Delete</a>
-                                        </td>
+                            
                                     </tr>`;
                     searchdataCount += 1;
                 }
                 gradtabledata.innerHTML = htmlData;
 
-                fillOptionEmptyTable(searchTotal);
+                fillOptionEmptyTable();
                 viewGradPaginationData();
-                removeGradPaginationData();
             } catch (error) {
                 console.log(error);
             }
-            loadOptionPaginationPage();
-            loadOptionPagination();
-        };
+            //loadOptionPaginationPage();
+            //loadOptionPagination();
+        }
 
         graduateSelected.addEventListener("change", getgraduateSelected, false);
         graduateSearch.addEventListener("keyup", getGraduateSearch, false);
-    };
+    }
 
     loadInitialPagination();
     loadSearchPagination();

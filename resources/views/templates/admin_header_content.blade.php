@@ -104,6 +104,12 @@
     <div class="modal-content jobfair-modal-content">
         <div class="container jobfair-modal-container">
             <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 jobfair-error-container" id="add-error-container">
+
+                </div>
+                <div class="column is-7 jobfair-success-container is-su" id="add-success-container">
+
+                </div>
                 <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
                     <div class="columns is-centered is-multiline is-desktop">
                         <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
@@ -180,7 +186,7 @@
                         <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
                             id="third-jobfair-modal-column">
                             <div class="columns is-desktop jobfair-data-column">
-                                <div class="column is-4">
+                                <div class="column is-5">
                                     <div class="field">
                                         <label class="label">Job Posted:</label>
                                         <div class="select">
@@ -207,7 +213,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="column is-4">
+                                <div class="column is-5">
                                     <div class="field">
                                         <label class="label">Job Availability:</label>
                                         <div class="select">
@@ -244,7 +250,7 @@
                                     <div class="field is-grouped">
                                         <div class="control">
                                             <button class="button is-link is-small"
-                                                id="add-jobfair-buttton">Submit</button>
+                                                id="add-jobfair-buttton">Add</button>
                                         </div>
                                         <div class="control">
                                             <button class="button is-small is-link is-light"
@@ -267,6 +273,12 @@
     <div class="modal-content jobfair-modal-content">
         <div class="container jobfair-modal-container">
             <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 jobfair-error-container" id="edit-error-container">
+
+                </div>
+                <div class="column is-7 jobfair-success-container" id="edit-success-container">
+
+                </div>
                 <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
                     <div class="columns is-centered is-multiline is-desktop">
                         <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
@@ -277,7 +289,7 @@
                                         <label class="label" for="edit_job_name">Job:</label>
                                         <div class="control">
                                             <input required class="input" minlength="2" maxlength="30"
-                                                id="edit_job_name" type="text" placeholder="Job">
+                                                id="edit_job_name" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -286,8 +298,8 @@
                                         <label class="label" for="edit_job_strand">Strand:</label>
                                         <div class="control">
                                             <div class="select">
-                                                <select required id="edit_job_strand">
-                                                    <option disabled>strand</option>
+                                                <select id="edit_job_strand">
+                                                    <option disabled selected>strand</option>
                                                     @foreach($Strands as $strand)
                                                     <option value="{{$strand->strand_name}}">
                                                         {{($strand->strand_name)}}</option>
@@ -343,7 +355,7 @@
                         <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
                             id="third-jobfair-modal-column">
                             <div class="columns is-desktop jobfair-data-column">
-                                <div class="column is-4">
+                                <div class="column is-5">
                                     <div class="field">
                                         <label class="label" for="edit_job_posted_month">Job Posted:</label>
                                         <div class="select">
@@ -370,7 +382,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="column is-4">
+                                <div class="column is-5">
                                     <div class="field">
                                         <label class="label">Job Availability:</label>
                                         <div class="select">
@@ -450,9 +462,597 @@
     <button class="modal-close is-large" id="delete-jobfair-modal-close" aria-label="close"></button>
 </div>
 @elseif (Request::is('admin/announcement/examination'))
+{{-- for examinations view modal--}}
+<div class="modal is-radiusless animated fadeIn" id="examinations-view-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content examinations-modal-content">
+        <div class="container examinations-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="view_school_name">School:</label>
+                                        <div class="control">
+                                            <input class="input" disabled id="view_school_name" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="view_exam_date">Strand:</label>
+                                        <div class="control">
+                                            <input class="input" disabled id="view_exam_date">
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="examinations-jobfair-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="view_exam_desc">Job Qualification:</label>
+                                        <div class="control">
+                                            <textarea class="textarea" disabled id="view_exam_desc"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="examinations-view-modal-close" aria-label="close"></button>
+</div>{{-- end of examinations view modal --}}
+{{-- for examinations add modal--}}
+<div class="modal is-radiusless animated fadeIn" id="examinations-add-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content examinations-modal-content">
+        <div class="container examinations-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 examinations-error-container" id="add-error-container">
+
+                </div>
+                <div class="column is-7 examinations-success-container is-su" id="add-success-container">
+
+                </div>
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-2">
+                                    <div class="field">
+                                        <label class="label" for="add_school_name">School:</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select required id="add_school_name">
+                                                    <option selected selected>SCHOOL</option>
+                                                    @if($examinationData)
+                                                    @foreach($examinationData as $exam)
+                                                    <option value="{{$exam->school_name}}">
+                                                        {{strtoupper(($exam->school_name))}}</option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="add_job_address">Exam Description:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="500" class="textarea"
+                                                id="add_exam_desc" placeholder="Add Examination Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="third-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-5">
+                                    <div class="field">
+                                        <label class="label">Examination Date:</label>
+                                        <div class="select">
+                                            <select required id="add_exam_date_month">
+                                                <option selected disabled>Month</option>
+                                                @for ($i = 0; $i < 13; $i++) @if($i> 0)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @endif
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                        <div class="select">
+                                            <select required id="add_exam_date_day">
+                                                <option selected disabled>Day</option>
+                                                @for ($i = 0; $i < 32; $i++) @if($i> 0)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @endif
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                        <div class="select">
+                                            <select required id="add_exam_date_year">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="fourth-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-4">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <button class="button is-link is-small"
+                                                id="add-examinations-buttton">Add</button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-small is-link is-light"
+                                                id="add-examinations-buttton-cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="add-examinations-modal-close" aria-label="close"></button>
+</div>{{--end of examinations add modal--}}
+{{-- for examinations edit modal --}}
+<div class="modal is-radiusless animated fadeIn" id="examinations-edit-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content examinations-modal-content">
+        <div class="container examinations-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 examinations-error-container" id="edit-error-container">
+
+                </div>
+                <div class="column is-7 examinations-success-container" id="edit-success-container">
+
+                </div>
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-2">
+                                    <div class="field">
+                                        <label class="label" for="edit_school_name">School:</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select id="edit_school_name">
+                                                    <option disabled selected>SCHOOL</option>
+                                                    @if($examinationData)
+                                                    @foreach($examinationData as $exam)
+                                                    <option value="{{$exam->school_name}}">
+                                                        {{strtoupper(($exam->school_name))}}</option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="edit_exam_desc">Examination Desc:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="500" class="textarea"
+                                                id="edit_exam_desc"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="third-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-5">
+                                    <div class="field">
+                                        <label class="label" for="edit_job_posted_month">Examination Date:</label>
+                                        <div class="select">
+                                            <select required id="edit_exam_date_month">
+                                                <option selected disabled>Month</option>
+                                                @for ($i = 0; $i < 13; $i++) @if($i> 0)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @endif
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                        <div class="select">
+                                            <select required id="edit_exam_date_day">
+                                                <option selected disabled>Day</option>
+                                                @for ($i = 0; $i < 32; $i++) @if($i> 0)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                    @endif
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                        <div class="select">
+                                            <select required id="edit_exam_date_year">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="fourth-examinations-modal-column">
+                            <div class="columns is-desktop examinations-data-column">
+                                <div class="column is-4">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <button class="button is-link is-small"
+                                                id="edit-examinations-buttton-update">Update</button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-small is-link is-light"
+                                                id="edit-examinations-buttton-cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="edit-examinations-modal-close" aria-label="close"></button>
+</div>{{-- end of examinations edit modal --}}
+{{-- for examinations delete modal --}}
+<div class="modal is-radiusless animated fadeIn" id="examinations-delete-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content" id="delete-examinations-modal-content">
+        <div class="columns is-mobile is-centered is-multiline">
+            <div class="column is-12" id="delete-modal-text">
+                <p class="delete-text-modal has-text-centered">Delete this Data? Deleting this data will be unrecovable!
+                </p>
+            </div>
+            <div class="column is-12" id="delete-modal-buttons">
+                <div class="columns is-desktop">
+                    <div class="column is-6 has-text-centered">
+                        <button class="button delete-modal-button is-danger"
+                            id="delete-modal-button-confirm">Confirm</button>
+                    </div>
+                    <div class="column is-6 has-text-centered">
+                        <button class="button delete-modal-button is-success has-text-centered"
+                            id="delete-modal-button-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="delete-examinations-modal-close" aria-label="close"></button>
+</div>
 @elseif (Request::is('admin/announcement/scholarship'))
+{{-- for scholarship view modal--}}
+<div class="modal is-radiusless animated fadeIn" id="scholarships-view-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content scholarships-modal-content">
+        <div class="container scholarships-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="view_scholarships_school">School:</label>
+                                        <div class="control">
+                                            <input class="input" disabled id="view_scholarships_school" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="view_scholarships_grade">Grade:</label>
+                                        <div class="control">
+                                            <input class="input" type="text" disabled id="view_scholarships_grade">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="view_scholarships_grade">Website Link:</label>
+                                        <div class="control">
+                                            <input class="input" type="text" disabled id="view_scholarships_link">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="view_scholarships_desc">Scholarship
+                                            Description:</label>
+                                        <div class="control">
+                                            <textarea class="textarea" disabled id="view_scholarships_desc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label" for="view_scholarships_req">Scholarship
+                                            Requirements:</label>
+                                        <div class="control">
+                                            <textarea class="textarea" disabled id="view_scholarships_req"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="scholarships-view-modal-close" aria-label="close"></button>
+</div>{{-- end of scholarship  view modal --}}
+{{-- for scholarship add modal--}}
+<div class="modal is-radiusless animated fadeIn" id="scholarships-add-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content scholarships-modal-content">
+        <div class="container scholarships-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 scholarships-error-container" id="add-error-container">
 
+                </div>
+                <div class="column is-7 scholarships-success-container is-su" id="add-success-container">
+
+                </div>
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="add_scholarships_school">School:</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select required id="add_scholarships_school">
+                                                    <option selected selected>SCHOOL</option>
+                                                    @if($scholarshipData)
+                                                    @foreach($scholarshipData as $school)
+                                                    <option value="{{$school->school_name}}">
+                                                        {{strtoupper(($school->school_name))}}</option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="add_scholarships_grade">Grade:</label>
+                                        <div class="control">
+                                            <input class="input" type="text" minlength="" placeholder="add Grade"
+                                                id="add_scholarships_grade">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="add_scholarships_link">Link</label>
+                                        <div class="control">
+                                            <input class="input" maxlength="30" type="text" placeholder="add Link"
+                                                id="add_scholarships_link">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="add_scholarships_desc">Scholarship
+                                            Description:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="1024" class="textarea"
+                                                id="add_scholarships_desc"
+                                                placeholder="Add Scholarship Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="add_scholarships_req">Scholarship
+                                            Requirements:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="1024" class="textarea"
+                                                id="add_scholarships_req"
+                                                placeholder="Add Scholarship Requirements"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="third-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column is-4">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <button class="button is-link is-small"
+                                                id="add-scholarships-buttton">Add</button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-small is-link is-light"
+                                                id="add-scholarships-buttton-cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="add-scholarships-modal-close" aria-label="close"></button>
+</div>{{--end of scholarship add modal--}}
+{{-- for scholarship edit modal --}}
+<div class="modal is-radiusless animated fadeIn" id="scholarships-edit-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content scholarships-modal-content">
+        <div class="container scholarships-modal-container">
+            <div class="columns is-centered is-multiline is-desktop">
+                <div class="column is-7 scholarships-error-container" id="edit-error-container">
+
+                </div>
+                <div class="column is-7 scholarships-success-container" id="edit-success-container">
+
+                </div>
+                <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
+                    <div class="columns is-centered is-multiline is-desktop">
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="first-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="edit_scholarships_school">School:</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select id="edit_scholarships_school">
+                                                    <option disabled selected>SCHOOL</option>
+                                                    @if($scholarshipData)
+                                                    @foreach($scholarshipData as $school)
+                                                    <option value="{{$school->school_name}}">
+                                                        {{strtoupper(($school->school_name))}}</option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="edit_scholarships_grade">Grade:</label>
+                                        <div class="control">
+                                            <input class="input" minlength="2" maxlength="7" type="text"
+                                                id="edit_scholarships_grade">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-3">
+                                    <div class="field">
+                                        <label class="label" for="edit_scholarships_link">Link</label>
+                                        <div class="control">
+                                            <input class="input" type="text" id="edit_scholarships_link">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="second-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="edit_scholarships_desc">Scholarship
+                                            Description:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="500" class="textarea"
+                                                id="edit_scholarships_desc"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="field">
+                                        <label class="label" for="edit_scholarships_req">Scholarship
+                                            Requirements:</label>
+                                        <div class="control">
+                                            <textarea required minlength="5" maxlength="500" class="textarea"
+                                                id="edit_scholarships_req"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd"
+                            id="third-scholarships-modal-column">
+                            <div class="columns is-desktop scholarships-data-column">
+                                <div class="column is-4">
+                                    <div class="field is-grouped">
+                                        <div class="control">
+                                            <button class="button is-link is-small"
+                                                id="edit-scholarships-buttton-update">Update</button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-small is-link is-light"
+                                                id="edit-scholarships-buttton-cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="edit-scholarships-modal-close" aria-label="close"></button>
+</div>{{-- end of examinations edit modal --}}
+{{-- for examinations delete modal --}}
+<div class="modal is-radiusless animated fadeIn" id="scholarships-delete-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content" id="delete-scholarships-modal-content">
+        <div class="columns is-mobile is-centered is-multiline">
+            <div class="column is-12" id="delete-modal-text">
+                <p class="delete-text-modal has-text-centered">Delete this Data? Deleting this data will be unrecovable!
+                </p>
+            </div>
+            <div class="column is-12" id="delete-modal-buttons">
+                <div class="columns is-desktop">
+                    <div class="column is-6 has-text-centered">
+                        <button class="button delete-modal-button is-danger"
+                            id="delete-modal-button-confirm">Confirm</button>
+                    </div>
+                    <div class="column is-6 has-text-centered">
+                        <button class="button delete-modal-button is-success has-text-centered"
+                            id="delete-modal-button-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="modal-close is-large" id="delete-scholarships-modal-close" aria-label="close"></button>
+</div>
 @elseif (Request::is('admin/announcement/alumni'))
 
 @endif
@@ -552,21 +1152,33 @@
                             id="first-grad-modal-column">
                             <div class="columns is-desktop graduates-data-column">
                                 <div class="column">
-                                    <div id="graduate-profile-pic">
-                                        <img id="graduate-pic">
+                                    <div class="field">
+                                        <div id="graduate-profile-pic">
+                                            <img id="graduate-pic">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">LRN:</span>
-                                    <span id="graduate-lrn"></span>
+                                    <div class="field">
+                                        <label for="graduate-lrn" class="graduate-modal-title">LRN:</label>
+                                        <div class="control">
+                                            <input id="graduate-lrn" class="input" type="text" disabled />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Strand:</span>
-                                    <span id="graduate-strand"></span>
+                                    <div class="field">
+                                        <label for="graduate-strand" class="graduate-modal-title">Strand:</label>
+                                        <div class="control">
+                                            <input id="graduate-strand" class="input" type="text" disabled />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Status:</span>
-                                    <span id="graduate-status"></span>
+                                    <div class="field">
+                                        <label for="graduate-status" class="graduate-modal-title">Status:</label>
+                                        <input id="graduate-status" type="text" class="input" disabled />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -574,20 +1186,29 @@
                             id="second-grad-modal-column">
                             <div class="columns is-desktop graduates-data-column">
                                 <div class="column">
-                                    <span class="graduate-modal-title">Firstname:</span>
-                                    <span id="graduate-firstname"></span>
+                                    <div class="field">
+                                        <label for="graduate-firstname" class="graduate-modal-title">Firstname:</label>
+                                        <input id="graduate-firstname" type="text" class="input" disabled />
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Middlename:</span>
-                                    <span id="graduate-middlename"></span>
+                                    <div class="field">
+                                        <label for="graduate-middlename">Middlename:</label>
+                                        <input type="text" id="graduate-middlename" class="input" disabled />
+                                    </div>
+
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Lastname:</span>
-                                    <span id="graduate-lastname"></span>
+                                    <div class="field">
+                                        <span for="graduate-lastname" class="graduate-modal-title">Lastname:</span>
+                                        <input id="graduate-lastname" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Address:</span>
-                                    <span id="graduate-address"></span>
+                                    <div class="field">
+                                        <label for="graduate-address" class="graduate-modal-title">Address:</label>
+                                        <input id="graduate-address" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -595,20 +1216,29 @@
                             id="third-grad-modal-column">
                             <div class="columns is-desktop graduates-data-column">
                                 <div class="column">
-                                    <span class="graduate-modal-title">Birthday:</span>
-                                    <span id="graduate-birthday"></span>
+                                    <div class="field">
+                                        <label for="graduate-birthday" class="graduate-modal-title">Birthday:</label>
+                                        <input id="graduate-birthday" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Age:</span>
-                                    <span id="graduate-age"></span>
+                                    <div class="field">
+                                        <label for="graduate-age" class="graduate-modal-title">Age:</label>
+                                        <input id="graduate-age" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Gender:</span>
-                                    <span id="graduate-gender"></span>
+                                    <div class="field">
+                                        <label for="graduate-gender" class="graduate-modal-title">Gender:</label>
+                                        <input id="graduate-gender" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                                 <div class="column">
-                                    <span class="graduate-modal-title">Civil Status:</span>
-                                    <span id="graduate-civil-status"></span>
+                                    <div class="field">
+                                        <label for="graduate-civil-status" class="graduate-modal-title">Civil
+                                            Status:</label>
+                                        <input id="graduate-civil-status" class="input" type="text" disabled />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -618,13 +1248,6 @@
         </div>
     </div>
     <button class="modal-close is-large" id="graduates-modal-close" aria-label="close"></button>
-</div>
-<div class="modal is-radiusless animated fadeIn" id="graduates-delete-modal">
-    <div class="modal-background"></div>
-    <div class="modal-content" id="graduate-delete-grad-modal">
-
-    </div>
-    <button class="modal-close is-large" id="graduates-delete-modal-close" aria-label="close"></button>
 </div>
 @endif
 

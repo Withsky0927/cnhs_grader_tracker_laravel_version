@@ -4,6 +4,7 @@ namespace App\Http\Middleware\admin\announcement\jobfair;
 
 use Closure;
 use Illuminate\Support\Facades\Session;
+use Mockery\Generator\Parameter;
 
 class sanitizeJobFairData
 {
@@ -12,6 +13,7 @@ class sanitizeJobFairData
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * 
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -19,7 +21,7 @@ class sanitizeJobFairData
         $toBeSanitized = $request->all();
 
 
-        Session::put('sanitized_data', ['data' => [
+        Session::put('jobfair_sanitized_data', ['data' => [
             'job_name' => htmlspecialchars(trim($toBeSanitized['jobName'])),
             'job_strand' => htmlspecialchars(trim($toBeSanitized['jobStrand'])),
             'job_company' => htmlspecialchars(trim($toBeSanitized['jobCompany'])),

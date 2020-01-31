@@ -28,6 +28,8 @@ function toggleBurger() {
     });
 }
 
+
+
 function setcsrfToken() {
     if (window.axios) {
         window.axios.defaults.headers.common = {
