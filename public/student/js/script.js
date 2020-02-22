@@ -1,3 +1,10 @@
+function disableBackButton() {
+    history.pushState(null, document.title, location.href);
+    history.back();
+    history.forward();
+    window.onpopstate = () => history.go(1);
+}
+
 function toggleBurger() {
     document.addEventListener("DOMContentLoaded", () => {
         // Get all "navbar-burger" elements
@@ -24,3 +31,4 @@ function toggleBurger() {
     });
 }
 toggleBurger();
+disableBackButton();

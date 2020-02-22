@@ -46,7 +46,7 @@ class forgotPasswordConfirmationController extends Controller
         });
 
         Session::put('confirmationcode', $digit);
-        return back()->with('notitication', 'A new confirmation code has been sent');
+        return back()->with('new_forgot_password_confirmation_code', 'A new confirmation code has been sent');
     }
 
     public function getConfirmation()
@@ -60,10 +60,10 @@ class forgotPasswordConfirmationController extends Controller
         $confirmationCode = Session::get('confirmationcode');
         if ($confirmationCodeFromInput == $confirmationCode) {
             $this->ChangePassword();
-            return redirect('/')->with('notification', 'Account password has been updated');
+            return redirect('/')->with('forgot_password_success', 'Account password has been updated');
         } elseif ($confirmationCodeFromInput != $confirmationCode) {
             $error = 'Invalid Confirmation Code, Please Try again';
-            return back()->with('notification', $error);
+            return back()->with('invalid_forgotpassword_code', $error);
         }
     }
 }

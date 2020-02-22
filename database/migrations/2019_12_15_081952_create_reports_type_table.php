@@ -14,9 +14,8 @@ class CreateReportsTypeTable extends Migration
     public function up()
     {
         Schema::create('reports_type', function (Blueprint $table) {
-            $table->bigInteger('report_type_id')->autoIncrement();
-            $table->string('report_name', 100);
-            $table->unique('report_name');
+            $table->bigInteger('report_type_id');
+            $table->string('report_type', 100);
         });
     }
 

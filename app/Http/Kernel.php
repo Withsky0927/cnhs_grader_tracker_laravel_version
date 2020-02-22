@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\admin\reports\sanitizeReportsData;
+use App\Http\Middleware\admin\reports\validateReportsData;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -79,6 +81,7 @@ class Kernel extends HttpKernel
         'validateForGotPassConfirmation' => \App\Http\Middleware\validateForGotPassConfirmation::class,
         'checkForgotConfirmationCodeExist' => \App\Http\Middleware\checkForgotConfirmationCodeExist::class,
 
+
         // for authorizatin middleware
         'checkAdminRole' => \App\Http\Middleware\checkAdminRole::class,
         'checkStudentRole' => \App\Http\Middleware\checkStudentRole::class,
@@ -92,6 +95,18 @@ class Kernel extends HttpKernel
         'sanitizeExaminationData' => \App\Http\Middleware\admin\announcement\examination\sanitizeExaminationData::class,
         'validateScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\validateScholarshipData::class,
         'sanitizeScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\sanitizeScholarshipData::class,
+
+
+        // for reports middleware
+        'checkIfReportsIsAdmin' => \App\Http\Middleware\admin\reports\checkIfReportsIsAdmin::class,
+        'validateReportsData' => \App\Http\Middleware\admin\reports\validateReportsData::class,
+        'sanitizeReportsData' => \App\Http\Middleware\admin\reports\sanitizeReportsData::class,
+        'uploadreport' => \App\Http\Middleware\admin\reports\uploadreport::class,
+        'validateUpdatedReport' => \App\Http\Middleware\admin\reports\validateUpdatedReport::class,
+        'sanitizeUpdatedReport' => \App\Http\Middleware\admin\reports\sanitizeUpdatedReport::class,
+        'updatereport' => \App\Http\Middleware\admin\reports\updatereport::class,
+
+
 
         // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,

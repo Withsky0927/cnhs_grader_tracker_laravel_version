@@ -3,7 +3,7 @@
 @section('content')
 <main class="columns is-mobile is-centered">
     <form id="confirmationForm"
-        class="animated fadeInDownBig column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
+        class="animated fadeIn column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
         action="{{url('/confirmation')}}" autocomplete="off" method="post">
         @csrf
         <section aria-label="brandname" class="field level">
@@ -11,14 +11,19 @@
                 <img src="{{asset('img/logo.png')}}" alt="Cavite National high School Graduate Tracer System">
             </h1>
         </section>
-        <section class="field">
-            @if(session('notification'))
-            <p>{{session('notification')}}</p>
+        <section class="is-columns is-multiline is-centered is-multiline">
+            @if(session('new_confirmation_code'))
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-success-container">
+                <p class="has-text-centered has-text-white">{{session('new_confirmation_code')}}</p>
+            </div>
             @endif
-            @if($errors)
-            @foreach ($errors as $error)
-            <p>{{$error}}</p>
-            @endforeach
+
+            @if(count($errors) > 0 && $errors)
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-errors-container">
+                @foreach ($errors->all() as $item)
+                <p class="has-text-centered" id="outside-validation-errors">{{$item}}</p>
+                @endforeach
+            </div>
             @endif
         </section>
         <section class="field">

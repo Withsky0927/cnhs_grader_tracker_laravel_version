@@ -1,197 +1,208 @@
-@import 'mixins';
-@import 'colors';
+@import "mixins";
+@import "colors";
 #registrationform {
-  background-color: white;
+    background-color: white;
+    @include boxShadow(0px, 0px, 3px, #000);
 }
 
 .register-links,
 .register-links:active,
 .register-links:focus {
-  color: black;
+    color: black;
 }
 .register-links:hover {
-  text-decoration: underline;
-  color: black;
+    text-decoration: underline;
+    color: black;
 }
 #registrationbutton {
-  @include boxShadow(0px, 0px, 2px, gray);
+    @include boxShadow(0px, 0px, 2px, gray);
 }
 
 // for mobile devices
 @media all and (max-width: 767px) and (orientation: portrait) {
-  #registrationform {
-    margin-top: 2rem !important;
-    padding: 1.5rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 10rem;
-            height: 10rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 2rem !important;
+        padding: 1.5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
-  }
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 10rem;
+                        height: 10rem;
+                    }
+                }
+            }
+        }
+    }
 
-  #registrationbutton {
-    width: 100% !important;
-    background-color: $outsidebtncolor;
-  }
-  #link-centering {
-    text-align: center;
-  }
-  #errornotification {
-    border: 1px solid black;
-    height: auto;
-  }
+    #registrationbutton {
+        width: 100% !important;
+        background-color: $outsidebtncolor;
+    }
+    #link-centering {
+        text-align: center;
+    }
+    #errornotification {
+        border: 1px solid black;
+        height: auto;
+    }
 }
 @media all and (max-height: 767px) and (orientation: landscape) {
-  #registrationform {
-    margin-top: 2rem !important;
-    padding: 1.5rem;
-  }
-
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 10rem;
-            height: 10rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 2rem !important;
+        padding: 1.5rem;
     }
-  }
-  #registrationbutton {
-    width: 25% !important;
-    background-color: $outsidebtncolor;
-  }
-  .register-links {
-    text-align: left !important;
-  }
-  #errornotification {
-    border: 1px solid black;
-    height: auto;
-  }
+
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 10rem;
+                        height: 10rem;
+                    }
+                }
+            }
+        }
+    }
+    #registrationbutton {
+        width: 25% !important;
+        background-color: #8a2a2b;
+    }
+    .register-links {
+        text-align: left !important;
+    }
+    #errornotification {
+        border: 1px solid black;
+        height: auto;
+    }
 }
 
 // for tablet resolution
 @media all and (min-height: 768px) and (orientation: portrait) {
-  #registrationform {
-    margin-top: 11rem;
-    padding: 1.5rem;
-  }
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 10rem;
-            height: 10rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 11rem;
+        padding: 1.5rem;
     }
-  }
-  #registrationbutton {
-    width: 20%;
-    background-color: $outsidebtncolor;
-  }
-  .register-links {
-    text-align: left !important;
-  }
-  #errornotification {
-    border: 1px solid black;
-    height: auto;
-  }
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 10rem;
+                        height: 10rem;
+                    }
+                }
+            }
+        }
+    }
+    #registrationbutton {
+        width: 20%;
+    }
+    .register-links {
+        text-align: left !important;
+    }
+    #errornotification {
+        border: 1px solid black;
+        height: auto;
+    }
 }
 @media all and (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
-  #registrationform {
-    margin-top: 3.2rem;
-    padding: 1.5rem;
-  }
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 10rem;
-            height: 10rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 3.2rem;
+        padding: 1.5rem;
     }
-  }
-  #registrationbutton {
-    width: 20% !important;
-    background-color: $outsidebtncolor;
-  }
-  .register-links {
-    text-align: left !important;
-  }
-  #errornotification {
-    border: 1px solid black;
-    height: auto;
-  }
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 10rem;
+                        height: 10rem;
+                    }
+                }
+            }
+        }
+    }
+    #registrationbutton {
+        width: 20% !important;
+    }
+    .register-links {
+        text-align: left !important;
+    }
+    #errornotification {
+        border: 1px solid black;
+        height: auto;
+    }
 }
 
 // for desktop to 1080 monitor
 @media all and (min-width: 1024px) and (max-width: 2559px) {
-  #registrationform {
-    margin-top: 3.3rem !important;
-    padding: 1.5rem;
-  }
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 8rem;
-            height: 8rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 3.3rem !important;
+        padding: 1.5rem;
     }
-  }
-  #registrationbutton {
-    width: 13% !important;
-    background-color: $outsidebtncolor;
-  }
-  #errornotification {
-    border: 1px solid black;
-  }
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 8rem;
+                        height: 8rem;
+                    }
+                }
+            }
+        }
+    }
+    .register-links {
+        font-size: 0.8rem !important;
+    }
+    #registrationbutton {
+        width: 13% !important;
+        font-size: 0.8rem;
+    }
+    #link-centering {
+        padding-top: 0px;
+    }
+    #errornotification {
+        border: 1px solid black;
+    }
 }
 
 // for 4k resolution
 @media all and (min-width: 2560px) {
-  #registrationform {
-    margin-top: 3rem !important;
-    padding: 1.5rem;
-  }
-  #registerlogo {
-    .column {
-      .field {
-        h1 {
-          img {
-            width: 10rem;
-            height: 10rem;
-          }
-        }
-      }
+    #registrationform {
+        margin-top: 3rem !important;
+        padding: 1.5rem;
     }
-  }
-  #registrationbutton {
-    width: 10% !important;
-    background-color: $outsidebtncolor;
-  }
-  #errornotification {
-    border: 1px solid black;
-    height: auto;
-  }
+    #registerlogo {
+        .column {
+            .field {
+                h1 {
+                    img {
+                        width: 10rem;
+                        height: 10rem;
+                    }
+                }
+            }
+        }
+    }
+    #registrationbutton {
+        width: 10% !important;
+        font-size: 0.8rem;
+    }
+    #link-centering {
+        padding-top: 0px;
+    }
+    .register-links {
+        font-size: 0.8rem !important;
+    }
+    #errornotification {
+        border: 1px solid black;
+        height: auto;
+    }
 }

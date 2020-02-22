@@ -1,15 +1,14 @@
 @import "colors";
 @import "mixins";
 html {
-    background-color: $mainbackgroundcolor;
+    background-color: #f1f1f1;
 }
 #confirmationForm {
     background: white;
     @include boxShadow(0px, 0px, 5px, #000);
 }
 .confirmationbuttonoutside {
-    background-color: $outsidebtncolor !important;
-    @include boxShadow(0px, 0px, 2px, gray);
+    background-color: #8a2a2b !important;
 }
 
 #hidesubmitforgotconfirm {
@@ -20,8 +19,8 @@ html {
     position: absolute;
     z-index: 3;
     button {
-        background-color: $outsidebtncolor !important;
-        @include boxShadow(0px, 0px, 2px, gray);
+        background-color: #8a2a2b !important;
+        //@include boxShadow(0px, 0px, 3px, gray);
         color: white;
     }
 }
@@ -148,6 +147,17 @@ html {
     .confirmationbuttonoutside {
         width: 100%;
     }
+    #resend {
+        height: 2.5rem;
+        position: absolute;
+        z-index: 3;
+        margin-top: 10.4rem;
+        margin-right: 8.1rem;
+        width: 7rem !important;
+        button {
+            width: 100%;
+        }
+    }
 }
 
 // for 4k resolution
@@ -167,6 +177,17 @@ html {
     }
     .confirmationbuttonoutside {
         width: 50%;
-        background-color: $outsidebtncolor;
+        background-color: #8a2a2b;
+    }
+    #resend {
+        height: 2.5rem;
+        position: absolute;
+        z-index: 3;
+        margin-top: 10.5rem;
+        margin-right: 8.1rem;
+        width: 7rem !important;
+        button {
+            width: 100%;
+        }
     }
 }

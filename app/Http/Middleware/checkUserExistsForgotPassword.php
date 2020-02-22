@@ -91,7 +91,7 @@ class checkUserExistsForgotPassword
         }
 
         if ($this->errors) {
-            return back()->with('notification', $this->errors);
+            return back()->with('forgot_password_errors', $this->errors);
         }
         return $next($request);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class logoutController extends Controller
@@ -14,6 +15,7 @@ class logoutController extends Controller
             return back();
         } elseif (Session::has('isLogin')) {
             Session::flush();
+            Cookie::clearResolvedInstances();
             return redirect('/');
         }
     }

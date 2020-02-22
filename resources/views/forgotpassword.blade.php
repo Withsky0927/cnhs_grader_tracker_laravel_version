@@ -5,7 +5,7 @@
 @section('content')
 <main class="columns is-mobile is-centered">
     <form id="forgotform"
-        class="animated fadeInDownBig column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
+        class="animated fadeIn column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
         action="{{url('/forgotpassword')}}" autocomplete="off" method="post">
         @csrf
         <section aria-label="brandname" class="field level">
@@ -13,21 +13,27 @@
                 <img src="{{asset('img/logo.png')}}" alt="Cavite National high School Graduate Tracer System">
             </h1>
         </section>
-        <section class="field">
+        <section class="columns is-centered is-mobile is-multiline">
+            {{-- if forgotpassword validation failed error--}}
+            @if(count($errors) > 0 && $errors)
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-error-container">
+                @foreach ($errors->all() as $item)
+                <p class="has-text-centered has-text-white" id="outside-validation-errors">{{$item}}</p>
+                @endforeach
+            </div>
+            @endif
             @if(session('notifications'))
-            @foreach (session('notifications')->all() as $error)
-            <p>{{$error}}</p>
-            @endforeach
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-error-container">
+                @foreach (session('notifications')->all() as $error)
+                <p class="has-text-centered has-text-white"></p>
+                @endforeach
+            </div>
             @endif
-            @if($errors != '')
-            @foreach ($errors->all() as $error)
-            <p>{{$error}}</p>
-            @endforeach
+            @if(session('forgot_password_errors'))
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-error-container">
+                <p class="has-text-centered has-text-white">{{session('forgot_password_errors')}}</p>
+            </div>
             @endif
-            @if(session('notification'))
-            <p>{{session('notification')}}</p>
-            @endif
-        </section>
         </section>
         <section class="field">
             <div class="control has-icons-left has-icons-right">
@@ -62,7 +68,7 @@
             </div>
         </section>
         <section class="field level">
-            <a class="is-small level-item login-links" href="{{url('/')}}">Already have an Account?</a>
+            <a class="is-small level-item login-links" href="{{url('/')}}">Ready to Login?</a>
         </section>
     </form>
 </main>

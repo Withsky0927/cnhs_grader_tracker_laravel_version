@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class checkIfLogout
@@ -17,8 +18,9 @@ class checkIfLogout
     public function handle($request, Closure $next)
     {
         if (!Session::has('isLogin')) {
-            return back();
+            return redirect('/');
         }
+
         return $next($request);
     }
 }

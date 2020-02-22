@@ -2,6 +2,15 @@ function disableRightClick() {
     document.addEventListener("contextmenu", event => event.preventDefault());
 }
 
+function disableBackButton() {
+    history.pushState(null, document.title, location.href);
+    if (navigator.userAgent.search("Chrome") > -1) {
+        history.back();
+        history.forward();
+    }
+    window.onpopstate = () => history.go(1);
+}
+
 function toggleBurger() {
     document.addEventListener("DOMContentLoaded", () => {
         // Get all "navbar-burger" elements
@@ -28,8 +37,6 @@ function toggleBurger() {
     });
 }
 
-
-
 function setcsrfToken() {
     if (window.axios) {
         window.axios.defaults.headers.common = {
@@ -41,6 +48,22 @@ function setcsrfToken() {
     }
 }
 
+function getFileInputName() {
+    const fileInput = document.querySelector(
+        "#file-js-example input[type=file]"
+    );
+    fileInput.onchange = () => {
+        if (fileInput.files.length > 0) {
+            const fileName = document.querySelector(
+                "#file-js-example .file-name"
+            );
+            fileName.textContent = fileInput.files[0].name;
+        }
+    };
+}
+
 toggleBurger();
 setcsrfToken();
+if (window.location.pathname === "/admin/reports") getFileInputName();
 //disableRightClick();
+disableBackButton();

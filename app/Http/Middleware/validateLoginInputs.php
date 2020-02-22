@@ -23,9 +23,9 @@ class validateLoginInputs
                 'between:5,50',
                 'string',
                 function ($attribute, $value, $fail) {
-                    $regex = '/^\d|^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
+                    $regex = '/^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
                     if (preg_match_all($regex, $value)) {
-                        $fail('Invalid Username: Numeric, Special character as first entry and space is not allowed');
+                        $fail('Invalid Username:Special character as first entry and space is not allowed');
                     }
                 }
             ],
@@ -34,9 +34,9 @@ class validateLoginInputs
                 'between:8,150',
                 'string',
                 function ($attribute, $value, $fail) {
-                    $regex = '/^\d|^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
+                    $regex = '/^[@.#!#$%^&*()|;:<>\/{}\-\+]|\s/';
                     if (preg_match_all($regex, $value)) {
-                        $fail('Invalid Password: Numeric, Special character as first entry and space is not allowed');
+                        $fail('Invalid Password:Special character as first entry and space is not allowed');
                     }
                 }
             ]

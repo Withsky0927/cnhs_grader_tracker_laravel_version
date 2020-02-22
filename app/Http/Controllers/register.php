@@ -13,7 +13,9 @@ class register extends Controller
 {
     public function getRegisterForm(Request $request)
     {
-        return view('register');
+        $strandData = DB::table('strands')->get()->values('strand_name');
+
+        return view('register', compact('strandData'));
     }
 
     public function submitRegisterForm(Request $request)

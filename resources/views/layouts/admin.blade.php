@@ -8,9 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}" />
     <title>@yield('title')</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
         integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/normalize.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />

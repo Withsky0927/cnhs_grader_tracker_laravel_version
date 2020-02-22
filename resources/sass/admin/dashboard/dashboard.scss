@@ -45,6 +45,27 @@
         text-align: center;
     }
 }
+
+.pending-button {
+    border: 1px solid transparent !important;
+    background-color: transparent;
+    &:hover {
+        background-color: transparent;
+        cursor: auto;
+    }
+}
+
+#dashboard-pending-account-view-modal,
+#dashboard-pending-account-approve-modal,
+#dashboard-pending-account-disapprove-modal,
+#dashboard-pending-report-view-modal,
+#dashboard-pending-report-approve-modal,
+#dashboard-pending-report-disapprove-modal {
+    display: none;
+    background-color: white;
+    position: absolute;
+}
+
 // for mobile devices
 @media all and (max-width: 768px) {
     #removemargin {

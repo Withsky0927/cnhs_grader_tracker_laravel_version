@@ -3,7 +3,7 @@
 @section('content')
 <main class="columns is-mobile is-centered">
     <form id="confirmationForm"
-        class="animated fadeInDownBig column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
+        class="animated fadeIn column is-10-mobile is-6-tablet is-3-desktop is-3-widescreen is-2-fullhd"
         action="{{url('/forgotconfirmation')}}" autocomplete="off" method="POST">
         @csrf
         <section aria-label="brandname" class="field level">
@@ -11,18 +11,30 @@
                 <img src="{{asset('img/logo.png')}}" alt="Cavite National high School Graduate Tracer System">
             </h1>
         </section>
-        <section class="field">
-
-            <?php // for middleware errors ?>
-            @if(session('notification'))
-            <p>{{session('notification')}}</p>
+        <section class="columns is-centered is-mobile is-multiline">
+            <?php // for success notifications ?>
+            @if(session('confirmation_code'))
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-success-container">
+                <p class="has-text-centered has-text-white">{{session('confirmation_code')}}</p>
+            </div>
             @endif
-
-            <?php // for validation errors ?>
-            @if($errors)
-            @foreach ($errors as $error)
-            <p>{{$error}}</p>
-            @endforeach
+            @if(session('new_forgot_password_confirmation_code'))
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-success-container">
+                <p class="has-text-centered has-text-white">{{session('new_forgot_password_confirmation_code')}}</p>
+            </div>
+            @endif
+            {{--for validation errors --}}
+            @if(session('invalid_forgotpassword_code'))
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-error-container">
+                <p class="has-text-centered has-text-white">{{session('invalid_forgotpassword_code')}}</p>
+            </div>
+            @endif
+            @if(count($errors) > 0 && $errors)
+            <div class="column is-11 outside-notification-container animated fadeIn" id="outside-error-container">
+                @foreach ($errors->all() as $error)
+                <p class="has-text-centered has-text-white" id="outside-validation-errors">{{$error}}</p>
+                @endforeach
+            </div>
             @endif
         </section>
         <section class="field">
@@ -51,7 +63,7 @@
         autocomplete="off" method="POST">
         <section class="field">
             @csrf
-            <button type="submit" class="button">RESEND</button>
+            <button type="submit" class="button is-normal is-size-7-desktop">RESEND</button>
         </section>
     </form>
 </main>

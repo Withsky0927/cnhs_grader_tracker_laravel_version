@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class sanitizeReportsData
+class sanitizeUpdatedReport
 {
     /**
      * Handle an incoming request.
@@ -18,17 +18,14 @@ class sanitizeReportsData
     public function handle($request, Closure $next)
     {
         $toBeSanitized = $request->all();
-
-        $loginusername = Session::get('login_username');
-
-
+        $reportID = Session::get('updated_report_id');
 
         Session::put('reports_sanitized_data', ['data' => [
-            'report_id' => Str::uuid()->toString(),
-            'report_name' => htmlspecialchars(trim($toBeSanitized['add_reports_name'])),
-            'report_type' => htmlspecialchars(trim($toBeSanitized['add_reports_type'])),
-            'report_description' => htmlspecialchars(trim($toBeSanitized['add_reports_description'])),
-            'uploaded_by' => $loginusername,
+            'report_id' => $reportID,
+            'report_name' => htmlspecialchars(trim($toBeSanitized['edit_reports_name'])),
+            'report_type' => htmlspecialchars(trim($toBeSanitized['edit_reports_type'])),
+            'report_description' => htmlspecialchars(trim($toBeSanitized['edit_reports_description'])),
+            'uploaded_by' => 'superadmin',
         ]]);
         return $next($request);
     }

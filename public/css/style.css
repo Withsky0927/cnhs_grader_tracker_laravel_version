@@ -23,7 +23,7 @@ input[type="number"] {
 /* for navbar shaddow*/
 
 .is-current {
-  background-color: #b81c1e !important;
+  background-color: #8a2a2b !important;
   -o-box-shadow: 0px 0px 2px gray;
   -ms-box-shadow: 0px 0px 2px gray;
   box-shadow: 0px 0px 2px gray;
@@ -66,7 +66,7 @@ html {
 /* for navbar shaddow*/
 
 html {
-  background-color: #8a2a2b;
+  background-color: #f1f1f1;
 }
 
 #loginform {
@@ -77,10 +77,10 @@ html {
 }
 
 #buttonoutside {
-  background-color: #b81c1e;
-  -o-box-shadow: 0px 0px 2px gray;
-  -ms-box-shadow: 0px 0px 2px gray;
-  box-shadow: 0px 0px 2px gray;
+  background-color: #8a2a2b;
+  -o-box-shadow: 0px 0px 5px gray;
+  -ms-box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 5px gray;
 }
 
 .login-links,
@@ -189,7 +189,6 @@ html {
 
   #buttonoutside {
     width: 50%;
-    background-color: #b81c1e;
   }
 }
 
@@ -197,6 +196,9 @@ html {
 
 #registrationform {
   background-color: white;
+  -o-box-shadow: 0px 0px 3px #000;
+  -ms-box-shadow: 0px 0px 3px #000;
+  box-shadow: 0px 0px 3px #000;
 }
 
 .register-links,
@@ -257,7 +259,7 @@ html {
 
   #registrationbutton {
     width: 25% !important;
-    background-color: #b81c1e;
+    background-color: #8a2a2b;
   }
 
   .register-links {
@@ -283,7 +285,6 @@ html {
 
   #registrationbutton {
     width: 20%;
-    background-color: #b81c1e;
   }
 
   .register-links {
@@ -309,7 +310,6 @@ html {
 
   #registrationbutton {
     width: 20% !important;
-    background-color: #b81c1e;
   }
 
   .register-links {
@@ -333,9 +333,17 @@ html {
     height: 8rem;
   }
 
+  .register-links {
+    font-size: 0.8rem !important;
+  }
+
   #registrationbutton {
     width: 13% !important;
-    background-color: #b81c1e;
+    font-size: 0.8rem;
+  }
+
+  #link-centering {
+    padding-top: 0px;
   }
 
   #errornotification {
@@ -356,7 +364,15 @@ html {
 
   #registrationbutton {
     width: 10% !important;
-    background-color: #b81c1e;
+    font-size: 0.8rem;
+  }
+
+  #link-centering {
+    padding-top: 0px;
+  }
+
+  .register-links {
+    font-size: 0.8rem !important;
   }
 
   #errornotification {
@@ -368,7 +384,7 @@ html {
 /* for navbar shaddow*/
 
 html {
-  background-color: #8a2a2b;
+  background-color: #f1f1f1;
 }
 
 #forgotform {
@@ -376,13 +392,6 @@ html {
   -o-box-shadow: 0px 0px 5px #000;
   -ms-box-shadow: 0px 0px 5px #000;
   box-shadow: 0px 0px 5px #000;
-}
-
-#buttonoutside {
-  background-color: #b81c1e;
-  -o-box-shadow: 0px 0px 2px gray;
-  -ms-box-shadow: 0px 0px 2px gray;
-  box-shadow: 0px 0px 2px gray;
 }
 
 .forgotpasssword-links,
@@ -498,7 +507,7 @@ html {
 /* for navbar shaddow*/
 
 html {
-  background-color: #8a2a2b;
+  background-color: #f1f1f1;
 }
 
 #confirmationForm {
@@ -509,10 +518,10 @@ html {
 }
 
 .confirmationbuttonoutside {
-  background-color: #b81c1e !important;
-  -o-box-shadow: 0px 0px 2px gray;
-  -ms-box-shadow: 0px 0px 2px gray;
-  box-shadow: 0px 0px 2px gray;
+  background-color: #8a2a2b !important;
+  -o-box-shadow: 0px 0px 3px gray;
+  -ms-box-shadow: 0px 0px 3px gray;
+  box-shadow: 0px 0px 3px gray;
 }
 
 #hidesubmitconfirm {
@@ -526,7 +535,7 @@ html {
 }
 
 #resend button {
-  background-color: #b81c1e !important;
+  background-color: #8a2a2b !important;
   -o-box-shadow: 0px 0px 2px gray;
   -ms-box-shadow: 0px 0px 2px gray;
   box-shadow: 0px 0px 2px gray;
@@ -661,6 +670,19 @@ html {
   .confirmationbuttonoutside {
     width: 100%;
   }
+
+  #resend {
+    height: 2.5rem;
+    position: absolute;
+    z-index: 3;
+    margin-top: 10.4rem;
+    margin-right: 8.1rem;
+    width: 7rem !important;
+  }
+
+  #resend button {
+    width: 100%;
+  }
 }
 
 @media all and (min-width: 2560px) {
@@ -680,14 +702,26 @@ html {
 
   .confirmationbuttonoutside {
     width: 50%;
-    background-color: #b81c1e;
+  }
+
+  #resend {
+    height: 2.5rem;
+    position: absolute;
+    z-index: 3;
+    margin-top: 10.4rem;
+    margin-right: 8.1rem;
+    width: 7rem !important;
+  }
+
+  #resend button {
+    width: 100%;
   }
 }
 
 /* for navbar shaddow*/
 
 html {
-  background-color: #8a2a2b;
+  background-color: #f1f1f1;
 }
 
 #confirmationForm {
@@ -698,10 +732,7 @@ html {
 }
 
 .confirmationbuttonoutside {
-  background-color: #b81c1e !important;
-  -o-box-shadow: 0px 0px 2px gray;
-  -ms-box-shadow: 0px 0px 2px gray;
-  box-shadow: 0px 0px 2px gray;
+  background-color: #8a2a2b !important;
 }
 
 #hidesubmitforgotconfirm {
@@ -715,10 +746,7 @@ html {
 }
 
 #resend button {
-  background-color: #b81c1e !important;
-  -o-box-shadow: 0px 0px 2px gray;
-  -ms-box-shadow: 0px 0px 2px gray;
-  box-shadow: 0px 0px 2px gray;
+  background-color: #8a2a2b !important;
   color: white;
 }
 
@@ -850,6 +878,19 @@ html {
   .confirmationbuttonoutside {
     width: 100%;
   }
+
+  #resend {
+    height: 2.5rem;
+    position: absolute;
+    z-index: 3;
+    margin-top: 10.4rem;
+    margin-right: 8.1rem;
+    width: 7rem !important;
+  }
+
+  #resend button {
+    width: 100%;
+  }
 }
 
 @media all and (min-width: 2560px) {
@@ -869,7 +910,214 @@ html {
 
   .confirmationbuttonoutside {
     width: 50%;
-    background-color: #b81c1e;
+    background-color: #8a2a2b;
+  }
+
+  #resend {
+    height: 2.5rem;
+    position: absolute;
+    z-index: 3;
+    margin-top: 10.5rem;
+    margin-right: 8.1rem;
+    width: 7rem !important;
+  }
+
+  #resend button {
+    width: 100%;
+  }
+}
+
+/* for navbar shaddow*/
+
+/* for navbar shaddow*/
+
+/* add custom scrollbar to webkit based browser*/
+
+html {
+  --scrollbarBG: #cfd8dc;
+  --thumbBG: gray;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+/*set style for all page*/
+
+body {
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+  height: 100vh;
+}
+
+#disabled-javascript {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  padding-top: 1.5rem;
+}
+
+#navigationbar {
+  background-color: #8a2a2b;
+  -o-box-shadow: 0px 0px 10px #3a3a3a;
+  -ms-box-shadow: 0px 0px 10px #3a3a3a;
+  box-shadow: 0px 0px 10px #3a3a3a;
+}
+
+#navigationbar .navbar-brand .burgercolor {
+  color: whitesmoke;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item {
+  color: whitesmoke;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link {
+  color: whitesmoke;
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbar-link:hover {
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover {
+  -o-box-shadow: 0px 0px 3px #000;
+  -ms-box-shadow: 0px 0px 3px #000;
+  box-shadow: 0px 0px 3px #000;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item {
+  color: black;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:hover {
+  background-color: white;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:active {
+  background-color: white;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item .navbarhover .navbar-item:focus {
+  background-color: white;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item:hover {
+  background-color: #8a2a2b;
+  text-decoration: underline;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item:active {
+  background-color: #8a2a2b;
+  text-decoration: underline;
+}
+
+#navigationbar .navbarbutton .navbar-start .navbar-item:focus {
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item {
+  color: whitesmoke;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link {
+  color: whitesmoke;
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:hover {
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:active {
+  background-color: white;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbar-link:focus {
+  background-color: white;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover {
+  -o-box-shadow: 0px 0px 3px #000;
+  -ms-box-shadow: 0px 0px 3px #000;
+  box-shadow: 0px 0px 3px #000;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item {
+  color: black;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item:hover {
+  background-color: white;
+  text-decoration: underline;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item .navbarhover .navbar-item:hover .navbar-link {
+  background-color: #8a2a2b;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item:hover {
+  background-color: #8a2a2b;
+  text-decoration: underline;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item:active {
+  background-color: #8a2a2b;
+  text-decoration: underline;
+}
+
+#navigationbar .navbarbutton .navbar-end .navbar-item:focus {
+  background-color: #8a2a2b;
+  text-decoration: underline;
+}
+
+.no-underline:hover {
+  text-decoration: none !important;
+  cursor: auto;
+}
+
+#navbreadcrumbscontainer {
+  margin-top: 1rem;
+  z-index: 1;
+}
+
+#navbreadcrumbscontainer #navbarbreadcrumbs {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: whitesmoke;
+  -o-box-shadow: 0px 3px 5px #3a3a3a;
+  -ms-box-shadow: 0px 3px 5px #3a3a3a;
+  box-shadow: 0px 3px 5px #3a3a3a;
+}
+
+/* for mobile design */
+
+@media all and (min-width: 1024px) {
+  #navigationbar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
@@ -887,17 +1135,52 @@ html {
 }
 
 .outside-notification-container {
-  padding: 1rem;
-  border: 1px solid black;
-  display: none;
+  padding: 0.3rem;
+  padding-bottom: 0.8rem;
+  padding-top: 0.8rem;
+  cursor: pointer;
 }
 
 #outside-success-container {
-  color: white;
+  border: 2px solid #2e9b2e;
+  font-size: 0.7rem;
+}
+
+#outside-success-container p {
+  color: #2e9b2e !important;
 }
 
 #outside-error-container {
-  color: white;
-  background-color: red;
+  border: 2px solid #d33a3d;
+}
+
+#outside-error-container p {
+  color: #d33a3d !important;
+}
+
+#outside-validation-errors {
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"]:active,
+input[type="text"]:focus,
+input[type="password"]:active,
+input[type="password"]:focus,
+input[type="email"]:active,
+input[type="email"]:focus,
+input[type="number"]:active,
+input[type="number"]:focus,
+select:active,
+select:focus {
+  -o-box-shadow: 0px 0px 3px gray;
+  -ms-box-shadow: 0px 0px 3px gray;
+  box-shadow: 0px 0px 3px gray;
+  border: 1px solid gray !important;
+}
+
+option:hover {
+  background-color: #b81c1e !important;
 }
 

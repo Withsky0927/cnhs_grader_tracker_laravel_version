@@ -1,15 +1,15 @@
 @import "colors";
 @import "mixins";
 html {
-    background-color: $mainbackgroundcolor;
+    background-color: #f1f1f1;
 }
 #loginform {
     background: white;
     @include boxShadow(0px, 0px, 5px, #000);
 }
 #buttonoutside {
-    background-color: $outsidebtncolor;
-    @include boxShadow(0px, 0px, 2px, gray);
+    background-color: #8a2a2b;
+    @include boxShadow(0px, 0px, 5px, gray);
 }
 .login-links,
 .login-links:active,
@@ -119,6 +119,5 @@ html {
     }
     #buttonoutside {
         width: 50%;
-        background-color: $outsidebtncolor;
     }
 }

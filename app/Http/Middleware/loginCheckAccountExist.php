@@ -48,7 +48,7 @@ class loginCheckAccountExist
         if (gettype($accountExist) !== "string" && gettype($accountExist) == "boolean") {
             return $next($request);
         } elseif (gettype($accountExist) == "string") {
-            return back()->with('notification',  $accountExist);
+            return back()->with('login_errors',  $accountExist);
         }
     }
 }

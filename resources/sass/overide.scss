@@ -1,7 +1,7 @@
 @import "./colors";
 @import "./mixins";
 .is-current {
-    background-color: $outsidebtncolor !important;
+    background-color: #8a2a2b !important;
     @include boxShadow(0px, 0px, 2px, gray);
     border: 1px solid transparent !important;
     &:focus {

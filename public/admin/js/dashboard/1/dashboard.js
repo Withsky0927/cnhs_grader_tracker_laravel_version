@@ -32,6 +32,16 @@ function dashBoardModule() {
         const clippedModifier = document.querySelector("#clippedmodifier");
         const pendingModal = document.querySelector("#pendingmodal");
         const closePendingModal = document.querySelector("#pending-close");
+        const pendingDataLink = document.querySelectorAll(
+            ".dashboard-pending-data"
+        );
+
+        const PendingTableHeader = document.querySelector(
+            "#pending-dashboard-pagination-header"
+        );
+        const paginationTableBody = document.querySelector(
+            "#pending-dashboard-pagination-body"
+        );
 
         const getPendingCount = async () => {
             const axiosOptonsForPendingCount = {
@@ -57,6 +67,7 @@ function dashBoardModule() {
         };
 
         // show Pending modal in here
+
         const showPendingModal = () => {
             clippedModifier.setAttribute("class", "is-clipped");
             pendingModal.classList.add("is-active");
@@ -70,12 +81,30 @@ function dashBoardModule() {
             pendingModal.classList.remove("fadeIn");
         };
 
-        // all dataManipulation
-        getPendingCount();
+        // load account data as first to load
+        const initializeAccountsPaginationData = () => {};
+
+        const PendingModalPaginationsData = event => {
+            const selectedValue = event.target.textContent.toString();
+        };
 
         // initialize all pending modal eventss
         pendingNotification.addEventListener("click", showPendingModal, false);
         closePendingModal.addEventListener("click", removePendingModal, false);
+        getPendingCount();
+
+        window.document.addEventListener(
+            "DOMContentLoaded",
+            initializeAccountsPaginationData,
+            false
+        );
+        for (let i = 0, index = pendingDataLink.length; i < index; i++) {
+            pendingDataLink[i].addEventListener(
+                "click",
+                PendingModalPaginationsData,
+                false
+            );
+        }
     };
 
     const getNotifyCountData = () => {

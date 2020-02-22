@@ -124,7 +124,7 @@ class jobfairController extends Controller
             'job_posted' => $sanitizedData['data']['job_posted'],
             'job_avail' => $sanitizedData['data']['job_availability']
         ]);
-        Session::forget('sanitized_data');
+        Session::forget('jobfair_sanitized_data');
         return response()->json(['status' => 'ok']);
     }
 }

@@ -14,19 +14,24 @@
 
 /* login Routes */
 Route::get('/', 'login@getLoginForm')->middleware(
-    'checkIFLogin'
+    'checkIFLogin',
+
 );
 Route::post('/', 'login@submitLoginForm')->middleware(
+    'throttle:10,1440',
     'validateLoginInputs',
     'loginCheckAccountExist',
     'checkAccountStatus',
-    'checkAccountRole'
+    'checkAccountRole',
+
 );
 Route::get('/logout', 'logoutController@logout');
 
 /* Registration Routes */
 Route::get('/register', 'register@getRegisterForm')->middleware('checkIFLogin');
+
 Route::post('/register', 'register@submitRegisterForm')->middleware(
+    'throttle:10,1440',
     'checkIFLogin',
     'ValidateRegisterInputs',
     'CheckForRegisterUserExist',
@@ -35,23 +40,29 @@ Route::post('/register', 'register@submitRegisterForm')->middleware(
 );
 
 /* Confirmation Routes */
-Route::post('/resend', 'confirmation@resendConfirmation')->middleware('checkIFLogin');
+Route::post('/resend', 'confirmation@resendConfirmation')->middleware(
+    'throttle:10,1440',
+    'checkIFLogin'
+);
 Route::get('/confirmation', 'confirmation@getConfirmation')->middleware(
     'checkIFLogin',
     'checkRegisterConfirmationCodeExist'
 );
 Route::post('/confirmation', 'confirmation@submitConfirmation')->middleware(
+    'throttle:10,1440',
     'checkIFLogin',
-    'validateConfirmationCode'
+    'validateConfirmationCode',
+    'throttle:60,1'
 );
 
 /* forgotPassword Routes */
-Route::post('/forgotresend', 'forgotPasswordConfirmationController@resendConfirmation')->middleware('checkIFLogin');
+Route::post('/forgotresend', 'forgotPasswordConfirmationController@resendConfirmation')->middleware('throttle:10,1440', 'checkIFLogin');
 Route::get('/forgotconfirmation', 'forgotPasswordConfirmationController@getConfirmation')->middleware(
     'checkIFLogin',
     'checkForgotConfirmationCodeExist'
 );
 Route::post('/forgotconfirmation', 'forgotPasswordConfirmationController@submitConfirmation')->middleware(
+    'throttle:10,1440',
     'checkIFLogin',
     'validateForGotPassConfirmation'
 );
@@ -107,18 +118,43 @@ Route::get('/admin/dashboard/pending', 'admin\dashboard\dashboardController@getP
     'checkIfLogout',
     'checkAdminRole'
 );
-Route::get('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@approvedAccount')->middleware(
+
+
+Route::get('/admin/dashboard/pending/accounts', 'admin\dashboard\dashboardController@getPendingAccounts')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
-Route::put('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@approvedAccount')->middleware(
+Route::get('/admin/dashboard/pending/accounts/pages', 'admin\dashboard\dashboardController@getPendingAccountsPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+);
+Route::patch('/admin/dashboard/account/approve/{id}', 'admin\dashboard\dashboardController@approveAccount')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
-Route::delete('/admin/dashboard/pending/accounts/{id}', 'admin\dashboard\dashboardController@disaprovedAccount')->middleware(
+Route::delete('/admin/dashboard/account/disapprove{id}', 'admin\dashboard\dashboardController@disaproveAccount')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
+
+
+Route::get('/admin/dashboard/pending/reports', 'admin\dashboard\dashboardController@getPendingReports')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::get('/admin/dashboard/pending/reports/pages', 'admin\dashboard\dashboardController@getPendingReportPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+);
+Route::patch('/admin/dashboard/report/approve/{id}', 'admin\dashboard\dashboardController@approveReport')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+Route::delete('/admin/dashboard/report/disapprove/{id}', 'admin\dashboard\dashboardController@disaproveAccount')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
 
 // graduates module
 Route::get('/admin/graduates', 'admin\graduates\graduatesController@getGraduates')->middleware(
@@ -152,48 +188,58 @@ Route::post('/admin/graduates', 'admin\graduates\graduatesController@AddGraduate
 
 
 //* reports module
-Route::get('/admin/rerports', 'admin\announcement\reportsController@getReport')->middleware(
+Route::get('/admin/reports', 'admin\reports\reportsController@getReport')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::get('/admin/reports/pages', 'admin\announcement\scholarshipController@getReportPages')->middleware(
+Route::get('/admin/reports/pages', 'admin\reports\reportsController@getReportPages')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::get('/admin/reports/search', 'admin\announcement\scholarshipController@searchReportData')->middleware(
+Route::get('/admin/reports/search', 'admin\reports\reportsController@searchReportData')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::get('/admin/reports/selected', 'admin\announcement\scholarshipController@selectReportName')->middleware(
+Route::get('/admin/reports/selected', 'admin\reports\reportsController@selectReportType')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::post('/admin/reports', 'admin\announcement\scholarshipController@addReport')->middleware(
+Route::post('/admin/reports', 'admin\reports\reportsController@submitReport')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin',
     'validateReportsData',
     'sanitizeReportsData',
-    'checkIfReportsIsAdmin'
+    'checkIfReportsIsAdmin',
+    'uploadreport'
 );
 
-Route::get('/admin/reports/view/report', 'admin\announcement\scholarshipController@viewReportModal')->middleware(
+
+Route::get('/admin/reports/download/report', 'admin\reports\reportsController@downloadReport')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
-Route::put('/admin/reports/edit/report/{id}', 'admin\announcement\scholarshipController@editReportModal')->middleware(
+
+Route::get('/admin/reports/view/report', 'admin\reports\reportsController@viewReportModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+
+Route::patch('/admin/reports/edit/report/{id}', 'admin\reports\reportsController@editReportModal')->middleware(
     'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin',
-    'validateReportsData',
-    'sanitizeReportsData'
+    'validateUpdatedReport',
+    'sanitizeUpdatedReport',
+    'updatereport'
 );
-Route::delete('/admin/reports/delete/report/{id}', 'admin\announcement\scholarshipController@deleteReportModal')
+Route::delete('/admin/reports/delete/report/{id}', 'admin\reports\reportsController@deleteReportModal')
     ->middleware(
         'checkIfLogout',
         'checkAdminRole',
@@ -351,14 +397,50 @@ Route::delete('/admin/announcement/examination/delete/exam/{id}', 'admin\announc
 //* alumni routes
 Route::get('/admin/announcement/alumni', 'admin\announcement\alumniController@getAlumni')->middleware(
     'checkIfLogout',
+    'checkAdminRole'
+);
+Route::get('/admin/announcement/alumni/pages', 'admin\announcement\alumniController@getAlumniPages')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/alumni/search', 'admin\announcement\alumniController@searchAlumniData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin'
+);
+Route::get('/admin/announcement/alumni/selected', 'admin\announcement\alumniController@selectJobFairStrand')->middleware(
+    'checkIfLogout',
     'checkAdminRole',
     'checkIfSuperadmin'
 );
 Route::post('/admin/announcement/alumni', 'admin\announcement\alumniController@addAlumni')->middleware(
     'checkIfLogout',
     'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateJobFairData',
+    'sanitizeJobFairData'
+);
+//* jobfair modal routes
+Route::get('/admin/announcement/alumni/view/alumni', 'admin\announcement\alumniController@viewJobFairModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
     'checkIfSuperadmin'
 );
+Route::put('/admin/announcement/jobfair/edit/job/{id}', 'admin\announcement\alumniController@editJobFairModal')->middleware(
+    'checkIfLogout',
+    'checkAdminRole',
+    'checkIfSuperadmin',
+    'validateJobFairData',
+    'sanitizeJobFairData'
+);
+Route::delete('/admin/announcement/jobfair/delete/job/{id}', 'admin\announcement\alumniController@deleteJobFairModal')
+    ->middleware(
+        'checkIfLogout',
+        'checkAdminRole',
+        'checkIfSuperadmin'
+    );
+
 
 //* settings module
 Route::get('/admin/settings/backup', 'admin\settings\backupController@getBackup')->middleware(

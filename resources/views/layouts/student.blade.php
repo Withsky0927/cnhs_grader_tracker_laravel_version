@@ -15,7 +15,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     <!--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"

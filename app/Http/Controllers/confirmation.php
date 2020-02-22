@@ -58,11 +58,11 @@ class confirmation extends Controller
             ]);
 
 
-        $notification = 'Account Succcesfully Created, Check for account';
+        $notification = 'Account Succcesfully Created, check your email if this account frequently if the administrator approved all the information of this account.';
 
         $this->FlushRegisterDataInSession();
 
-        return redirect('/')->with('notification', $notification);
+        return redirect('/')->with('register_success', $notification);
     }
 
     public function resendConfirmation(Request $request)
@@ -81,7 +81,7 @@ class confirmation extends Controller
         $notification = "New Confirmation Code has been sent to your email.";
         $request->session()->put('confirmation_code', $GenerateConfirmationCode);
         Session::save();
-        return redirect('confirmation')->with('notification', $notification);
+        return redirect('confirmation')->with('new_confirmation_code', $notification);
     }
 
 
@@ -104,7 +104,7 @@ class confirmation extends Controller
             return $this->addNewUser();
         } elseif ($confirmationCode != $confirmationCodeInput) {
             $notification = "Invalid Confirmation Code, Please Try Again";
-            return back()->with('notification', $notification);
+            return back()->with('invalid_confirmation_code', $notification);
         }
     }
 }

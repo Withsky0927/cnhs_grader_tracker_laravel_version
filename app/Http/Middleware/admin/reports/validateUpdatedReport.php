@@ -5,9 +5,7 @@ namespace App\Http\Middleware\admin\reports;
 use Closure;
 use Illuminate\Support\Facades\Validator;
 
-
-
-class validateReportsData
+class validateUpdatedReport
 {
     /**
      * Handle an incoming request.
@@ -16,9 +14,9 @@ class validateReportsData
      * @param  \Closure  $next
      * @return mixed
      */
-
     public function handle($request, Closure $next)
     {
+
         /*
             spreadsheet:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
             spreedsheet: application/excel
@@ -38,24 +36,23 @@ class validateReportsData
             powerpoint: application/vnd.openxmlformats-officedocument.presentationml.presentation
         */
         $messages =  [
-            'add_reports_name.required' => 'Report Name is Required!',
-            'add_reports_name.string' => 'Report Name needs to be string',
+            'edit_reports_name.required' => 'Report Name is Required!',
+            'edit_reports_name.string' => 'Report Name needs to be string',
             'add_reports_name.between:2,50' => 'Report Name length needs to be between 2 to 50 characters',
 
-            'add_reports_type.required' => 'Report Type is Required!',
-            'add_reports_type.string' => 'Report Type needs to be string',
-            'add_reports_type.between:2,50' => 'Report Type length needs to be between 2 to 50 characters',
+            'edit_reports_type.required' => 'Report Type is Required!',
+            'edit_reports_type.string' => 'Report Type needs to be string',
+            'edit_reports_type.between:2,50' => 'Report Type length needs to be between 2 to 50 characters',
 
-            'add_reports_description.required' => 'Report Description is Required!',
-            'add_reports_description.string' => 'Report Description needs to be string',
-            'add_reports_description.between:2,1024' => 'Report Description length needs to be between 2 to 1024 characters',
+            'edit_reports_description.required' => 'Report Description is Required!',
+            'edit_reports_description.string' => 'Report Description needs to be string',
+            'edit_reports_description.between:2,1024' => 'Report Description length needs to be between 2 to 1024 characters',
 
-            'Document.required' => 'Document is required!',
             'Document.mimes:pdf,docx,doc,ods,odp,xlsx,ppt,xlsx,xls,docm' => 'Document must be a file type of pdf,docx,doc,ods,odp,xlsx,ppt,xlsx,xls,docm!',
             'Document.max:10240' => 'Document must not be greater than 10MB!'
         ];
         $rules = [
-            'add_reports_name' => [
+            'edit_reports_name' => [
                 'required',
                 'string',
                 'between:2,50',
@@ -66,7 +63,7 @@ class validateReportsData
                     }
                 }
             ],
-            'add_reports_type' => [
+            'edit_reports_type' => [
                 'required',
                 'string',
                 'between:2,50',
@@ -77,18 +74,18 @@ class validateReportsData
                     }
                 }
             ],
-            'add_reports_description' => [
+            'edit_reports_description' => [
                 'required',
                 'string',
                 'between:2,1024',
                 function ($attribute, $value, $fail) {
-                    $regex = '/^[@.#!#$%^&*()|;:<>\/{}\-\+]|^\s/';
+                    $regex = '/^[@#!#$%^&*()|;:\/{}\-\+]|^\s/';
                     if (preg_match_all($regex, $value)) {
                         $fail('Invalid Report Description: Numeric, Special character and space as first entry is not allowed');
                     }
                 }
             ],
-            'Document' => 'required|mimes:pdf,docx,doc,ods,odp,xlsx,ppt,xlsx,xls,docm|max:10240'
+            'edit_reports_document' => 'mimes:pdf,docx,doc,ods,odp,xlsx,ppt,xlsx,xls,docm|max:10240'
         ];
 
 

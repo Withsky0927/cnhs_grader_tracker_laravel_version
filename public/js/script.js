@@ -1,4 +1,3 @@
-"use strict";
 (() => {
     // "http://localhost:5000/register"
     // "submit"
@@ -6,42 +5,27 @@
     // "post"
     // event handler "#registrationform"
 
-    function forMultipartForm(method, url, eventhandler, eventType) {
-        const ajaxRequest = new XMLHttpRequest();
-        const data = document.querySelector(eventhandler);
-        registrationform.addEventListener(
-            eventType,
-            function(e) {
-                e.preventDefault();
-                ajaxRequest.open(method, $url, true);
-                ajaxRequest.send(new FormData(data));
-            },
-            false
+    function removeNotification() {
+        const notification = document.querySelectorAll(
+            ".outside-notification-container"
         );
+
+        for (let i = 0, index = notification.length; i < index; i++) {
+            notification[i].addEventListener(
+                "click",
+                event => {
+                    event.target.style.display = "none";
+                },
+                false
+            );
+        }
     }
 
-    function forUrlEncodedConfirmationForm(
-        method,
-        url,
-        eventhandler,
-        eventType,
-        data
-    ) {
-        const ajaxRequest = new XMLHttpRequest();
-        let Data = data;
-        registrationform.addEventListener(
-            eventType,
-            function(e) {
-                e.preventDefault();
-                ajaxRequest.open(method, $url, true);
-                ajaxRequest.setRequestHeader(
-                    "Content-Type",
-                    "application/x-www-form-urlencoded"
-                );
-                ajaxRequest.send(`confirmation=${data}`);
-            },
-            false
-        );
+    function disableBackButton() {
+        history.pushState(null, document.title, location.href);
+        history.back();
+        history.forward();
+        window.onpopstate = () => history.go(1);
     }
 
     function RegistrationForm() {
@@ -196,7 +180,6 @@
 
         CreateYear();
         fileUploadName();
-        //forMultipartForm("post", "http://localhost:5000/register", "#registrationform" , "submit");
     }
 
     const ConfirmationForm = () => {
@@ -237,17 +220,18 @@
             );
         }
     };
-
+    disableBackButton();
+    removeNotification();
     // check for pages
-    if (window.location.pathname === "confirmation") {
+    if (window.location.pathname === "/confirmation") {
         ConfirmationForm();
         window.RegistrationForm = undefined;
         window.ForGotPasswordConfirmation = undefined;
-    } else if (window.location.pathname === "register") {
+    } else if (window.location.pathname === "/register") {
         RegistrationForm();
         window.ForGotPasswordConfirmation = undefined;
         window.ConfirmationForm = undefined;
-    } else if (window.location.pathname === "forgotconfirmation") {
+    } else if (window.location.pathname === "/forgotconfirmation") {
         ForGotPasswordConfirmation();
         window.RegistrationForm = undefined;
         window.ConfirmationForm = undefined;

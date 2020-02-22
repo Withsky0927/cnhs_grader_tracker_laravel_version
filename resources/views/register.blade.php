@@ -6,7 +6,7 @@
 <main class="columns is-desktop is-mobile is-centered">
     <form autocomplete="off" id="registrationform" action="{{url('/register')}}" method="POST"
         enctype="multipart/form-data"
-        class="animated fadeIn column is-10-mobile is-10-tablet is-8-desktop is-7-widescreen is-7-fullhd">
+        class="animated fadeIn column is-10-mobile is-10-tablet is-9-desktop is-9-widescreen is-9-fullhd">
         @csrf
         <section aria-label="brandname" id="registerlogo"
             class="columns is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd">
@@ -18,24 +18,27 @@
             </div>
         </section>
         <section class="columns is-mobile is-centered">
+            @if(count($errors) > 0 && $errors)
             <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd outside-notification-container"
                 id="outside-error-container">
-                @if ($errors != '')
                 @foreach ($errors->all() as $error)
-                <p class="has-text-centered">{{$error}}</p>
+                <p class="has-text-centered has-text-white" id="outside-validation-errors">{{$error}}</p>
                 @endforeach
-                @endif
-                @if (session('userexist'))
-                @foreach (session('userexist') as $error)
-                <p class="has-text-centered">{{$error}}</p>
-                @endforeach
-                @endif
             </div>
+            @endif
             <!--check if user exists throw an error -->
+            @if(session('userexist'))
+            <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd outside-notification-container"
+                id="outside-error-container">
+                <p class="has-text-centered">{{session('userexist')}}</p>
+            </div>
+            @endif
+            @if(session('notification'))
             <div class="column is-12-mobile is-12-tablet is-12-desktop is-12-widescreen is-12-fullhd outside-notification-container"
                 id="outside-success-container">
-
+                <p class="has-text-centered">{{session('notification')}}</p>
             </div>
+            @endif
         </section>
         <!-- first field -->
 
@@ -121,10 +124,12 @@
                     <div class="control  has-icons-left">
                         <div class="select is-small">
                             <select required name="strand" id="strand" class="strand">
-                                <option selected disabled>Strand</option>
-                                @foreach ($Strands as $strand)
-                                <option value="{{$strand->strand_name}}">{{$strand->strand_name}}</option>
+                                <option selected disabled>STRAND</option>
+                                @if($strandData)
+                                @foreach ($strandData as $strand)
+                                <option value="{{$strand->strand_name}}">{{strtoupper(($strand->strand_name))}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         </div>
                         <div class="icon is-small is-left">
@@ -351,7 +356,6 @@
                             <i class="fas fa-ring"></i>
                         </span>
                     </div>
-
                 </div>
             </div>
         </section>

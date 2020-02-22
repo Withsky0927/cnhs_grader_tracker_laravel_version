@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}" />
+  <link rel="icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}" />
   <meta name="keyword"
     content="Cavite national high School, Graduate Tracer system, Graduate App, Graduate System, Graduation, Cavite High" />
   <meta name="description"
@@ -25,7 +25,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/normalize.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}" />
   <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
   <!--
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
