@@ -3,7 +3,6 @@
 
 .dashboard-devider {
     padding: 1rem;
-    height: auto;
 }
 
 #usersnotification {
@@ -63,7 +62,13 @@
 #dashboard-pending-report-disapprove-modal {
     display: none;
     background-color: white;
+    z-index: 50;
     position: absolute;
+    padding: 1rem;
+}
+
+#dashboard-pending-account-view-modal {
+    width: 90%;
 }
 
 // for mobile devices
@@ -73,7 +78,6 @@
     }
     .dashboard-devider {
         border: 0px none;
-
         #graphscontainer {
             margin-bottom: 0px !important;
             .graph {
@@ -81,6 +85,9 @@
                 .canvascontainer {
                     height: 100%;
                     width: 17rem;
+                }
+                #third-canvas {
+                    height: 18rem;
                 }
             }
         }
@@ -123,6 +130,9 @@
         height: 10rem;
         width: 5rem;
     }
+    #third-canvas {
+        height: 20rem;
+    }
 }
 // for desktop
 @media all and (min-width: 1024px) and (max-width: 1215px) {
@@ -154,6 +164,9 @@
         height: 10rem;
         margin-top: 0.6rem;
         width: 5rem;
+    }
+    #third-canvas {
+        height: 30rem;
     }
 }
 
@@ -189,6 +202,16 @@
         width: 5rem;
         margin-top: 0.6rem;
     }
+    #pending-modal-card {
+        width: 55vw;
+    }
+    #third-graph {
+        margin-top: 4rem !important;
+        height: 5rem !important;
+    }
+    #third-canvas {
+        height: 20rem !important;
+    }
 }
 
 // for fullhd
@@ -223,5 +246,15 @@
         height: 10rem;
         width: 5rem;
         margin-top: 0.6rem;
+    }
+    #pending-modal-card {
+        width: 55vw;
+    }
+    #third-graph {
+        margin-top: 4rem !important;
+        height: 5rem !important;
+    }
+    #third-canvas {
+        height: 20rem !important;
     }
 }

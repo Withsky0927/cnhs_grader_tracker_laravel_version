@@ -686,32 +686,14 @@ function jobFairsModule() {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
                                     <td class="data-style has-text-centered is-size-7">${
+                                        data[i].company
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
                                         data[i].job
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${data[
                                         i
                                     ].strand.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].company
-                                    }</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].address.substring(0, 10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].job_decription.substring(0, 10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].job_qualification.substring(
-                                        0,
-                                        10
-                                    )}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].job_posted
-                                    }</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].job_avail
-                                    }</td>
                                     <td class="has-text-centered">
                                         <a id="${
                                             data[i].jobfair_id
@@ -827,11 +809,6 @@ function jobFairsModule() {
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered">
                                             <a class="button is-small" style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                         </td>
@@ -866,32 +843,15 @@ function jobFairsModule() {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
                                     <td class="data-style has-text-centered is-size-7">${
+                                        data[i].company
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
                                         data[i].job
                                     }</td>
                                     <td class="data-style has-text-centered is-size-7">${data[
                                         i
                                     ].strand.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].company
-                                    }</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].address.substring(0, 10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].job_description.substring(0, 10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[
-                                        i
-                                    ].job_qualification.substring(
-                                        0,
-                                        10
-                                    )}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].job_posted
-                                    }</td>
-                                    <td class="data-style has-text-centered is-size-7">${
-                                        data[i].job_avail
-                                    }</td>
+    
                                     <td class="has-text-centered">
                                         <a id="${
                                             data[i].jobfair_id
@@ -991,35 +951,14 @@ function jobFairsModule() {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            data[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             data[i].job
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${data[
                                             i
                                         ].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            data[i].company
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[
-                                            i
-                                        ].address.substring(0, 10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[
-                                            i
-                                        ].job_description.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[
-                                            i
-                                        ].job_qualification.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            data[i].job_posted
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            data[i].job_avail
-                                        }</td>
                                         <td class="has-text-centered">
                                             <a id="${
                                                 data[i].jobfair_id
@@ -1080,35 +1019,14 @@ function jobFairsModule() {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             nextData[i].job
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${nextData[
                                             i
                                         ].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            nextData[i].company
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[
-                                            i
-                                        ].address.substring(0, 10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[
-                                            i
-                                        ].job_description.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[
-                                            i
-                                        ].job_qualification.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            nextData[i].job_posted
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            nextData[i].job_avail
-                                        }</td>
                                         <td class="has-text-centered">
                                             <a id="${
                                                 nextData[i].jobfair_id
@@ -1164,35 +1082,14 @@ function jobFairsModule() {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             prevData[i].job
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${prevData[
                                             i
                                         ].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            prevData[i].company
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[
-                                            i
-                                        ].address.substring(0, 10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[
-                                            i
-                                        ].job_description.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[
-                                            i
-                                        ].job_qualification.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            prevData[i].job_posted
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            prevData[i].job_avail
-                                        }</td>
                                         <td class="has-text-centered">
                                             <a id="${
                                                 prevData[i].jobfair_id
@@ -1308,35 +1205,14 @@ function jobFairsModule() {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${selectCount}</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             selectedData[i].job
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${selectedData[
                                             i
                                         ].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            selectedData[i].company
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[
-                                            i
-                                        ].address.substring(0, 10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[
-                                            i
-                                        ].job_description.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[
-                                            i
-                                        ].job_qualification.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            selectedData[i].job_posted
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            selectedData[i].job_avail
-                                        }</td>
                                         <td class="has-text-centered">
                                             <a id="${
                                                 selectedData[i].jobfair_id
@@ -1409,35 +1285,14 @@ function jobFairsModule() {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${searchdataCount}</td>
                                         <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
                                             searchData[i].job
                                         }</td>
                                         <td class="data-style has-text-centered is-size-7">${searchData[
                                             i
                                         ].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            searchData[i].company
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[
-                                            i
-                                        ].address.substring(0, 10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[
-                                            i
-                                        ].job_description.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[
-                                            i
-                                        ].job_qualification.substring(
-                                            0,
-                                            10
-                                        )}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            searchData[i].job_posted
-                                        }</td>
-                                        <td class="data-style has-text-centered is-size-7">${
-                                            searchData[i].job_avail
-                                        }</td>
                                         <td class="has-text-centered">
                                             <a id="${
                                                 searchData[i].jobfair_id

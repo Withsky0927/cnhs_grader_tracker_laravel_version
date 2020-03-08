@@ -103,10 +103,16 @@ Route::get('/admin/dashboard/graduates', 'admin\dashboard\dashboardController@ge
     'checkAdminRole'
 );
 // for employment status in dashboard
-Route::get('/admin/dashboard/status', 'admin\dashboard\dashboardController@getEmploymentStatusData')->middleware(
+Route::get('/admin/dashboard/employment/status', 'admin\dashboard\dashboardController@getEmploymentStatusData')->middleware(
     'checkIfLogout',
     'checkAdminRole'
 );
+// for deployment status in dashboard
+Route::get('/admin/dashboard/deployment/status', 'admin\dashboard\dashboardController@getDeploymentStatusData')->middleware(
+    'checkIfLogout',
+    'checkAdminRole'
+);
+
 Route::get('/admin/dashboard/users', 'admin\dashboard\dashboardController@getUsersNumber')->middleware(
     'checkIfLogout',
     'checkAdminRole'

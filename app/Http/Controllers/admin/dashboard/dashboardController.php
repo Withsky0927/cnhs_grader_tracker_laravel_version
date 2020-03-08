@@ -58,6 +58,7 @@ class dashboardController extends Controller
             ->orderBy('username', 'DESC')
             ->paginate(10);
 
+
         return response()->json(['pending_accounts' => $pendingAccounts]);
     }
 
@@ -235,10 +236,23 @@ class dashboardController extends Controller
             ->where('batch', '=', $currentYear)
             ->count();
 
-        return response()->json(['status' => [
+
+        return response()->json(['employment_status' => [
             'waiting' => $waiting,
             'unemployed' => $unemployed,
             'employed' => $employed
+        ]]);
+    }
+
+
+    public function getDeploymentStatusData(Request $request)
+    {
+
+
+        return response()->json(['deployment_status' => [
+            'rightemployed' => 0,
+            'underemployed' => 0,
+            'unemployed' => 0
         ]]);
     }
 

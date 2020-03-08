@@ -70,10 +70,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- for notifications -->
-
-
+                    <div class="column is-11 graph" id="third-graph">
+                        <section class="container canvascontainer animated fadeIn" id="third-canvas">
+                            <canvas id="deploymentchart" class="canvasContent"></canvas>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>

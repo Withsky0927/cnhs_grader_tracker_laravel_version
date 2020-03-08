@@ -23,7 +23,6 @@ function dashBoardModule() {
         //userCount.innerText = userCount;
     };
 
-    // add data in here
     const getPendingsCountData = () => {
         const pendingCount = document.querySelector("#pendingcount");
         const pendingNotification = document.querySelector(
@@ -42,6 +41,15 @@ function dashBoardModule() {
         const paginationTableBody = document.querySelector(
             "#pending-dashboard-pagination-body"
         );
+
+        const paginatePrev = document.querySelector(
+            "#dashboard-pagination-prev"
+        );
+        const paginateNext = document.querySelector(
+            "#dashboard-pagination-next"
+        );
+
+        let PageandNext = 1;
 
         const getPendingCount = async () => {
             const axiosOptonsForPendingCount = {
@@ -66,8 +74,6 @@ function dashBoardModule() {
             }
         };
 
-        // show Pending modal in here
-
         const showPendingModal = () => {
             clippedModifier.setAttribute("class", "is-clipped");
             pendingModal.classList.add("is-active");
@@ -75,20 +81,338 @@ function dashBoardModule() {
             pendingModal.classList.add("fadeIn");
         };
 
+        // show Pending modal in here
         const removePendingModal = () => {
             clippedModifier.removeAttribute("class");
             pendingModal.classList.remove("is-active");
             pendingModal.classList.remove("fadeIn");
         };
 
-        // load account data as first to load
-        const initializeAccountsPaginationData = () => {};
+        const viewPendingAccountDetailModal = () => {
+            const viewPendingAccount = document.querySelectorAll(
+                ".view-pending-account"
+            );
+            const approveIndex = viewPendingAccount.length;
+            const vieModal = document.querySelector(
+                "#dashboard-pending-account-view-modal"
+            );
 
-        const PendingModalPaginationsData = event => {
-            const selectedValue = event.target.textContent.toString();
+            const showViewPendingModal = () => {
+                vieModal.style.display = "block";
+            };
+
+            for (let i = 0; i < approveIndex; i++) {
+                viewPendingAccount[i].addEventListener(
+                    "click",
+                    showViewPendingModal,
+                    false
+                );
+            }
         };
 
-        // initialize all pending modal eventss
+        const approveAccountModal = () => {
+            let approveID;
+            const approvePendingAccount = document.querySelectorAll(
+                ".approve-pending-account"
+            );
+            const approveIndex = approvePendingAccount.length;
+
+            const confirmAccountApproval = async () => {};
+
+            const cancelAccountApproval = () => {};
+
+            const showApprovedModal = async event => {
+                approveID = event.target.getAttribute("id").toString();
+            };
+
+            for (let i = 0; i < approveIndex; i++) {
+                approvePendingAccount[i].addEventListener(
+                    "click",
+                    showApprovedModal,
+                    false
+                );
+            }
+        };
+
+        const disapproveAccountModal = () => {
+            let disapproveID;
+            const disapprovePendingAccount = document.querySelectorAll(
+                ".approve-pending-account"
+            );
+            const disapproveIndex = disapprovePendingAccount.length;
+
+            const confirmAccountDisapproval = async () => {};
+
+            const cancelAccountDisapproval = () => {};
+
+            const showdisApprovedModal = async event => {
+                disapproveID = event.target.getAttribute("id").toString();
+            };
+
+            for (let i = 0; i < disapproveIndex; i++) {
+                disapprovePendingAccount[i].addEventListener(
+                    "click",
+                    showdisApprovedModal,
+                    false
+                );
+            }
+        };
+
+        const viewPendingReportDetailModal = () => {};
+
+        const approveReportModal = () => {};
+
+        const disapproveReportModal = () => {};
+
+        const setNextAndPrevPage = async (data, id) => {};
+
+        const fillAccountEmptyTable = paginateCount => {
+            let occupiedTableRow = "";
+            let index = 0;
+            let accountEmptyTD = "";
+            if (paginationTableBody.childElementCount <= 10) {
+                occupiedTableRow = +paginationTableBody.childElementCount;
+                index = paginateCount - occupiedTableRow;
+                for (let i = 0; i < index; i++) {
+                    accountEmptyTD = `
+                        <tr>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                        </tr>
+                    `;
+                }
+                paginationTableBody.insertAdjacentHTML(
+                    "beforeend",
+                    accountEmptyTD
+                );
+            }
+        };
+
+        const fillReportEmptyTable = paginateCount => {
+            let occupiedTableRow = "";
+            let index = 0;
+            let accountEmptyTD = "";
+            if (paginationTableBody.childElementCount <= 10) {
+                occupiedTableRow = +paginationTableBody.childElementCount;
+                index = paginateCount - occupiedTableRow;
+                for (let i = 0; i < index; i++) {
+                    accountEmptyTD = `
+                        <tr>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered">*</td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                            <td class="has-text-centered"><button
+                                    class="button is-small pending-button">*</button></td>
+                        </tr>
+                    `;
+                }
+                paginationTableBody.insertAdjacentHTML(
+                    "beforeend",
+                    accountEmptyTD
+                );
+            }
+        };
+
+        const loadAccountBody = async () => {
+            let acctLinkPerpage;
+            let acctLinktotal;
+            let acctLinkData;
+            let accLinkTo;
+
+            try {
+                responseData = await axios.get(
+                    "/admin/dashboard/pending/accounts"
+                );
+            } catch (error) {
+                console.log(error.response);
+            }
+
+            fillAccountEmptyTable(acctLinkPerpage);
+            viewPendingAccountDetailModal();
+            approveAccountModal();
+            disapproveAccountModal();
+        };
+
+        const loadReportBody = async () => {
+            try {
+            } catch (error) {
+                console.log(error.response);
+            }
+
+            //! fillup pending report table and add modals for it
+            fillReportEmptyTable();
+            viewPendingReportDetailModal();
+            approveReportModal();
+            disapproveReportModal();
+        };
+
+        // load pending data if account link has been clicked
+        const loadClickAccountsLinkData = () => {
+            const tableHeader = `
+            <th class="has-text-centered is-size-7">#</th>
+            <th class="has-text-centered is-size-7">USERNAME</th>
+            <th class="has-text-centered is-size-7">ROLE</th>
+            <th class="has-text-centered is-size-7">STATUS</th>
+            <th colspan="3" class="has-text-centered is-size-7">OPTIONS</th>
+        `;
+
+            PendingTableHeader.innerHTML = tableHeader;
+
+            //! table account body in here
+            loadAccountBody();
+        };
+
+        // load pending data if account link has been clicked
+        const loadClickReportsLinkData = () => {
+            const tableHeader = `
+            <th class="has-text-centered is-size-7">#</th>
+            <th class="has-text-centered is-size-7">REPORT NAME</th>
+            <th class="has-text-centered is-size-7">REPORT TYPE</th>
+            <th class="has-text-centered is-size-7">UPLOADED BY</th>
+            <th colspan="3" class="has-text-centered is-size-7">OPTIONS</th>
+            `;
+
+            PendingTableHeader.innerHTML = tableHeader;
+
+            // table account body in here
+            loadReportBody();
+        };
+
+        const loadClickAccountsLink = () => {
+            pendingDataLink[0].classList.add("is-active");
+            pendingDataLink[1].classList.remove("is-active");
+
+            // load Account table header and body data
+            loadClickAccountsLinkData();
+        };
+
+        // load pending data if account link has been clicke
+        const loadClickReportsLink = () => {
+            pendingDataLink[0].classList.remove("is-active");
+            pendingDataLink[1].classList.add("is-active");
+
+            // load Account table header and body data
+            loadClickReportsLinkData();
+        };
+
+        // load account data as first to load
+        const initialAccountsPaginationPagesTableData = pendingAccounts => {
+            console.log(pendingAccounts);
+            const total = pendingAccounts.total;
+            const perPage = pendingAccounts.per_page;
+            const to = pendingAccounts.to;
+
+            const remainder = total % perPage;
+            let count = 1;
+            let data = "";
+            const pendingIndex =
+                total % perPage > 1
+                    ? Math.floor(total / 10) + remainder
+                    : Math.floor(total / perPage);
+
+            if (total > 0 && total <= 10) {
+                for (let i = 0; i < total; i++) {
+                    data = +`
+                        <td class="has-text-centered">${count}</td>
+                        <td class="has-text-centered">${pendingAccounts.data[i].username}</td>
+                        <td class="has-text-centered">${pendingAccounts.data[i].role}</td>
+                        <td class="has-text-centered">${pendingAccounts.data[i].status}</td>
+                        <td class="has-text-centered">${pendingAccounts.data[i].account_status}</td>
+                        <td class="has-text-centered">
+                            <button 
+                                id="${pendingAccounts.data[i].account_id}" 
+                                class="has-text-centered is-small is-small is-success has-text-white view-pending-account">
+                                View
+                            </button>
+                        </td>
+                        <td class="has-text-centered">
+                            <button 
+                                id="${pendingAccounts.data[i].account_id}"
+                                class="has-text-centered is-small is-small is-info has-text-white approve-pending-account">
+                                Approve
+                            </button>
+                        </td>
+                        <td class="has-text-centered">
+                            <button 
+                                id="${pendingAccounts.data[i].account_id}"
+                                class="has-text-centered is-small is-small is-danger has-text-white disapprove-pending-account">
+                                Disapprove
+                            </button>
+                        </td>
+                    `;
+                }
+                paginationTableBody.innerHTML = data;
+                fillAccountEmptyTable(perPage);
+                viewPendingAccountDetailModal();
+                approveAccountModal();
+                disapproveAccountModal();
+            }
+        };
+
+        const initializeAccountsPaginationData = () => {
+            const defaultTableHeader = `
+                <th class="has-text-centered is-size-7">#</th>
+                <th class="has-text-centered is-size-7">USERNAME</th>
+                <th class="has-text-centered is-size-7">ROLE</th>
+                <th class="has-text-centered is-size-7">STATUS</th>
+                <th colspan="3" class="has-text-centered is-size-7">OPTIONS</th>
+            `;
+
+            PendingTableHeader.innerHTML = defaultTableHeader;
+
+            let emptyData = "";
+            for (let i = 0; i < 10; i++) {
+                emptyData += ` <tr>
+                    <td class="has-text-centered has-text-white">*</td>
+                    <td class="has-text-centered has-text-white">*</td>
+                    <td class="has-text-centered has-text-white">*</td>
+                    <td class="has-text-centered has-text-white">*</td>
+                    <td class="has-text-centered"><button
+                            class="button is-small pending-button has-text-white">*</button></td>
+                    <td class="has-text-centered"><button
+                            class="button is-small pending-button has-text-white">*</button></td>
+                    <td class="has-text-centered"><button
+                            class="button is-small pending-button has-text-white">*</button></td>
+                </tr>`;
+            }
+            paginationTableBody.innerHTML = emptyData;
+            const loadPaginationData = async () => {
+                try {
+                    const paginationData = await axios.get(
+                        "/admin/dashboard/pending/accounts"
+                    );
+                    initialAccountsPaginationPagesTableData(
+                        paginationData.data.pending_accounts
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            loadPaginationData();
+        };
+
+        /* initial pagination data and modals whether accounts or reports link has been clicked */
+        const clickedPaginationsData = event => {
+            const selectedValue = event.target.textContent.toString();
+            if (selectedValue === "Accounts") loadClickAccountsLink();
+            else if (selectedValue === "Reports") loadClickReportsLink();
+            else console.log("invalid value");
+        };
+
+        // initialize all pending modal events
         pendingNotification.addEventListener("click", showPendingModal, false);
         closePendingModal.addEventListener("click", removePendingModal, false);
         getPendingCount();
@@ -101,7 +425,7 @@ function dashBoardModule() {
         for (let i = 0, index = pendingDataLink.length; i < index; i++) {
             pendingDataLink[i].addEventListener(
                 "click",
-                PendingModalPaginationsData,
+                clickedPaginationsData,
                 false
             );
         }
@@ -311,7 +635,7 @@ function dashBoardModule() {
         };
 
         const axiosOptonsForEmployment = {
-            url: "/admin/dashboard/status",
+            url: "/admin/dashboard/employment/status",
             method: "get",
             headers: {
                 Accept: "application/json",
@@ -330,9 +654,9 @@ function dashBoardModule() {
             EmploymentData = responseData.data;
 
             //put data in place for graph usage
-            waiting = EmploymentData.status.waiting;
-            employed = EmploymentData.status.employed;
-            unemployed = EmploymentData.status.unemployed;
+            waiting = EmploymentData.employment_status.waiting;
+            employed = EmploymentData.employment_status.employed;
+            unemployed = EmploymentData.employment_status.unemployed;
 
             if (!waiting) waiting = 0;
             if (!employed) employed = 0;
@@ -346,10 +670,106 @@ function dashBoardModule() {
         }
     };
 
+    const getDeploymentStatusData = async () => {
+        let DeploymentData;
+
+        let rightEmployed = 0;
+        let unEmployed = 0;
+        let underEmployed = 0;
+
+        const addDeploymentChart = (rightData, underData, unemployData) => {
+            const deploymentCanvas = document
+                .querySelector("#deploymentchart")
+                .getContext("2d");
+
+            const employmentChart = new Chart(deploymentCanvas, {
+                type: "doughnut",
+
+                data: {
+                    labels: ["Right employed", "Under employed", "Unemployed"],
+                    datasets: [
+                        {
+                            label: "",
+                            data: [rightData, underData, unemployData],
+                            backgroundColor: [
+                                "rgb(186, 220, 88)",
+                                "rgb(255, 107, 129)",
+                                "rgb(112, 161, 255)"
+                            ],
+                            borderColor: [
+                                "rgba(186, 220, 88 ,1)",
+                                "rgba(255, 107, 129, 1)",
+                                "rgba(112, 161, 255,1)"
+                            ],
+                            borderWidth: 3,
+                            borderColor: "#fff"
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    cutoutPercentage: 50,
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: "#000",
+                            defaultFontFamily:
+                                "'Open Sans','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                            defaultFontSize: 3,
+                            defaultFontStyle: "normal"
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: `Deployment Status`,
+                        position: "top"
+                    }
+                }
+            });
+        };
+
+        const axiosOptonsForDeployment = {
+            url: "/admin/dashboard/deployment/status",
+            method: "get",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json;charset=UTF-8"
+            }
+        };
+
+        try {
+            let responseData = await axios(axiosOptonsForDeployment);
+            const deploymentChartCanvasStyle = document.querySelector(
+                "#deploymentchart"
+            );
+            const deploymentCanvasContainer = document.querySelectorAll(
+                ".canvascontainer"
+            )[2];
+            DeploymentData = responseData.data;
+
+            //put data in place for graph usage
+            rightEmployed = DeploymentData.deployment_status.rightemployed;
+            underEmployed = DeploymentData.deployment_status.underemployed;
+            unEmployed = DeploymentData.deployment_status.unemployed;
+
+            if (!rightEmployed) rightEmployed = 2;
+            if (!underEmployed) underEmployed = 4;
+            if (!unEmployed) unEmployed = 5;
+
+            addDeploymentChart(rightEmployed, underEmployed, unEmployed);
+            deploymentChartCanvasStyle.style.backgroundColor = "#fff";
+            deploymentCanvasContainer.style.boxShadow = "0px 0px 2px #000";
+        } catch (error) {
+            console.log(error.response);
+        }
+    };
+
     getUsersAccountsCountData();
     getPendingsCountData();
     getNotifyCountData();
     getGraduateGraphData();
     getEmploymentStatusData();
+    getDeploymentStatusData();
 }
 dashBoardModule();

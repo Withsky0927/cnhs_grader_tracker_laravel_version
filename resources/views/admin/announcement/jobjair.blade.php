@@ -64,14 +64,9 @@
                             <thead>
                                 <tr>
                                     <th class="has-text-centered">#</th>
+                                    <th class="has-text-centered">COMPANY</th>
                                     <th class="has-text-centered">JOB</th>
                                     <th class="has-text-centered">STRAND</th>
-                                    <th class="has-text-centered">COMPANY</th>
-                                    <th class="has-text-centered">ADDRESS</th>
-                                    <th class="has-text-centered">JOB DESC.</th>
-                                    <th class="has-text-centered">JOB QUAL.</th>
-                                    <th class="has-text-centered">JOB POST.</th>
-                                    <th class="has-text-centered">JOB AVAIL</th>
                                     <th class="has-text-centered" colspan="3">OPTIONS</th>
                                 </tr>
                             </thead>
@@ -81,7 +76,17 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
@@ -101,7 +106,17 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
@@ -121,12 +136,6 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -138,32 +147,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
@@ -183,7 +166,17 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td>*</td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                    <td><a class="button is-small"
+                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
@@ -203,11 +196,6 @@
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td><a class="button is-small"
                                             style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
                                     </td>
@@ -219,51 +207,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                    <td><a class="button is-small"
-                                            style="border:1px solid transparent; color:transparent;cursor:auto;background-color:transparent;">*</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
-                                    <td>*</td>
                                     <td>*</td>
                                     <td>*</td>
                                     <td>*</td>

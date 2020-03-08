@@ -54,11 +54,11 @@ class confirmation extends Controller
                 'username' => $RegistrationData['guest']['username'],
                 'password' => $RegistrationData['guest']['hashedPassword'],
                 'role' => $RegistrationData['guest']['role'],
-                'account_status' => 'approved'
+                'account_status' => 'pending'
             ]);
 
 
-        $notification = 'Account Succcesfully Created, check your email if this account frequently if the administrator approved all the information of this account.';
+        $notification = 'Account Succcesfully Created, check your email this account uses, frequently if the administrator approved all the information of this account.';
 
         $this->FlushRegisterDataInSession();
 

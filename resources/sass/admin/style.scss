@@ -6,6 +6,7 @@
     //border: 1px solid black;
     margin-bottom: 0px !important;
     background-color: #f1f1f1;
+    height: 70vh;
     #logocontainer {
         //border: 1px solid black;
         #logo {
@@ -123,7 +124,7 @@
 @media all and (min-width: 1216px) and (max-width: 1407px) {
     #maincontainer {
         //border: 1px solid black;
-
+        height: auto;
         #logocontainer {
             //border: 1px solid black;
 
@@ -155,7 +156,7 @@
 @media all and (min-width: 1408px) {
     #maincontainer {
         //border: 1px solid black;
-
+        height: auto;
         #logocontainer {
             border: 1px solid black;
 
