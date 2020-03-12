@@ -13,7 +13,7 @@
                                     <div class="field">
                                         <label class="label" for="view_school_name">School:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_school_name" type="text">
+                                            <input class="input" readonly id="view_school_name" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -21,7 +21,7 @@
                                     <div class="field">
                                         <label class="label" for="view_exam_date">Strand:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_exam_date">
+                                            <input class="input" readonly id="view_exam_date">
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                     <div class="field">
                                         <label class="label" for="view_exam_desc">Job Qualification:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_exam_desc"></textarea>
+                                            <textarea class="textarea" readonly id="view_exam_desc"></textarea>
                                         </div>
                                     </div>
                                 </div>

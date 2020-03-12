@@ -13,7 +13,7 @@
                                     <div class="field">
                                         <label class="label" for="view_scholarships_school">School:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_scholarships_school" type="text">
+                                            <input class="input" readonly id="view_scholarships_school" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -21,7 +21,7 @@
                                     <div class="field">
                                         <label class="label" for="view_scholarships_grade">Grade:</label>
                                         <div class="control">
-                                            <input class="input" type="text" disabled id="view_scholarships_grade">
+                                            <input class="input" type="text" readonly id="view_scholarships_grade">
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="field">
                                         <label class="label" for="view_scholarships_grade">Website Link:</label>
                                         <div class="control">
-                                            <input class="input" type="text" disabled id="view_scholarships_link">
+                                            <input class="input" type="text" readonly id="view_scholarships_link">
                                         </div>
                                     </div>
                                 </div>
@@ -43,14 +43,14 @@
                                         <label class="label" for="view_scholarships_desc">Scholarship
                                             Description:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_scholarships_desc"></textarea>
+                                            <textarea class="textarea" readonly id="view_scholarships_desc"></textarea>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label" for="view_scholarships_req">Scholarship
                                             Requirements:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_scholarships_req"></textarea>
+                                            <textarea class="textarea" readonly id="view_scholarships_req"></textarea>
                                         </div>
                                     </div>
                                 </div>

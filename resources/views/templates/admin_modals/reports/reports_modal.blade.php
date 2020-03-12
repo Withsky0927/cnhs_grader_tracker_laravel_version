@@ -13,7 +13,7 @@
                                     <div class="field">
                                         <label class="label" for="view_reports_name">Report name:</label>
                                         <div class="control">
-                                            <input class="input" disabled type="text" id="view_reports_name">
+                                            <input class="input" readonly type="text" id="view_reports_name">
                                         </div>
                                     </div>
                                 </div>
@@ -21,7 +21,7 @@
                                     <div class="field">
                                         <label class="label" for="view_reports_type">Report Type:</label>
                                         <div class="control">
-                                            <input class="input" disabled type="text" id="view_reports_type">
+                                            <input class="input" readonly type="text" id="view_reports_type">
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="field">
                                         <label class="label" for="view_reports_uploaded_by">Uploaded By:</label>
                                         <div class="control">
-                                            <input class="input" disabled type="text" id="view_reports_uploaded_by">
+                                            <input class="input" readonly type="text" id="view_reports_uploaded_by">
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         <label class="label" for="view_reports_description">Reports
                                             Description:</label>
                                         <div class="control">
-                                            <textarea disabled minlength="5" maxlength="1024" class="textarea"
+                                            <textarea readonly minlength="5" maxlength="1024" class="textarea"
                                                 id="view_reports_description"></textarea>
                                         </div>
                                     </div>

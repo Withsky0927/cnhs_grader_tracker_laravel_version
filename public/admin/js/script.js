@@ -64,6 +64,7 @@ function getFileInputName() {
 
 toggleBurger();
 setcsrfToken();
-if (window.location.pathname === "/admin/reports") getFileInputName();
+getFileInputName();
+
 //disableRightClick();
 disableBackButton();

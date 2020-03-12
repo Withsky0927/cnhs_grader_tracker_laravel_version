@@ -67,8 +67,6 @@
                                 <tr>
                                     <th class="has-text-centered">#</th>
                                     <th class="has-text-centered">SCHOOL</th>
-                                    <th class="has-text-centered">SCHOLARSHIP DESCRIPTION</th>
-                                    <th class="has-text-centered">SCHOLARSHIP REQUIREMENTS</th>
                                     <th class="has-text-centered">GRADE</th>
                                     <th class="has-text-centered">WEBSITE LINK</th>
                                     <th class="has-text-centered" colspan="3">OPTIONS</th>

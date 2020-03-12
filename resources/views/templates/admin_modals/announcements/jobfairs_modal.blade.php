@@ -13,7 +13,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_name">Job:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_job_name" type="text">
+                                            <input class="input" readonly id="view_job_name" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -21,7 +21,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_strand">Strand:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_job_strand" type="text">
+                                            <input class="input" readonly id="view_job_strand" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_company">Company:</label>
                                         <div class="control">
-                                            <input class="input" disabled id="view_job_company" type="text">
+                                            <input class="input" readonly id="view_job_company" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <div class="field">
                                         <label class="label">Address:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_job_address"
+                                            <textarea class="textarea" readonly id="view_job_address"
                                                 placeholder="Add Address"></textarea>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_description">Job Description:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_job_description"></textarea>
+                                            <textarea class="textarea" readonly id="view_job_description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_qual">Job Qualification:</label>
                                         <div class="control">
-                                            <textarea class="textarea" disabled id="view_job_qual"></textarea>
+                                            <textarea class="textarea" readonly id="view_job_qual"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_posted">Job Posted:</label>
                                         <div class="control">
-                                            <input class="input" id="view_job_posted" disabled type="text">
+                                            <input class="input" id="view_job_posted" readonly type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                     <div class="field">
                                         <label class="label" for="view_job_avail">Job Availability:</label>
                                         <div class="control">
-                                            <input class="input" id="view_job_avail" disabled type="text">
+                                            <input class="input" id="view_job_avail" readonly type="text">
                                         </div>
                                     </div>
                                 </div>

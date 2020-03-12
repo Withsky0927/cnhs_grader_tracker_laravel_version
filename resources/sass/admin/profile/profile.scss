@@ -1,0 +1,79 @@
+#profile-info-modal {
+    z-index: 50;
+}
+
+#profile-update-modal {
+    z-index: 60;
+}
+.profile-update-head {
+    padding: 1rem;
+}
+
+// for mobile devices
+@media all and (max-width: 768px) {
+    #profile-info-modal {
+        #profile-info-card {
+            width: 70vw;
+        }
+    }
+    #profile-update-modal {
+        #profile-update-card {
+            width: 70vw;
+        }
+    }
+}
+
+@media all and (min-width: 769px) and (max-width: 1023px) {
+    #profile-info-modal {
+        #profile-info-card {
+            width: 70vw;
+        }
+    }
+    #profile-update-modal {
+        #profile-update-card {
+            width: 70vw;
+        }
+    }
+}
+
+// for desktop
+@media all and (min-width: 1024px) and (max-width: 1215px) {
+    #profile-info-modal {
+        #profile-info-card {
+            width: 50vw;
+        }
+    }
+    #profile-update-modal {
+        #profile-update-card {
+            width: 50vw;
+        }
+    }
+}
+
+// for widescreen
+@media all and (min-width: 1216px) and (max-width: 1407px) {
+    #profile-info-modal {
+        #profile-info-card {
+            width: 50vw;
+        }
+    }
+    #profile-update-modal {
+        #profile-update-card {
+            width: 50vw;
+        }
+    }
+}
+
+// for fullhd
+@media all and (min-width: 1408px) {
+    #profile-info-modal {
+        #profile-info-card {
+            width: 50vw;
+        }
+    }
+    #profile-update-modal {
+        #profile-update-card {
+            width: 50vw;
+        }
+    }
+}

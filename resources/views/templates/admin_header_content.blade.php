@@ -29,6 +29,7 @@
 @endif{{-- end of superadmin scope--}}
 {{-- end of admin modals --}}
 @if(session('user_role') == 'superadmin' || session('user_role') == 'admin')
+@include("templates.admin_modals.profileinfo.profile_info_modal")
 @if (Request::is('admin/graduates'))
 @include("templates.admin_modals.graduates.graduates_modal")
 @endif
@@ -98,10 +99,11 @@
                     PROFILE
                 </div>
                 <div class="navbar-dropdown navbarhover is-radiusless is-right animated fadeIn">
-                    <a class="navbar-item is-size-7 is-uppercase no-underline">Role:{{session('user_role')}}</a>
+                    <a class="navbar-item is-size-7 is-uppercase no-underline">Role: {{session('user_role')}}</a>
                     <a class="navbar-item is-size-7 is-uppercase no-underline">Username:
                         {{session('login_username')}}</a>
-                    <a class="navbar-item is-size-7 is-uppercase" href="{{url('/admin/profile')}}">Edit Profile</a>
+                    <a class="navbar-item is-size-7 is-uppercase" id="edit-profile-modal-link"
+                        data-userid="{{session('user_id')}}" data-role="{{session('user_role')}}">Edit Profile</a>
                     <a class="navbar-item is-size-7 is-uppercase" href="{{url('/logout')}}">Log out</a>
                 </div>
             </div>

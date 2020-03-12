@@ -108,6 +108,12 @@ class Kernel extends HttpKernel
 
 
 
+        // admin profile inforation middleware
+        'checkProfileRole' => \App\Http\Middleware\admin\profile\checkProfileRole::class,
+        'validateAdminProfile' => \App\Http\Middleware\admin\profile\validateProfile::class,
+        'sanitizeAdminProfile' => \App\Http\Middleware\admin\profile\sanitizeProfile::class,
+
+
         // for Security Prevention Middlewares
         'IPBlock' => \App\Http\Middleware\IPBlock::class,
 

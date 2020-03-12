@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="modal is-radiusless" id="approve-account-pending-modal">
+<div class="modal is-radiusless" id="dispprove-account-pending-modal">
     <div class="modal-background">
 
     </div>
@@ -28,7 +28,7 @@
 
     </div>
 </div>
-<div class="modal is-radiusless" id="approve-report-pending-modal">
+<div class="modal is-radiusless" id="disapprove-report-pending-modal">
     <div class="modal-backgroundd">
 
     </div>

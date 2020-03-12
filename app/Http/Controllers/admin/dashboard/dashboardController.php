@@ -75,6 +75,47 @@ class dashboardController extends Controller
     }
 
 
+    public function viewPendingAccount(Request $request, $id)
+    {
+        $pendingAccount = $id;
+        $personalInfos = NULL;
+        $accountInfos = NULL;
+        $checkAccountRole = DB::table('accounts')
+            ->where('account_id', $pendingAccount)
+            ->values('role');
+
+
+        if ($checkAccountRole == 'admin') {
+        } elseif ($checkAccountRole == 'student') {
+            $personalInfo = db::table('guests')
+                ->where('guest_id', $pendingAccount)
+                ->select(
+                    'profile_pic',
+                    'lrn',
+                    'strand',
+                    'firstname',
+                    'middlename',
+                    'lastname',
+                    'address',
+                    'birthday',
+                    'age',
+                    'gender',
+                    'civil_status',
+                    'status'
+                )
+                ->get();
+            $accountInfos = DB::table('guests')
+                ->select('username', 'email', 'phone')
+                ->get();
+        }
+
+        return response()->json(['pending_info' => ['data' => [
+            'personal_info' => $personalInfo,
+            'account_info' => $accountInfos
+        ]]]);
+    }
+
+
     public function approveAccount(Request $request, $id)
     {
 

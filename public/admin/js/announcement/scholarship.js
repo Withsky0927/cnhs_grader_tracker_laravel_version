@@ -13,7 +13,7 @@ function scholarshipsModule() {
 
     const scholarshipsForm = document.querySelector("#scholarships-form");
     let pageNextAndPrev = 1;
-    
+
     scholarshipsForm.addEventListener(
         "submit",
         function(e) {
@@ -31,58 +31,65 @@ function scholarshipsModule() {
         }
     };
 
-   
-    function removeOptionPagination () {
-        const paginationOptionLink = document.querySelectorAll('.pagination-link');
-        
+    function removeOptionPagination() {
+        const paginationOptionLink = document.querySelectorAll(
+            ".pagination-link"
+        );
 
         for (let i = 0; i < paginationOptionLink.length; i++) {
             paginationOptionLink[i].style.visibility = "hidden";
         }
-       
     }
-    function viewScholarshipsPaginationData ()  {
-        
-        const viewScholarshipsButtton = document.querySelectorAll(".view-scholarships");
-        const viewScholarshipsModal = document.querySelector("#scholarships-view-modal");
-        const scholarshipsViewClose = document.querySelector("#scholarships-view-modal-close");
+    function viewScholarshipsPaginationData() {
+        const viewScholarshipsButtton = document.querySelectorAll(
+            ".view-scholarships"
+        );
+        const viewScholarshipsModal = document.querySelector(
+            "#scholarships-view-modal"
+        );
+        const scholarshipsViewClose = document.querySelector(
+            "#scholarships-view-modal-close"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
 
-        function insertScholarshipsViewData (data) {
+        function insertScholarshipsViewData(data) {
             console.log(data);
             const school = document.querySelector("#view_scholarships_school");
-            const schoolLink = document.querySelector("#view_scholarships_link");
+            const schoolLink = document.querySelector(
+                "#view_scholarships_link"
+            );
             const grade = document.querySelector("#view_scholarships_grade");
-            const scholarshipDescription = document.querySelector("#view_scholarships_desc");
-            const scholarshipRequirements = document.querySelector("#view_scholarships_req");
-     
+            const scholarshipDescription = document.querySelector(
+                "#view_scholarships_desc"
+            );
+            const scholarshipRequirements = document.querySelector(
+                "#view_scholarships_req"
+            );
+
             school.value = data.school_name;
-            schoolLink.value = data.school_link
+            schoolLink.value = data.school_link;
             grade.value = data.grade;
 
             scholarshipDescription.value = data.scholarship_desc;
             scholarshipRequirements.value = data.scholarship_req;
-
         }
-        function removeViewModalContainer  ()  {
+        function removeViewModalContainer() {
             htmlClipped.classList.remove("is-clipped");
             viewScholarshipsModal.classList.remove("is-active");
         }
-        function showViewModalContainer ()  {
+        function showViewModalContainer() {
             htmlClipped.classList.add("is-clipped");
             viewScholarshipsModal.classList.add("is-active");
-        
 
-            
             scholarshipsViewClose.addEventListener(
                 "click",
                 removeViewModalContainer,
                 false
             );
         }
-        async function setViewModal (e)  {
+        async function setViewModal(e) {
             const scholarshipsViewID = e.target.getAttribute("id").toString();
-    
+
             const getScholarshipsView = {
                 url: `/admin/announcement/scholarship/view/scholar?id=${scholarshipsViewID}`,
                 method: "get",
@@ -95,39 +102,64 @@ function scholarshipsModule() {
             try {
                 const reponseViewData = await axios(getScholarshipsView);
                 viewData = reponseViewData.data;
-                
+
                 insertScholarshipsViewData(viewData.view_scholarships);
                 showViewModalContainer();
             } catch (error) {
                 console.log(error.response);
             }
         }
-        for (let i = 0, index = viewScholarshipsButtton.length; i < index; i++) {
-            viewScholarshipsButtton[i].addEventListener("click", setViewModal, false);
+        for (
+            let i = 0, index = viewScholarshipsButtton.length;
+            i < index;
+            i++
+        ) {
+            viewScholarshipsButtton[i].addEventListener(
+                "click",
+                setViewModal,
+                false
+            );
         }
-    
     }
 
-    function addScholarshipsPaginationData (event) {
-        const addScholarshipsButton = document.querySelector("#scholarships-add-button");
-        const scholarshipsAddModal = document.querySelector("#scholarships-add-modal");
+    function addScholarshipsPaginationData(event) {
+        const addScholarshipsButton = document.querySelector(
+            "#scholarships-add-button"
+        );
+        const scholarshipsAddModal = document.querySelector(
+            "#scholarships-add-modal"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
-        const scholarshipsAddClose = document.querySelector("#add-scholarships-modal-close");
-        const scholarshipsAddBtn = document.querySelector("#add-scholarships-buttton");
-        const scholarshipsAddCancel = document.querySelector("#add-scholarships-buttton-cancel");
-        const addErrorContainer = document.querySelector("#add-error-container");
-        const addSuccessContainer = document.querySelector("#add-success-container");
+        const scholarshipsAddClose = document.querySelector(
+            "#add-scholarships-modal-close"
+        );
+        const scholarshipsAddBtn = document.querySelector(
+            "#add-scholarships-buttton"
+        );
+        const scholarshipsAddCancel = document.querySelector(
+            "#add-scholarships-buttton-cancel"
+        );
+        const addErrorContainer = document.querySelector(
+            "#add-error-container"
+        );
+        const addSuccessContainer = document.querySelector(
+            "#add-success-container"
+        );
 
         const school = document.querySelector("#add_scholarships_school");
         const schoolLink = document.querySelector("#add_scholarships_link");
         const grade = document.querySelector("#add_scholarships_grade");
-        const scholarshipDescription = document.querySelector("#add_scholarships_desc");
-        const scholarshipRequirements = document.querySelector("#add_scholarships_req");
-        
-        function showAddModalContainer () {
+        const scholarshipDescription = document.querySelector(
+            "#add_scholarships_desc"
+        );
+        const scholarshipRequirements = document.querySelector(
+            "#add_scholarships_req"
+        );
+
+        function showAddModalContainer() {
             htmlClipped.classList.add("is-clipped");
             scholarshipsAddModal.classList.add("is-active");
-            
+
             school.selectedIndex = 0;
             schoolLink.value = "";
             grade.value = "";
@@ -135,15 +167,13 @@ function scholarshipsModule() {
             scholarshipDescription.value = "";
             scholarshipRequirements.value = "";
 
-
             scholarshipsAddClose.addEventListener(
                 "click",
                 removeAddModalContainer,
                 false
             );
-            
         }
-        function removeAddModalContainer ()  {
+        function removeAddModalContainer() {
             htmlClipped.classList.remove("is-clipped");
             scholarshipsAddModal.classList.remove("is-active");
             let errSiblings = addErrorContainer.previousSibling;
@@ -155,87 +185,121 @@ function scholarshipsModule() {
             while (succSiblings && succSiblings.nodeType !== 1) {
                 succSiblings = succSiblings.previousSibling;
             }
-            if(errSiblings) {
+            if (errSiblings) {
                 errSiblings.parentNode.removeChild(errSiblings);
             }
-            if(succSiblings) {
+            if (succSiblings) {
                 succSiblings.parentNode.removeChild(succSiblings);
             }
             addErrorContainer.style.display = "none";
             addSuccessContainer.style.display = "none";
-            
         }
-        
-        
-        async function insertDataIntoDatabase  (event) {
+
+        async function insertDataIntoDatabase(event) {
             addSuccessContainer.style.display = "none";
-            addErrorContainer.style.display  = "none";
+            addErrorContainer.style.display = "none";
             addSuccessContainer.innerHTML = "";
             addErrorContainer.innerHTML = "";
             let errorsHtml = "";
-        
-            if (school.value === "School" || !grade.value
-                || !scholarshipDescription.value || !scholarshipRequirements.value)  {
-                addErrorContainer.innerHTML = "<p class=\"has-text-centered\">Incomplete Field or invalid Field! please Complete Required fields!</p>";
+
+            if (
+                school.value === "School" ||
+                !grade.value ||
+                !scholarshipDescription.value ||
+                !scholarshipRequirements.value
+            ) {
+                addErrorContainer.innerHTML =
+                    '<p class="has-text-centered">Incomplete Field or invalid Field! please Complete Required fields!</p>';
                 addErrorContainer.style.display = "block";
             }
             try {
                 const responseAddData = await axios.post(
-                    '/admin/announcement/scholarship',
-                     {
+                    "/admin/announcement/scholarship",
+                    {
                         school: school.value,
-                        schoolLink: (!schoolLink.value) ? "*" : schoolLink.value,
+                        schoolLink: !schoolLink.value ? "*" : schoolLink.value,
                         grade: grade.value,
                         scholarshipDescription: scholarshipDescription.value,
                         scholarshipRequirements: scholarshipRequirements.value
                     }
                 );
-                
-                
 
                 if (responseAddData.data.errors) {
-                    for (let i = 0 , index = responseAddData.data.errors.length; i < index; i++ ) {
+                    for (
+                        let i = 0, index = responseAddData.data.errors.length;
+                        i < index;
+                        i++
+                    ) {
                         errorsHtml += `<p class="has-text-left">${responseAddData.data.errors[i]}</p>`;
                     }
                     addErrorContainer.innerHTML = errorsHtml;
-                    addErrorContainer.style.display = "block";  
+                    addErrorContainer.style.display = "block";
                 } else if (!responseAddData.data.errors) {
-                    addSuccessContainer.innerHTML = "<p class=\"has-text-centered\">Data Successfully Added!</p>";
+                    addSuccessContainer.innerHTML =
+                        '<p class="has-text-centered">Data Successfully Added!</p>';
                     addSuccessContainer.style.display = "block";
                     loadInitialPagination();
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log(error.response);
             }
-        } 
+        }
 
-
-        scholarshipsAddBtn.addEventListener('click' , insertDataIntoDatabase , false);
-        scholarshipsAddCancel.addEventListener('click' ,removeAddModalContainer , false);
-        addScholarshipsButton.addEventListener('click' , showAddModalContainer , false);
+        scholarshipsAddBtn.addEventListener(
+            "click",
+            insertDataIntoDatabase,
+            false
+        );
+        scholarshipsAddCancel.addEventListener(
+            "click",
+            removeAddModalContainer,
+            false
+        );
+        addScholarshipsButton.addEventListener(
+            "click",
+            showAddModalContainer,
+            false
+        );
     }
 
-    function editScholarshipsPaginationData () {
-        const editScholarshipsButton = document.querySelectorAll(".edit-scholarships");
-        const scholarshipsEditmodal = document.querySelector("#scholarships-edit-modal");
-        const scholarshipsEditClose = document.querySelector("#edit-scholarships-modal-close");
+    function editScholarshipsPaginationData() {
+        const editScholarshipsButton = document.querySelectorAll(
+            ".edit-scholarships"
+        );
+        const scholarshipsEditmodal = document.querySelector(
+            "#scholarships-edit-modal"
+        );
+        const scholarshipsEditClose = document.querySelector(
+            "#edit-scholarships-modal-close"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
-        const editConfirmBtn = document.querySelector("#edit-scholarships-buttton-update");
-        const editCancelBtn = document.querySelector("#edit-scholarships-buttton-cancel");
-        
-        
+        const editConfirmBtn = document.querySelector(
+            "#edit-scholarships-buttton-update"
+        );
+        const editCancelBtn = document.querySelector(
+            "#edit-scholarships-buttton-cancel"
+        );
+
         const school = document.querySelector("#edit_scholarships_school");
         const schoolLink = document.querySelector("#edit_scholarships_link");
         const grade = document.querySelector("#edit_scholarships_grade");
-        const scholarshipDescription = document.querySelector("#edit_scholarships_desc");
-        const scholarshipRequirements = document.querySelector("#edit_scholarships_req");
-        
-        const editErrorContainer = document.querySelector("#edit-error-container");
-        const editSuccessContainer = document.querySelector("#edit-success-container");
+        const scholarshipDescription = document.querySelector(
+            "#edit_scholarships_desc"
+        );
+        const scholarshipRequirements = document.querySelector(
+            "#edit_scholarships_req"
+        );
+
+        const editErrorContainer = document.querySelector(
+            "#edit-error-container"
+        );
+        const editSuccessContainer = document.querySelector(
+            "#edit-success-container"
+        );
         let scholarshipsId = "";
         let errorsHtml = "";
 
-        function removeEditModal  () {
+        function removeEditModal() {
             scholarshipsEditmodal.classList.remove("is-active");
             htmlClipped.classList.remove("is-clipped");
             school.selectedIndex = 0;
@@ -243,10 +307,9 @@ function scholarshipsModule() {
             grade.value = "";
             scholarshipDescription.value = "";
             scholarshipRequirements.value = "";
+        }
 
-        };
-
-        function removeEditModalContainer  () {
+        function removeEditModalContainer() {
             let errSiblings = editErrorContainer.previousSibling;
             let succSiblings = editSuccessContainer.previousSibling;
 
@@ -256,10 +319,10 @@ function scholarshipsModule() {
             while (succSiblings && succSiblings.nodeType !== 1) {
                 succSiblings = succSiblings.previousSibling;
             }
-            if(errSiblings) {
+            if (errSiblings) {
                 errSiblings.parentNode.removeChild(errSiblings);
             }
-            if(succSiblings) {
+            if (succSiblings) {
                 succSiblings.parentNode.removeChild(succSiblings);
             }
             editErrorContainer.style.display = "none";
@@ -268,48 +331,60 @@ function scholarshipsModule() {
             htmlClipped.classList.remove("is-clipped");
         }
 
-        async function updateModalData (event) { 
+        async function updateModalData(event) {
             editErrorContainer.innerHTML = "";
             editSuccessContainer.innerHTML = "";
-            if (school.value === "School" || !grade.value
-                ||!scholarshipDescription.value || !scholarshipRequirements.value
-                ) {
-                editErrorContainer.innerHTML = "<p class=\"has-text-centered\">Incomplete Field or invalid Field! please Complete Required fields!</p>";
+            if (
+                school.value === "School" ||
+                !grade.value ||
+                !scholarshipDescription.value ||
+                !scholarshipRequirements.value
+            ) {
+                editErrorContainer.innerHTML =
+                    '<p class="has-text-centered">Incomplete Field or invalid Field! please Complete Required fields!</p>';
                 editSuccessContainer.style.display = "block";
             } else {
-
                 try {
                     const responseEditData = await axios.put(
                         `/admin/announcement/scholarship/edit/scholar/${scholarshipsId}`,
                         {
                             school: school.value,
-                            schoolLink: (!schoolLink.value) ? "*" : schoolLink.value,
+                            schoolLink: !schoolLink.value
+                                ? "*"
+                                : schoolLink.value,
                             grade: grade.value,
-                            scholarshipDescription: scholarshipDescription.value,
-                            scholarshipRequirements: scholarshipRequirements.value
+                            scholarshipDescription:
+                                scholarshipDescription.value,
+                            scholarshipRequirements:
+                                scholarshipRequirements.value
                         }
                     );
                     console.log(responseEditData);
 
                     if (responseEditData.data.errors) {
-                        for (let i = 0 , index = responseEditData.data.errors.length; i < index; i++ ) {
+                        for (
+                            let i = 0,
+                                index = responseEditData.data.errors.length;
+                            i < index;
+                            i++
+                        ) {
                             errorsHtml += `<p class="has-text-left">${responseEditData.data.errors[i]}</p>`;
                         }
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
                     } else if (!responseEditData.data.errors) {
-                        editSuccessContainer.innerHTML = "<p class=\"has-text-centered\">Data Successfully Updated!</p>";
+                        editSuccessContainer.innerHTML =
+                            '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
                     }
                     loadInitialPagination();
-                } catch(error) {
+                } catch (error) {
                     console.log(error.response);
                 }
             }
         }
 
         function populateDefaultValue(responseData) {
-            
             scholarshipsId = responseData.scholarship_id.toString();
 
             school.value = responseData.school_name;
@@ -318,16 +393,19 @@ function scholarshipsModule() {
             scholarshipDescription.value = responseData.scholarship_desc;
             scholarshipRequirements.value = responseData.scholarship_req;
 
-            editCancelBtn.addEventListener("click" , removeEditModalContainer , false);
-            editConfirmBtn.addEventListener("click" , updateModalData , false);
+            editCancelBtn.addEventListener(
+                "click",
+                removeEditModalContainer,
+                false
+            );
+            editConfirmBtn.addEventListener("click", updateModalData, false);
         }
 
-        async function showEditModal (id) {
+        async function showEditModal(id) {
             console.log(id);
             scholarshipsEditmodal.classList.add("is-active");
             htmlClipped.classList.add("is-clipped");
 
-            
             const getScholarshipsView = {
                 url: `/admin/announcement/scholarship/view/scholar?id=${id}`,
                 method: "get",
@@ -344,47 +422,63 @@ function scholarshipsModule() {
                 console.log(error);
             }
 
-            scholarshipsEditClose.addEventListener("click" , removeEditModal , false);
+            scholarshipsEditClose.addEventListener(
+                "click",
+                removeEditModal,
+                false
+            );
         }
 
-        function setEditModal (event) {
+        function setEditModal(event) {
             const editData = event.target.getAttribute("id").toString();
             showEditModal(editData);
         }
 
-        
-        editScholarshipsButton
-        for (let i = 0 , index = editScholarshipsButton.length ; i < index; i++) {
-            editScholarshipsButton[i].addEventListener("click" , setEditModal , false);
+        editScholarshipsButton;
+        for (let i = 0, index = editScholarshipsButton.length; i < index; i++) {
+            editScholarshipsButton[i].addEventListener(
+                "click",
+                setEditModal,
+                false
+            );
         }
     }
 
-    function removeScholarshipsPaginationData  ()  {
-        
-        const removeScholarshipsButtton = document.querySelectorAll(".delete-scholarships");
+    function removeScholarshipsPaginationData() {
+        const removeScholarshipsButtton = document.querySelectorAll(
+            ".delete-scholarships"
+        );
         const scholarshipsDeletemodal = document.querySelector(
             "#scholarships-delete-modal"
         );
         const scholarshipsDeleteClose = document.querySelector(
             "#delete-scholarships-modal-close"
         );
-        const scholarshipsModalConfirmBtn = document.querySelector("#delete-modal-button-confirm");
-        const scholarshipsModalCancelBtn = document.querySelector("#delete-modal-button-cancel");
+        const scholarshipsModalConfirmBtn = document.querySelector(
+            "#delete-modal-button-confirm"
+        );
+        const scholarshipsModalCancelBtn = document.querySelector(
+            "#delete-modal-button-cancel"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
 
-        function setDeleteModal  (event) {
-
+        function setDeleteModal(event) {
             const dataToBeDelete = event.target.getAttribute("id").toString();
             scholarshipsDeletemodal.classList.add("is-active");
             htmlClipped.classList.add("is-clipped");
-            scholarshipsDeleteClose.addEventListener("click", removeDeleteModal, false);
+            scholarshipsDeleteClose.addEventListener(
+                "click",
+                removeDeleteModal,
+                false
+            );
 
-
-           async function ConfirmDelete (e) {
+            async function ConfirmDelete(e) {
                 e.preventDefault();
                 try {
-                    const responseData = await axios.delete(`/admin/announcement/scholarship/delete/scholar/${dataToBeDelete}`);
-                } catch(error) {
+                    const responseData = await axios.delete(
+                        `/admin/announcement/scholarship/delete/scholar/${dataToBeDelete}`
+                    );
+                } catch (error) {
                     console.log(error.response);
                 }
                 scholarshipsDeletemodal.classList.remove("is-active");
@@ -392,22 +486,33 @@ function scholarshipsModule() {
                 loadInitialPagination();
             }
 
-            function cancelDelete  ()  {
+            function cancelDelete() {
                 scholarshipsDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
             }
 
-            scholarshipsModalConfirmBtn.addEventListener("click" , ConfirmDelete , false);
-            scholarshipsModalCancelBtn.addEventListener("click" , cancelDelete, false);
-        };
+            scholarshipsModalConfirmBtn.addEventListener(
+                "click",
+                ConfirmDelete,
+                false
+            );
+            scholarshipsModalCancelBtn.addEventListener(
+                "click",
+                cancelDelete,
+                false
+            );
+        }
 
-        function removeDeleteModal  ()  {
-            
+        function removeDeleteModal() {
             scholarshipsDeletemodal.classList.remove("is-active");
             htmlClipped.classList.remove("is-clipped");
         }
 
-        for (let i = 0, index = removeScholarshipsButtton.length; i < index; i++) {
+        for (
+            let i = 0, index = removeScholarshipsButtton.length;
+            i < index;
+            i++
+        ) {
             removeScholarshipsButtton[i].addEventListener(
                 "click",
                 setDeleteModal,
@@ -415,27 +520,26 @@ function scholarshipsModule() {
             );
         }
     }
-    function removePrevAndNext  ()  {
+    function removePrevAndNext() {
         paginateNext.style.visibility = "hidden";
         paginatePrev.style.visibility = "hidden";
     }
 
-    function addPrevAndNext () {
+    function addPrevAndNext() {
         paginateNext.style.visibility = "visible";
         paginatePrev.style.visibility = "visible";
     }
-   
 
-    function loadSelectedPagination  ()  {
+    function loadSelectedPagination() {
         const paginationLink = document.querySelectorAll(".pagination-link");
 
-        function removeIsCurrentClass () {
+        function removeIsCurrentClass() {
             for (let i = 0, index = paginationLink.length; i < index; i++) {
                 paginationLink[i].classList.remove("is-current");
             }
         }
 
-        async function loadPagePerClick (event) {
+        async function loadPagePerClick(event) {
             // revert and add current data
             const pageNextAndPrev = parseInt(event.target.textContent);
             checkNextAndPrevNumber();
@@ -455,7 +559,7 @@ function scholarshipsModule() {
                 }
             };
 
-           const responseData = await axios(perPageAxiosOption);
+            const responseData = await axios(perPageAxiosOption);
             PagePerdata = responseData.data.page_url;
             data = PagePerdata.data;
             total = PagePerdata.total;
@@ -471,20 +575,32 @@ function scholarshipsModule() {
             for (let i = 0; i < index; i++) {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].school_name.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].scholarship_desc.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].scholarship_req.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].address.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].grade}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].school_link}</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].school_name.toUpperCase()}</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].address.substring(0, 10)}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].grade
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].school_link
+                                    }</td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-success view-scholarships">View</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-info edit-scholarships">Edit</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-danger delete-scholarships">Delete</a>
                                     </td>
                                 </tr>`;
                 dataCount += 1;
@@ -506,7 +622,7 @@ function scholarshipsModule() {
             );
         }
     }
-    async function loadInitialPagination  () {
+    async function loadInitialPagination() {
         const response = await axios(scholarshipsAxiosOption);
         const PaginationData = response.data.page_url;
         let datatotal = PaginationData.total;
@@ -515,27 +631,29 @@ function scholarshipsModule() {
         let htmlData = "";
         let dataCount = 1;
 
-        let dataTotalRemainder = (datatotal % 10 >= 1) ? 1 : 0;
-        let dataTotalWithRemainder = (datatotal / 10) + dataTotalRemainder;
-        function checkNextAndPrevNumber  () {
+        let dataTotalRemainder = datatotal % 10 >= 1 ? 1 : 0;
+        let dataTotalWithRemainder = datatotal / 10 + dataTotalRemainder;
+        function checkNextAndPrevNumber() {
             console.log(pageNextAndPrev);
             if (pageNextAndPrev <= 1) {
                 paginatePrev.setAttribute("disabled", "");
                 paginateNext.removeAttribute("disabled");
                 pageNextAndPrev = 1;
-                
-                console.log('previous button is disable button');
-            } else if (pageNextAndPrev > 1 && pageNextAndPrev < Math.floor(dataTotalWithRemainder)) {
+
+                console.log("previous button is disable button");
+            } else if (
+                pageNextAndPrev > 1 &&
+                pageNextAndPrev < Math.floor(dataTotalWithRemainder)
+            ) {
                 console.log(pageNextAndPrev);
-                console.log('don\'t have a disable button');
+                console.log("don't have a disable button");
                 paginatePrev.removeAttribute("disabled");
                 paginateNext.removeAttribute("disabled");
             } else if (pageNextAndPrev >= datatotal / 10) {
-                console.log('next button is disable button');
+                console.log("next button is disable button");
                 paginatePrev.removeAttribute("disabled");
                 paginateNext.setAttribute("disabled", "");
-                
-                
+
                 if (pageNextAndPrev === Math.floor(datatotal / 10)) {
                     pageNextAndPrev = Math.floor(datatotal / 10);
                 } else if (
@@ -549,7 +667,7 @@ function scholarshipsModule() {
 
         // set style on next and previous page number box
 
-        function SetPaginatePageOnNextPrev  ()  {
+        function SetPaginatePageOnNextPrev() {
             const paginationsLink = document.querySelectorAll(
                 ".pagination-link"
             );
@@ -566,11 +684,11 @@ function scholarshipsModule() {
             paginationsLink[paginationLinkIndex].classList.add("is-current");
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
-        };
+        }
 
         // initialize the first page
         checkNextAndPrevNumber();
-        function fillEmptyTable () {
+        function fillEmptyTable() {
             if (scholarshipstabledata.childElementCount < 10) {
                 let remainder = datatotal % 10;
                 let emptyTd = "";
@@ -580,8 +698,6 @@ function scholarshipsModule() {
                     } else if (remainder < 10) {
                         emptyTd = `
                                     <tr>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
-                                        <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
                                         <td class="data-style has-text-centered" style="color:transparent;">*</td>
@@ -605,7 +721,6 @@ function scholarshipsModule() {
                     }
                     remainder = remainder + 1;
                 }
-                
             }
             const dataStyle = document.querySelectorAll(".data-style");
             for (let i = 0, index = dataStyle.length; i < index; i++) {
@@ -617,23 +732,33 @@ function scholarshipsModule() {
             addPrevAndNext();
         }
 
-        function loadFirstPagination () {
+        function loadFirstPagination() {
             for (let i = 0, index = PaginationData.to; i < index; i++) {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].school_name.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].scholarship_desc.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].scholarship_req.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].grade}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].school_link}</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].school_name.toUpperCase()}</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].grade
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].school_link
+                                    }</td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-success view-scholarships">View</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-info edit-scholarships">Edit</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                        <a id="${
+                                            data[i].scholarship_id
+                                        }" class="button is-small is-danger delete-scholarships">Delete</a>
                                     </td>
                                 </tr>`;
                 dataCount += 1;
@@ -644,10 +769,10 @@ function scholarshipsModule() {
             addScholarshipsPaginationData();
             editScholarshipsPaginationData();
             removeScholarshipsPaginationData();
-        };
+        }
 
         // load
-        function loadPaginationPage (dataTotals)  {
+        function loadPaginationPage(dataTotals) {
             let divquotient = Math.floor(dataTotals / 10);
             let remainder = dataTotals % 10;
             let count = divquotient;
@@ -672,18 +797,18 @@ function scholarshipsModule() {
             scholarshipsPaginationList.innerHTML = pageElement;
         }
 
-        function loadSelectedPagination ()  {
+        function loadSelectedPagination() {
             const paginationLink = document.querySelectorAll(
                 ".pagination-link"
             );
 
-            function removeIsCurrentClass  ()  {
+            function removeIsCurrentClass() {
                 for (let i = 0, index = paginationLink.length; i < index; i++) {
                     paginationLink[i].classList.remove("is-current");
                 }
             }
 
-            async function loadPagePerClick (event) {
+            async function loadPagePerClick(event) {
                 // revert and add current data
                 pageNextAndPrev = parseInt(event.target.textContent);
                 checkNextAndPrevNumber();
@@ -693,7 +818,7 @@ function scholarshipsModule() {
                 let pagePerData = "";
                 let perPage = 0;
                 let total = 0;
-        
+
                 const perPageAxiosOption = {
                     url: `/admin/announcement/scholarship/pages?page=${pageNextAndPrev}`,
                     method: "get",
@@ -718,19 +843,30 @@ function scholarshipsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].school_name.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].scholarship_desc.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].scholarship_req.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].grade}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].school_link}</td>
+                                        <td class="data-style has-text-centered is-size-7">${data[
+                                            i
+                                        ].school_name.toUpperCase()}</td>
+                        
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].grade
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].school_link
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                            <a id="${
+                                                data[i].scholarship_id
+                                            }" class="button is-small is-success view-scholarships">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                            <a id="${
+                                                data[i].scholarship_id
+                                            }" class="button is-small is-info edit-scholarships">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                            <a id="${
+                                                data[i].scholarship_id
+                                            }" class="button is-small is-danger delete-scholarships">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -753,12 +889,14 @@ function scholarshipsModule() {
             }
         }
 
-        function loadScholarshipsNextPage  ()  {
-            const setNextPage = async (e) => {
+        function loadScholarshipsNextPage() {
+            const setNextPage = async e => {
                 pageNextAndPrev += 1;
                 checkNextAndPrevNumber();
 
-                const nextResponseData = await axios.get(`/admin/announcement/scholarship/pages?page=${pageNextAndPrev}`);
+                const nextResponseData = await axios.get(
+                    `/admin/announcement/scholarship/pages?page=${pageNextAndPrev}`
+                );
                 const nextPageData = nextResponseData.data.page_url;
                 const nextTotal = nextPageData.total;
                 const nextPage = nextPageData.per_page;
@@ -774,19 +912,29 @@ function scholarshipsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].school_name.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].scholarship_desc.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].scholarship_req.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].grade}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].school_link}</td>
+                                        <td class="data-style has-text-centered is-size-7">${nextData[
+                                            i
+                                        ].school_name.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].grade
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].school_link
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                            <a id="${
+                                                nextData[i].scholarship_id
+                                            }" class="button is-small is-success view-scholarships">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                            <a id="${
+                                                nextData[i].scholarship_id
+                                            }" class="button is-small is-info edit-scholarships">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                            <a id="${
+                                                nextData[i].scholarship_id
+                                            }" class="button is-small is-danger delete-scholarships">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -803,12 +951,14 @@ function scholarshipsModule() {
             paginateNext.addEventListener("click", setNextPage, false);
         }
 
-        function loadScholarshipsPrevPage () {
-            const setPrevPage = async (e) => {
+        function loadScholarshipsPrevPage() {
+            const setPrevPage = async e => {
                 pageNextAndPrev -= 1;
                 checkNextAndPrevNumber();
 
-                const prevResponseData = await axios.get(`/admin/announcement/scholarship/pages?page=${pageNextAndPrev}`);
+                const prevResponseData = await axios.get(
+                    `/admin/announcement/scholarship/pages?page=${pageNextAndPrev}`
+                );
                 const prevPageData = prevResponseData.data.page_url;
                 const prevTotal = prevPageData.total;
                 const prevPage = prevPageData.per_page;
@@ -825,19 +975,29 @@ function scholarshipsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].school_name.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].scholarship_desc.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].scholarship_req.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].grade}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].school_link}</td>
+                                        <td class="data-style has-text-centered is-size-7">${prevData[
+                                            i
+                                        ].school_name.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].grade
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].school_link
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                            <a id="${
+                                                prevData[i].scholarship_id
+                                            }" class="button is-small is-success view-scholarships">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                            <a id="${
+                                                prevData[i].scholarship_id
+                                            }" class="button is-small is-info edit-scholarships">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                            <a id="${
+                                                prevData[i].scholarship_id
+                                            }" class="button is-small is-danger delete-scholarships">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -858,7 +1018,7 @@ function scholarshipsModule() {
         loadScholarshipsPrevPage();
         loadSelectedPagination();
     }
-    function fillOptionEmptyTable () {
+    function fillOptionEmptyTable() {
         const dataStyle = document.querySelectorAll(".data-style");
         for (let i = 0, index = dataStyle.length; i < index; i++) {
             dataStyle[i].style.color = "black";
@@ -868,14 +1028,16 @@ function scholarshipsModule() {
         }
         removePrevAndNext();
     }
-    
-    function loadSearchPagination () {
-        const scholarshipsSearch = document.querySelector("#scholarships-search");
+
+    function loadSearchPagination() {
+        const scholarshipsSearch = document.querySelector(
+            "#scholarships-search"
+        );
         const scholarshipsSelected = document.querySelector(
             "#scholarships-search-selected"
         );
 
-        function setSelectedValue  (checkData) {
+        function setSelectedValue(checkData) {
             let index = scholarshipsSelected.options.length;
             if (checkData.length > 0) {
                 for (let i = 0; i < index; i++) {
@@ -883,16 +1045,21 @@ function scholarshipsModule() {
                     scholarshipsSelected.options[i].removeAttribute("disabled");
                 }
                 for (let i = 0; i < index; i++) {
-                    scholarshipsSelected.options[i].setAttribute("disabled", "");
+                    scholarshipsSelected.options[i].setAttribute(
+                        "disabled",
+                        ""
+                    );
                 }
 
                 scholarshipsSelected.selectedIndex = 0;
             }
         }
-        function setToDefault () {
-           
-
-            for (let i = 0, index = scholarshipsSelected.length; i < index; i++) {
+        function setToDefault() {
+            for (
+                let i = 0, index = scholarshipsSelected.length;
+                i < index;
+                i++
+            ) {
                 scholarshipsSelected.options[i].removeAttribute("selected");
                 scholarshipsSelected.options[i].removeAttribute("disabled");
             }
@@ -902,7 +1069,7 @@ function scholarshipsModule() {
             scholarshipsSelected.selectedIndex = 1;
         }
 
-        async function getScholarshipsSelected (event) {
+        async function getScholarshipsSelected(event) {
             let selected = event.target.value.toString();
 
             let selectedPerPage = 0;
@@ -923,12 +1090,16 @@ function scholarshipsModule() {
             }
 
             try {
-                const selectedresponseData = await axios.get(`/admin/announcement/scholarship/selected?select=${selected}`);
+                const selectedresponseData = await axios.get(
+                    `/admin/announcement/scholarship/selected?select=${selected}`
+                );
                 console.log(selectedresponseData);
                 selectedPerPage =
                     selectedresponseData.data.selected_scholarships.per_page;
-                selectTotal = selectedresponseData.data.selected_scholarships.total;
-                selectedData = selectedresponseData.data.selected_scholarships.data;
+                selectTotal =
+                    selectedresponseData.data.selected_scholarships.total;
+                selectedData =
+                    selectedresponseData.data.selected_scholarships.data;
                 selectedTo = selectedresponseData.data.selected_scholarships.to;
 
                 if (selectedTo % 500 != 0) {
@@ -938,25 +1109,35 @@ function scholarshipsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${selectCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].school_name.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].scholarship_desc.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].scholarship_req.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].grade}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].school_link}</td>
+                                        <td class="data-style has-text-centered is-size-7">${selectedData[
+                                            i
+                                        ].school_name.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].grade
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].school_link
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${selectedData[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                            <a id="${
+                                                selectedData[i].scholarship_id
+                                            }" class="button is-small is-success view-scholarships">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${selectedData[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                            <a id="${
+                                                selectedData[i].scholarship_id
+                                            }" class="button is-small is-info edit-scholarships">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${selectedData[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                            <a id="${
+                                                selectedData[i].scholarship_id
+                                            }" class="button is-small is-danger delete-scholarships">Delete</a>
                                         </td>
                                     </tr>`;
                     selectCount += 1;
                 }
                 scholarshipstabledata.innerHTML = htmlData;
-                
+
                 fillOptionEmptyTable();
                 viewScholarshipsPaginationData();
                 addScholarshipsPaginationData();
@@ -967,8 +1148,8 @@ function scholarshipsModule() {
             }
             removeOptionPagination();
         }
-    
-        async function getScholarshipsSearch (event) {
+
+        async function getScholarshipsSearch(event) {
             event.preventDefault();
             let searchval = encodeURIComponent(event.target.value);
             let searchresponseData = "";
@@ -986,13 +1167,14 @@ function scholarshipsModule() {
             }
             if (searchval.length >= 0) {
                 setSelectedValue(searchval);
-            
             }
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
 
             try {
-                searchresponseData = await axios.get(`/admin/announcement/scholarship/search?val=${searchval}`);
+                searchresponseData = await axios.get(
+                    `/admin/announcement/scholarship/search?val=${searchval}`
+                );
                 console.log(searchresponseData);
                 searchPerPage = searchresponseData.data.search_data.per_page;
                 searchTotal = searchresponseData.data.search_data.total;
@@ -1007,25 +1189,35 @@ function scholarshipsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${searchdataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].school_name.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].scholarship_desc.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].scholarship_req.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].grade}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].school_link}</td>
+                                        <td class="data-style has-text-centered is-size-7">${searchData[
+                                            i
+                                        ].school_name.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].grade
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].school_link
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].scholarship_id}" class="button is-small is-success view-scholarships">View</a>
+                                            <a id="${
+                                                searchData[i].scholarship_id
+                                            }" class="button is-small is-success view-scholarships">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].scholarship_id}" class="button is-small is-info edit-scholarships">Edit</a>
+                                            <a id="${
+                                                searchData[i].scholarship_id
+                                            }" class="button is-small is-info edit-scholarships">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].scholarship_id}" class="button is-small is-danger delete-scholarships">Delete</a>
+                                            <a id="${
+                                                searchData[i].scholarship_id
+                                            }" class="button is-small is-danger delete-scholarships">Delete</a>
                                         </td>
                                     </tr>`;
                     searchdataCount += 1;
                 }
                 scholarshipstabledata.innerHTML = htmlData;
-                
+
                 fillOptionEmptyTable();
                 viewScholarshipsPaginationData();
                 addScholarshipsPaginationData();
@@ -1037,8 +1229,16 @@ function scholarshipsModule() {
             removeOptionPagination();
         }
 
-        scholarshipsSelected.addEventListener("change", getScholarshipsSelected, false);
-        scholarshipsSearch.addEventListener("keyup",getScholarshipsSearch, false);
+        scholarshipsSelected.addEventListener(
+            "change",
+            getScholarshipsSelected,
+            false
+        );
+        scholarshipsSearch.addEventListener(
+            "keyup",
+            getScholarshipsSearch,
+            false
+        );
     }
 
     loadInitialPagination();

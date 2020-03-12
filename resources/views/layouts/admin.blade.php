@@ -81,6 +81,10 @@
     <script type="text/javascript" src="{{asset('admin/js/settings/audittrail.js')}}"></script>
     @endif
     @endif
+    {{-- for profileinfo js---}}
+    @if (session('user_role') == 'superadmin' || session('user_role') == 'admin')
+    <script type="text/javascript" src="{{asset('admin/js/profile/profileinfo.js')}}"></script>
+    @endif
 </body>
 
 </html>

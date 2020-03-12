@@ -19,7 +19,7 @@
                                     <div class="field">
                                         <label for="graduate-lrn" class="graduate-modal-title">LRN:</label>
                                         <div class="control">
-                                            <input id="graduate-lrn" class="input" type="text" disabled />
+                                            <input id="graduate-lrn" class="input" type="text" readonly />
                                         </div>
                                     </div>
                                 </div>
@@ -27,14 +27,14 @@
                                     <div class="field">
                                         <label for="graduate-strand" class="graduate-modal-title">Strand:</label>
                                         <div class="control">
-                                            <input id="graduate-strand" class="input" type="text" disabled />
+                                            <input id="graduate-strand" class="input" type="text" readonly />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-status" class="graduate-modal-title">Status:</label>
-                                        <input id="graduate-status" type="text" class="input" disabled />
+                                        <input id="graduate-status" type="text" class="input" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -45,26 +45,26 @@
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-firstname" class="graduate-modal-title">Firstname:</label>
-                                        <input id="graduate-firstname" type="text" class="input" disabled />
+                                        <input id="graduate-firstname" type="text" class="input" readonly />
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-middlename">Middlename:</label>
-                                        <input type="text" id="graduate-middlename" class="input" disabled />
+                                        <input type="text" id="graduate-middlename" class="input" readonly />
                                     </div>
 
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <span for="graduate-lastname" class="graduate-modal-title">Lastname:</span>
-                                        <input id="graduate-lastname" class="input" type="text" disabled />
+                                        <input id="graduate-lastname" class="input" type="text" readonly />
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-address" class="graduate-modal-title">Address:</label>
-                                        <input id="graduate-address" class="input" type="text" disabled />
+                                        <input id="graduate-address" class="input" type="text" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -75,26 +75,26 @@
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-birthday" class="graduate-modal-title">Birthday:</label>
-                                        <input id="graduate-birthday" class="input" type="text" disabled />
+                                        <input id="graduate-birthday" class="input" type="text" readonly />
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-age" class="graduate-modal-title">Age:</label>
-                                        <input id="graduate-age" class="input" type="text" disabled />
+                                        <input id="graduate-age" class="input" type="text" readonly />
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-gender" class="graduate-modal-title">Gender:</label>
-                                        <input id="graduate-gender" class="input" type="text" disabled />
+                                        <input id="graduate-gender" class="input" type="text" readonly />
                                     </div>
                                 </div>
                                 <div class="column">
                                     <div class="field">
                                         <label for="graduate-civil-status" class="graduate-modal-title">Civil
                                             Status:</label>
-                                        <input id="graduate-civil-status" class="input" type="text" disabled />
+                                        <input id="graduate-civil-status" class="input" type="text" readonly />
                                     </div>
                                 </div>
                             </div>

@@ -10,21 +10,16 @@ use Illuminate\Support\Facades\DB;
 class profileInfoController extends Controller
 {
 
-    public function loadProfileInfoData()
+    public function loadProfileInfoData(Request $request)
     {
-        $loginAccount = Session::get('login_username');
-        $data = DB::table('admins')->where('username', $loginAccount)->first();
+        $profileID = $request->query('id');
 
+        $profileData = DB::table('admins')
+            ->select('username', 'profile_pic', 'email', 'phone')
+            ->where('admin_id', $profileID)
+            ->get();
 
-        $password = $data->password;
-        $phone = $data->phone;
-        $email = $data->email;
-        $profilepic = $data->profile_pic;
-
-        Session::put('login_password', $password);
-        Session::put('login_phone', $phone);
-        Session::put('login_email', $email);
-        Session::put('login_profilepic', $profilepic);
+        return response()->json(['profile_data' => $profileData]);
     }
 
     public function getProfile()
@@ -33,7 +28,9 @@ class profileInfoController extends Controller
         return view('admin.profile.profileinfo');
     }
 
-    public function editProfile(Request $request)
+    public function editProfile(Request $request, $id)
     {
+        $editUserID = $id;
+        return response()->json(['status' => $editUserID]);
     }
 }

@@ -498,15 +498,18 @@ Route::post('/admin/accounts/students', 'admin\accounts\studentsController@addSt
 
 Route::get('/admin/profile', 'admin\profileinfo\profileInfoController@getProfile')->middleware(
     'checkIfLogout',
-    'checkAdminRole',
-    'checkIfSuperadmin'
+    'checkProfileRole'
 );
 
-Route::put('/admin/profile/{id}', 'admin\profileinfo\profileInfoController@editProfile')->middleware(
+Route::get('admin/profile/account',  'admin\profileinfo\profileInfoController@loadProfileInfoData')->middleware(
     'checkIfLogout',
-    'checkStudentRole',
-    'admin\profile\validateProfile'
-
+    'checkProfileRole',
+);
+Route::patch('/admin/profile/account/{id}', 'admin\profileinfo\profileInfoController@editProfile')->middleware(
+    'checkIfLogout',
+    'checkProfileRole',
+    'validateAdminProfile',
+    'sanitizeAdminProfile'
 );
 
 
@@ -530,5 +533,4 @@ Route::put('/student/profile/{id}', 'student\profileinfo\profileInfoController@e
     'checkIfLogout',
     'checkStudentRole',
     'student\profile\validateProfile'
-
 );
