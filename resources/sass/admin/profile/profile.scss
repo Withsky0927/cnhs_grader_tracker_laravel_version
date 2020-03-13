@@ -5,12 +5,31 @@
 #profile-update-modal {
     z-index: 60;
 }
+#notification-profile-modal {
+    z-index: 90;
+}
 .profile-update-head {
     padding: 1rem;
 }
 
 // for mobile devices
 @media all and (max-width: 768px) {
+    #notification-profile-modal {
+        #notification-profile-card {
+            width: 70vw;
+        }
+    }
+
+    #discard-profile-modal {
+        #discard-profile-card {
+            width: 70vw;
+        }
+    }
+    #confirm-profile-modal {
+        #confirm-profile-card {
+            width: 70vw;
+        }
+    }
     #profile-info-modal {
         #profile-info-card {
             width: 70vw;
@@ -24,6 +43,21 @@
 }
 
 @media all and (min-width: 769px) and (max-width: 1023px) {
+    #notification-profile-modal {
+        #notification-profile-card {
+            width: 70vw;
+        }
+    }
+    #discard-profile-modal {
+        #discard-profile-card {
+            width: 70vw;
+        }
+    }
+    #confirm-profile-modal {
+        #confirm-profile-card {
+            width: 70vw;
+        }
+    }
     #profile-info-modal {
         #profile-info-card {
             width: 70vw;
@@ -38,6 +72,11 @@
 
 // for desktop
 @media all and (min-width: 1024px) and (max-width: 1215px) {
+    #notification-profile-modal {
+        #notification-profile-card {
+            width: 50vw;
+        }
+    }
     #profile-info-modal {
         #profile-info-card {
             width: 50vw;
@@ -52,6 +91,11 @@
 
 // for widescreen
 @media all and (min-width: 1216px) and (max-width: 1407px) {
+    #notification-profile-modal {
+        #notification-profile-card {
+            width: 30vw;
+        }
+    }
     #profile-info-modal {
         #profile-info-card {
             width: 50vw;
@@ -66,6 +110,11 @@
 
 // for fullhd
 @media all and (min-width: 1408px) {
+    #notification-profile-modal {
+        #notification-profile-card {
+            width: 30vw;
+        }
+    }
     #profile-info-modal {
         #profile-info-card {
             width: 50vw;

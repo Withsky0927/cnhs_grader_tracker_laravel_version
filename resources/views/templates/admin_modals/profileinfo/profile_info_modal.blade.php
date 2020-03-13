@@ -1,9 +1,27 @@
 {{--  submodal for profileinfo --}}
+
+<div class="modal animated fadeIn is-radiusless" id="notification-profile-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card" id="notification-profile-card">
+        <header class="modal-card-head profile-update-head" id="notif-profile-head">
+            <p class="modal-card-title is-size-5 has-text-white" id="notification-profile-title"></p>
+            <button class="delete is-small" id="notification-profile-close-btn" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="columns is-multiline is-mobile">
+                <div class="column is-12">
+                    <ul id="notification-text">
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 <div class="modal animated fadeIn" id="discard-profile-modal">
     <div class="modal-background"></div>
-    <div class="modal-card">
+    <div class="modal-card" id="discard-profile-card">
         <header class="modal-card-head profile-update-head">
-            <p class="modal-card-title is-size-6">Discard Changes</p>
+            <p class="modal-card-title is-size-5">Discard Changes</p>
         </header>
         <section class="modal-card-body">
             <div class="columns is-multiline is-mobile">
@@ -20,9 +38,9 @@
 </div>
 <div class="modal animated fadeIn" id="confirm-profile-modal">
     <div class="modal-background"></div>
-    <div class="modal-card">
+    <div class="modal-card" id="confirm-profile-card">
         <header class="modal-card-head profile-update-head">
-            <p class="modal-card-title is-size-6">Confirm Changes</p>
+            <p class="modal-card-title is-size-5">Confirm Changes</p>
         </header>
         <section class="modal-card-body">
             <div class="columns is-multiline is-mobile">
@@ -44,8 +62,7 @@
         <header class="modal-card-head profile-update-head">
             <p class="modal-card-title is-size-6">Update Profile Information</p>
         </header>
-        <form method="post" autocomplete="off" enctype="multipart/form-data" name="update-profile-form"
-            id="update-profile-form">
+        <form method="post" autocomplete="off" enctype="multipart/form-data" id="update-profile-form">
             @method('PATCH')
             <section class="modal-card-body">
                 <div class="columns is-multiline is-mobile">
@@ -59,10 +76,9 @@
                                                 Picture</label>
                                             <div id="file-js-example" class="file has-name">
                                                 <label class="file-label">
-                                                    <input class="file-input" type="file"
-                                                        accept=".jpg ,.png , .jpeg , .JPG , .JPEG"
-                                                        id="update-profile-pic" name="profile_pic">
-                                                    <span class="file-cta">
+                                                    <input class="file-input" type="file" accept="image/jpeg ,image/png"
+                                                        id="update-profile-pic">
+                                                    <span class=" file-cta">
                                                         <span class="file-icon">
                                                             <i class="fas fa-upload"></i>
                                                         </span>
@@ -70,7 +86,7 @@
                                                             Upload a Photo..
                                                         </span>
                                                     </span>
-                                                    <span class="file-name">
+                                                    <span class="file-name" id="new-admin-profile-img-name">
                                                         No Photo uploaded
                                                     </span>
                                                 </label>
@@ -84,7 +100,7 @@
                                             <div class="control">
                                                 <div class="control has-icons-left has-icons-right">
                                                     <input class="input" maxlength="50" type="text"
-                                                        id="update-profile-username" name="username">
+                                                        id="update-profile-username">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-user"></i>
                                                     </span>
@@ -102,7 +118,7 @@
                                             <div class="control">
                                                 <div class="control has-icons-left has-icons-right">
                                                     <input class="input" maxlength="150" type="text"
-                                                        id="update-profile-email" name="email">
+                                                        id="update-profile-email">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-envelope"></i>
                                                     </span>
@@ -115,8 +131,7 @@
                                             <label class="label is-size-7" for="update-profile-number">Phone:</label>
                                             <div class="control">
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="text" id="update-profile-number"
-                                                        name="phone">
+                                                    <input class="input" type="number" id="update-profile-number">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-mobile"></i>
                                                     </span>

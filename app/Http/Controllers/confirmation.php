@@ -24,11 +24,11 @@ class confirmation extends Controller
 
         $RegistrationData = Session::get('guests_confirmation');
         $NewGuestUserId = Str::uuid()->toString();
-        $imagePath = Session::get('imagepath');
+        $imageData = Session::get('image_data');
         DB::table('guests')
             ->insert([
                 'guest_id' => $NewGuestUserId,
-                'profile_pic' => $imagePath,
+                'profile_pic' => $imageData,
                 'username' => $RegistrationData['guest']['username'],
                 'password' => $RegistrationData['guest']['hashedPassword'],
                 'email' => $RegistrationData['guest']['email'],

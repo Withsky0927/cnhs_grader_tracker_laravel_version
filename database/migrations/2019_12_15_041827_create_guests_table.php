@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateGuestsTable extends Migration
 {
@@ -11,6 +12,11 @@ class CreateGuestsTable extends Migration
      *
      * @return void
      */
+
+    private function changeToBlobType()
+    {
+        DB::statement('ALTER TABLE `guests` CHANGE `profile_pic` `profile_pic` LONGBLOB NULL');
+    }
     public function up()
     {
         Schema::create('guests', function (Blueprint $table) {
@@ -44,6 +50,8 @@ class CreateGuestsTable extends Migration
             $table->date('createdAt');
             $table->date('updatedAt')->nullable();
         });
+
+        $this->changeToBlobType();
     }
 
     /**

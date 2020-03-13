@@ -306,7 +306,7 @@ function jobFairsModule() {
                         jobAvailability: `${jobAvailYear.value}-${jobAvailMonth.value}-${jobAvailDay.value}`
                     }
                 );
-
+                console.log(responseAddData);
                 if (responseAddData.data.errors) {
                     for (
                         let i = 0, index = responseAddData.data.errors.length;
@@ -315,12 +315,24 @@ function jobFairsModule() {
                     ) {
                         errorsHtml += `<p class="has-text-left">${responseAddData.data.errors[i]}</p>`;
                     }
+
                     addErrorContainer.innerHTML = errorsHtml;
                     addErrorContainer.style.display = "block";
+
+                    jobFairAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
                 } else if (!responseAddData.data.errors) {
                     addSuccessContainer.innerHTML =
                         '<p class="has-text-centered">Data Successfully Added!</p>';
                     addSuccessContainer.style.display = "block";
+
+                    jobFairAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
+
                     loadInitialPagination();
                 }
             } catch (error) {
@@ -482,10 +494,18 @@ function jobFairsModule() {
                         }
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     } else if (!responseEditData.data.errors) {
                         editSuccessContainer.innerHTML =
                             '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     }
                     loadInitialPagination();
                 } catch (error) {
@@ -591,8 +611,14 @@ function jobFairsModule() {
                 } catch (error) {
                     console.log(error);
                 }
+
+                jobFairModalConfirmBtn.removeEventListener(
+                    "click",
+                    ConfirmDelete
+                );
                 jobFairDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
+
                 loadInitialPagination();
             }
 

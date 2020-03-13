@@ -20,29 +20,13 @@ class ResizeGuestProfilePic
     {
 
         $image = $request->file('profile_pic');
-        $imagNameWithExtension = $image->getClientOriginalExtension();
 
-
-        //get image without extension
-        $imagename = pathinfo($imagNameWithExtension, PATHINFO_FILENAME);
-        //get image extension
-
-        $extension = $image->getClientOriginalExtension();
-
-        //set image to store
-        $imagenametostore = $imagename . '-' . time() . '.' . $extension;
-
-        //Resize image here
-        $profile_pic_path = storage_path('app/uploads/guests/images/profile_pic/' . $imagenametostore);
-        $img = Image::make($image->getRealPath())->resize(150, 150, function ($constraint) {
+        $img = Image::make($image->getRealPath())->resize(170, 170, function ($constraint) {
             $constraint->aspectRatio();
-        });
-        $img->save($profile_pic_path);
-
-        $profilePicPath =  'app/uploads/guests/images/profile_pic/' . $imagenametostore;
+        })->encode('data-url');
 
 
-        $request->session()->put('imagepath', $profilePicPath);
+        $request->session()->put('image_data', $img);
         return $next($request);
     }
 }

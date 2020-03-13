@@ -262,10 +262,20 @@ function examinationsModule() {
                     }
                     addErrorContainer.innerHTML = errorsHtml;
                     addErrorContainer.style.display = "block";
+
+                    examinationsAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
                 } else if (!responseAddData.data.errors) {
                     addSuccessContainer.innerHTML =
                         '<p class="has-text-centered">Data Successfully Added!</p>';
                     addSuccessContainer.style.display = "block";
+
+                    examinationsAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
                     loadInitialPagination();
                 }
             } catch (error) {
@@ -403,10 +413,18 @@ function examinationsModule() {
                         }
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     } else if (!responseEditData.data.errors) {
                         editSuccessContainer.innerHTML =
                             '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     }
                     loadInitialPagination();
                 } catch (error) {
@@ -452,12 +470,6 @@ function examinationsModule() {
             } catch (error) {
                 console.log(error);
             }
-
-            examinationsEditClose.addEventListener(
-                "click",
-                removeEditModal,
-                false
-            );
         }
 
         function setEditModal(event) {
@@ -514,6 +526,11 @@ function examinationsModule() {
                 }
                 examinationsDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
+
+                examinationsModalConfirmBtn.removeEventListener(
+                    "click",
+                    ConfirmDelete
+                );
                 loadInitialPagination();
             }
 

@@ -112,6 +112,8 @@ class Kernel extends HttpKernel
         'checkProfileRole' => \App\Http\Middleware\admin\profile\checkProfileRole::class,
         'validateAdminProfile' => \App\Http\Middleware\admin\profile\validateProfile::class,
         'sanitizeAdminProfile' => \App\Http\Middleware\admin\profile\sanitizeProfile::class,
+        'checkAdminProfileInfoExist' => \App\Http\Middleware\admin\profile\checkProfileInfoExist::class,
+        'processAdminProfileImage' => \App\Http\Middleware\admin\profile\processProfileImage::class,
 
 
         // for Security Prevention Middlewares

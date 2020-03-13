@@ -6,10 +6,8 @@
  *      A. Showing and closing Profile information view and edit form.
  *      B. will get and edit exisiting data from login user account.
  */
-
-"use strict";
-
 (() => {
+    "use strict";
     const profileInfoModule = () => {
         const html = document.getElementsByTagName("html")[0];
 
@@ -25,6 +23,9 @@
         const confirmUpdateProfileModal = document.querySelector(
             "#confirm-profile-modal"
         );
+        const notifUpdateProfileModal = document.querySelector(
+            "#notification-profile-modal"
+        );
 
         /* main profile info form field dom manipulation variables */
         const existEmail = document.querySelector("#show-profile-email");
@@ -35,6 +36,9 @@
         const updateEmail = document.querySelector("#update-profile-email");
         const updatePhone = document.querySelector("#update-profile-number");
         const updateprofilePic = document.querySelector("#update-profile-pic");
+        const updateProfilePicName = document.querySelector(
+            "#new-admin-profile-img-name"
+        );
         const updateUsername = document.querySelector(
             "#update-profile-username"
         );
@@ -50,31 +54,107 @@
         let responseData;
         let userID = "";
 
+        let formData;
+
         const mainCloseBtnHandler = () => {
             html.classList.remove("is-clipped");
             mainProfileModal.classList.remove("is-active");
         };
 
         const submitUpdatedProfileData = event => {
+            event.preventDefault();
+            let notifErrors;
+            let notifErrLen;
+            let errorsElement = "";
+
             const confirmUpdateButton = document.querySelector(
                 "#confirm-profile-update"
             );
             const cancelConfirmUpdateButton = document.querySelector(
                 "#cancel-confirm-profile-update"
             );
-            event.preventDefault();
+
+            const notifProfileTitle = document.querySelector(
+                "#notification-profile-title"
+            );
+            const notifProfileTxt = document.querySelector(
+                "#notification-text"
+            );
+            const notificationCloseBtn = document.querySelector(
+                "#notification-profile-close-btn"
+            );
+            const notifProfileHead = document.querySelector(
+                "#notif-profile-head"
+            );
+
+            const showNotificationModal = err => {
+                notifUpdateProfileModal.classList.add("is-active");
+                confirmUpdateProfileModal.classList.remove("is-active");
+
+                if (err.data.errors) {
+                    notifErrors = err.data.errors;
+                    notifErrLen = err.data.errors.length;
+
+                    notifProfileTitle.textContent =
+                        "Profile Information update failed";
+                    notifProfileHead.classList.add("has-background-danger");
+                    notifProfileHead.classList.remove("has-background-success");
+                    for (let i = 0; i < notifErrLen; i++) {
+                        errorsElement += `<li class="is-size-6">${notifErrors[i]}</li>`;
+                    }
+                    notifProfileTxt.innerHTML = errorsElement;
+                } else if (!err.data.errors) {
+                    notifProfileHead.classList.add("has-background-success");
+                    notifProfileHead.classList.remove("has-background-danger");
+                    notifProfileTxt.innerHTML = `<li class="is-size-6">Profile information successfully Updated!</li>`;
+                }
+
+                notificationCloseBtn.addEventListener(
+                    "click",
+                    () => {
+                        notifUpdateProfileModal.classList.remove("is-active");
+                        notifProfileTxt.innerHTML = "<li></li>";
+                        notifProfileTitle.textContent = "";
+                        notifProfileHead.classList.remove(
+                            "has-background-success"
+                        );
+                        notifProfileHead.classList.remove(
+                            "has-background-danger"
+                        );
+                    },
+                    false
+                );
+            };
 
             const sendProfileInfoToDatabase = async () => {
+                formData = new FormData();
+                formData.append("profile_pic", updateprofilePic.files[0]);
+                formData.append("username", updateUsername.value);
+                formData.append("email", updateEmail.value);
+                formData.append("phone", updatePhone.value);
+                formData.append("_method", "PATCH");
                 try {
-                    responseData = await axios.patch(
-                        `/admin/profile/account/${userID}`,
-                        new FormData(updateProfileForm)
-                    );
+                    responseData = await axios({
+                        url: `/admin/profile/account/${userID}`,
+                        method: "post",
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                            enctype: "multipart/form-data"
+                        },
+                        data: formData
+                    });
+
+                    //check if there are no errors or there are errors
                     console.log(responseData);
+                    showNotificationModal(responseData);
                 } catch (error) {
                     console.log(error.response);
                     console.log(error);
                 }
+                confirmUpdateButton.removeEventListener(
+                    "click",
+                    sendProfileInfoToDatabase
+                );
             };
 
             const cancelProfileDBSubmittion = () => {
@@ -137,7 +217,9 @@
                         updateUsername.value = "";
                         updatePhone.value = "";
                         updateprofilePic.value = "";
+                        updateProfilePicName.textContent = "No Photo uploaded";
                         discardProfileModal.classList.remove("is-active");
+                        return false;
                     },
                     false
                 );
@@ -145,6 +227,7 @@
                     "click",
                     () => {
                         discardProfileModal.classList.remove("is-active");
+                        return false;
                     },
                     false
                 );
@@ -188,7 +271,6 @@
 
         const showProfileInfo = event => {
             userID = event.target.getAttribute("data-userid");
-            console.log(userID);
             const updateProfileBtn = document.querySelector(
                 "#update-profile-info-button"
             );
@@ -201,8 +283,7 @@
                 existUsername.value = data.username;
                 existEmail.value = data.email;
                 existPhone.value = data.phone;
-                existProfilePic.src = "sasas";
-                existProfilePic.alt = "asasas";
+                existProfilePic.src = data.profile_pic;
                 html.classList.add("is-clipped");
                 mainProfileModal.classList.add("is-active");
             };

@@ -234,10 +234,18 @@ function scholarshipsModule() {
                     }
                     addErrorContainer.innerHTML = errorsHtml;
                     addErrorContainer.style.display = "block";
+                    scholarshipsAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
                 } else if (!responseAddData.data.errors) {
                     addSuccessContainer.innerHTML =
                         '<p class="has-text-centered">Data Successfully Added!</p>';
                     addSuccessContainer.style.display = "block";
+                    scholarshipsAddBtn.removeEventListener(
+                        "click",
+                        insertDataIntoDatabase
+                    );
                     loadInitialPagination();
                 }
             } catch (error) {
@@ -372,11 +380,20 @@ function scholarshipsModule() {
                         }
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     } else if (!responseEditData.data.errors) {
                         editSuccessContainer.innerHTML =
                             '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
+                        editConfirmBtn.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     }
+
                     loadInitialPagination();
                 } catch (error) {
                     console.log(error.response);
@@ -483,6 +500,11 @@ function scholarshipsModule() {
                 }
                 scholarshipsDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
+
+                scholarshipsModalConfirmBtn.removeEventListener(
+                    "click",
+                    ConfirmDelete
+                );
                 loadInitialPagination();
             }
 

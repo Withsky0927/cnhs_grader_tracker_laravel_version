@@ -17,8 +17,10 @@ class validateProfile
     public function handle($request, Closure $next)
     {
 
+
         $rules = [
             'username' => [
+                'nullable',
                 'string',
                 'between:2,50',
                 function ($attribute, $value, $fail) {
@@ -29,9 +31,9 @@ class validateProfile
                 }
             ],
             'phone' => [
-                'required',
-                'string',
-                'between:10,20',
+                'nullable',
+                'numeric',
+                'digits_between:10,20',
                 function ($attribute, $value, $fail) {
                     $regex = '/^\s/';
                     if (preg_match($regex, $value)) {
@@ -39,14 +41,13 @@ class validateProfile
                     }
                 }
             ],
-            'profile_pic' => 'mimes:jpeg,png|image|required|between:1,5000',
-            'email' => 'required|email|max:255',
+            'profile_pic' => 'required_without:mimes:jpeg,png,image,between:1,5000,string',
+            'email' => 'nullable|email|max:150',
         ];
 
         $profileData = $request->all();
 
         $validationResult = Validator::make($profileData, $rules);
-
 
 
         if ($validationResult->fails()) {

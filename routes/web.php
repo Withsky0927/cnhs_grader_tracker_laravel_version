@@ -507,8 +507,9 @@ Route::get('admin/profile/account',  'admin\profileinfo\profileInfoController@lo
 );
 Route::patch('/admin/profile/account/{id}', 'admin\profileinfo\profileInfoController@editProfile')->middleware(
     'checkIfLogout',
-    'checkProfileRole',
     'validateAdminProfile',
+    'checkAdminProfileInfoExist',
+    'processAdminProfileImage',
     'sanitizeAdminProfile'
 );
 

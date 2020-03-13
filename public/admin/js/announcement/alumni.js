@@ -13,7 +13,7 @@ function jobFairsModule() {
 
     const jobFairForm = document.querySelector("#jobfair-form");
     let pageNextAndPrev = 1;
-    
+
     jobFairForm.addEventListener(
         "submit",
         function(e) {
@@ -31,17 +31,18 @@ function jobFairsModule() {
         }
     };
 
-   
-    
     // get the year - from 1950 to present
-    function manipulateDate (id)  {
+    function manipulateDate(id) {
         const year = document.querySelector(id);
         let allDate = "";
         let currentYear = 0;
 
-        if (id === '#add_job_posted_year' || id === '#edit_job_posted_year') {
+        if (id === "#add_job_posted_year" || id === "#edit_job_posted_year") {
             currentYear = new Date().getFullYear();
-        } else if (id === '#add_job_avail_year' || id === "#edit_job_avail_year") {
+        } else if (
+            id === "#add_job_avail_year" ||
+            id === "#edit_job_avail_year"
+        ) {
             currentYear = new Date().getFullYear() + 2;
         }
         for (
@@ -63,37 +64,37 @@ function jobFairsModule() {
         }
         year.innerHTML += allDate;
     }
-    
 
-
-    function removeOptionPagination () {
-        
-        const paginationOptionLink = document.querySelectorAll('.pagination-link');
-        
+    function removeOptionPagination() {
+        const paginationOptionLink = document.querySelectorAll(
+            ".pagination-link"
+        );
 
         for (let i = 0; i < paginationOptionLink.length; i++) {
             paginationOptionLink[i].style.visibility = "hidden";
         }
-       
     }
-    function viewJobFairPaginationData ()  {
-        
+    function viewJobFairPaginationData() {
         const viewJobFairButtton = document.querySelectorAll(".view-jobfair");
         const viewJobFairModal = document.querySelector("#jobfair-view-modal");
-        const jobFairViewClose = document.querySelector("#jobfair-view-modal-close");
+        const jobFairViewClose = document.querySelector(
+            "#jobfair-view-modal-close"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
 
-        function insertJobFairViewData (data) {
+        function insertJobFairViewData(data) {
             console.log(data);
             const jobName = document.querySelector("#view_job_name");
             const jobStrand = document.querySelector("#view_job_strand");
             const jobCompany = document.querySelector("#view_job_company");
             const jobAddress = document.querySelector("#view_job_address");
-            const jobDescription = document.querySelector("#view_job_description");
+            const jobDescription = document.querySelector(
+                "#view_job_description"
+            );
             const jobQualification = document.querySelector("#view_job_qual");
             const jobPosted = document.querySelector("#view_job_posted");
             const jobAvailability = document.querySelector("#view_job_avail");
-            
+
             jobName.value = data.job;
 
             jobStrand.value = data.strand.toUpperCase();
@@ -103,27 +104,23 @@ function jobFairsModule() {
             jobQualification.value = data.job_qualification;
             jobPosted.value = data.job_posted;
             jobAvailability.value = data.job_avail;
-
         }
-        function removeViewModalContainer  ()  {
+        function removeViewModalContainer() {
             htmlClipped.classList.remove("is-clipped");
             viewJobFairModal.classList.remove("is-active");
         }
-        function showViewModalContainer ()  {
+        function showViewModalContainer() {
             htmlClipped.classList.add("is-clipped");
             viewJobFairModal.classList.add("is-active");
-        
 
-            
             jobFairViewClose.addEventListener(
                 "click",
                 removeViewModalContainer,
                 false
             );
         }
-        async function setViewModal (e)  {
+        async function setViewModal(e) {
             const jobfairViewID = e.target.getAttribute("id").toString();
-        
 
             const getJobFairView = {
                 url: `/admin/announcement/jobfair/view/job?id=${jobfairViewID}`,
@@ -137,28 +134,45 @@ function jobFairsModule() {
             try {
                 const reponseViewData = await axios(getJobFairView);
                 viewData = reponseViewData.data;
-                
+
                 insertJobFairViewData(viewData.view_jobfair);
                 showViewModalContainer();
             } catch (error) {
                 console.log(error);
             }
+            for (let i = 0, index = viewJobFairButtton.length; i < index; i++) {
+                viewJobFairButtton[i].removeEventListener(
+                    "click",
+                    setViewModal
+                );
+            }
         }
         for (let i = 0, index = viewJobFairButtton.length; i < index; i++) {
-            viewJobFairButtton[i].addEventListener("click", setViewModal, false);
+            viewJobFairButtton[i].addEventListener(
+                "click",
+                setViewModal,
+                false
+            );
         }
-    
     }
 
-    function addJobFairPaginationData (event) {
+    function addJobFairPaginationData(event) {
         const addJobFairButton = document.querySelector("#jobfair-add-button");
         const jobFairAddModal = document.querySelector("#jobfair-add-modal");
         const htmlClipped = document.querySelector("#clippedmodifier");
-        const jobFairAddClose = document.querySelector("#add-jobfair-modal-close");
+        const jobFairAddClose = document.querySelector(
+            "#add-jobfair-modal-close"
+        );
         const jobFairAddBtn = document.querySelector("#add-jobfair-buttton");
-        const jobFairAddCancel = document.querySelector("#add-jobfair-buttton-cancel");
-        const addErrorContainer = document.querySelector("#add-error-container");
-        const addSuccessContainer = document.querySelector("#add-success-container");
+        const jobFairAddCancel = document.querySelector(
+            "#add-jobfair-buttton-cancel"
+        );
+        const addErrorContainer = document.querySelector(
+            "#add-error-container"
+        );
+        const addSuccessContainer = document.querySelector(
+            "#add-success-container"
+        );
 
         const jobName = document.querySelector("#add_job_name");
         const jobStrand = document.querySelector("#add_job_strand");
@@ -174,11 +188,10 @@ function jobFairsModule() {
         const jobAvailDay = document.querySelector("#add_job_avail_day");
         const jobAvailYear = document.querySelector("#add_job_avail_year");
 
-        
-        function showAddModalContainer () {
+        function showAddModalContainer() {
             htmlClipped.classList.add("is-clipped");
             jobFairAddModal.classList.add("is-active");
-            
+
             jobName.value = "";
             jobStrand.selectedIndex = 0;
             jobCompany.value = "";
@@ -186,7 +199,7 @@ function jobFairsModule() {
             jobDescription.value = "";
             jobQualification.value = "";
 
-            jobPostedMonth.selectedIndex  = 0;
+            jobPostedMonth.selectedIndex = 0;
             jobPostedDay.selectedIndex = 0;
             jobPostedYear.selectedIndex = 0;
 
@@ -199,9 +212,8 @@ function jobFairsModule() {
                 removeAddModalContainer,
                 false
             );
-            
         }
-        function removeAddModalContainer ()  {
+        function removeAddModalContainer() {
             htmlClipped.classList.remove("is-clipped");
             jobFairAddModal.classList.remove("is-active");
             let errSiblings = addErrorContainer.previousSibling;
@@ -213,34 +225,41 @@ function jobFairsModule() {
             while (succSiblings && succSiblings.nodeType !== 1) {
                 succSiblings = succSiblings.previousSibling;
             }
-            if(errSiblings) {
+            if (errSiblings) {
                 errSiblings.parentNode.removeChild(errSiblings);
             }
-            if(succSiblings) {
+            if (succSiblings) {
                 succSiblings.parentNode.removeChild(succSiblings);
             }
             addErrorContainer.style.display = "none";
             addSuccessContainer.style.display = "none";
-            
         }
-        
-        
-        async function insertDataIntoDatabase  (event) {
-           
+
+        async function insertDataIntoDatabase(event) {
             let errorsHtml = "";
-        
-            if (!jobName.value || !jobStrand.value || !jobAddress.value 
-                || !jobCompany.value || !jobDescription.value || !jobQualification.value
-                || jobPostedDay.value === "Day" || jobAvailMonth.value === "Month" || jobAvailYear.value === "Year" 
-                || jobAvailDay.value === "Day" || jobAvailMonth.value === "Month" || jobAvailYear.value === "Year"
-                ) {
-                addErrorContainer.innerHTML = "<p class=\"has-text-centered\">Incomplete Field or invalid Field! please Complete Required fields!</p>";
+
+            if (
+                !jobName.value ||
+                !jobStrand.value ||
+                !jobAddress.value ||
+                !jobCompany.value ||
+                !jobDescription.value ||
+                !jobQualification.value ||
+                jobPostedDay.value === "Day" ||
+                jobAvailMonth.value === "Month" ||
+                jobAvailYear.value === "Year" ||
+                jobAvailDay.value === "Day" ||
+                jobAvailMonth.value === "Month" ||
+                jobAvailYear.value === "Year"
+            ) {
+                addErrorContainer.innerHTML =
+                    '<p class="has-text-centered">Incomplete Field or invalid Field! please Complete Required fields!</p>';
                 addErrorContainer.style.display = "block";
             }
             try {
                 const responseAddData = await axios.post(
-                    '/admin/announcement/jobfair',
-                     {
+                    "/admin/announcement/jobfair",
+                    {
                         jobName: jobName.value,
                         jobStrand: jobStrand.value,
                         jobCompany: jobCompany.value,
@@ -251,39 +270,56 @@ function jobFairsModule() {
                         jobAvailability: `${jobAvailYear.value}-${jobAvailMonth.value}-${jobAvailDay.value}`
                     }
                 );
-                
-                
 
                 if (responseAddData.data.errors) {
-                    for (let i = 0 , index = responseAddData.data.errors.length; i < index; i++ ) {
+                    for (
+                        let i = 0, index = responseAddData.data.errors.length;
+                        i < index;
+                        i++
+                    ) {
                         errorsHtml += `<p class="has-text-left">${responseAddData.data.errors[i]}</p>`;
                     }
                     addErrorContainer.innerHTML = errorsHtml;
-                    addErrorContainer.style.display = "block";  
+                    addErrorContainer.style.display = "block";
                 } else if (!responseAddData.data.errors) {
-                    addSuccessContainer.innerHTML = "<p class=\"has-text-centered\">Data Successfully Added!</p>";
+                    addSuccessContainer.innerHTML =
+                        '<p class="has-text-centered">Data Successfully Added!</p>';
                     addSuccessContainer.style.display = "block";
                     loadInitialPagination();
                 }
-            } catch(error) {
+            } catch (error) {
                 console.log(error);
             }
-        } 
+            jobFairAddBtn.removeEventListener("click", insertDataIntoDatabase);
+        }
 
-
-        jobFairAddBtn.addEventListener('click' , insertDataIntoDatabase , false);
-        jobFairAddCancel.addEventListener('click' ,removeAddModalContainer , false);
-        addJobFairButton.addEventListener('click' , showAddModalContainer , false);
+        jobFairAddBtn.addEventListener("click", insertDataIntoDatabase, false);
+        jobFairAddCancel.addEventListener(
+            "click",
+            removeAddModalContainer,
+            false
+        );
+        addJobFairButton.addEventListener(
+            "click",
+            showAddModalContainer,
+            false
+        );
     }
 
-    function editJobFairPaginationData () {
+    function editJobFairPaginationData() {
         const editJobFairButton = document.querySelectorAll(".edit-jobfair");
         const jobFairEditmodal = document.querySelector("#jobfair-edit-modal");
-        const jobFairEditClose = document.querySelector("#edit-jobfair-modal-close");
+        const jobFairEditClose = document.querySelector(
+            "#edit-jobfair-modal-close"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
-        const editConfirmBtn = document.querySelector("#edit-jobfair-buttton-update");
-        const editCancelBtn = document.querySelector("#edit-jobfair-buttton-cancel");
-        
+        const editConfirmBtn = document.querySelector(
+            "#edit-jobfair-buttton-update"
+        );
+        const editCancelBtn = document.querySelector(
+            "#edit-jobfair-buttton-cancel"
+        );
+
         const jobName = document.querySelector("#edit_job_name");
         const jobStrand = document.querySelector("#edit_job_strand");
         const jobCompany = document.querySelector("#edit_job_company");
@@ -297,12 +333,16 @@ function jobFairsModule() {
         const jobAvailDay = document.querySelector("#edit_job_avail_day");
         const jobAvailYear = document.querySelector("#edit_job_avail_year");
 
-        const editErrorContainer = document.querySelector("#edit-error-container");
-        const editSuccessContainer = document.querySelector("#edit-success-container");
+        const editErrorContainer = document.querySelector(
+            "#edit-error-container"
+        );
+        const editSuccessContainer = document.querySelector(
+            "#edit-success-container"
+        );
         let jobFairId = "";
         let errorsHtml = "";
 
-        function removeEditModal  () {
+        function removeEditModal() {
             jobFairEditmodal.classList.remove("is-active");
             htmlClipped.classList.remove("is-clipped");
             jobName.value = "";
@@ -317,10 +357,9 @@ function jobFairsModule() {
             jobAvailMonth.selectedIndex = 0;
             jobAvailDay.selectedIndex = 0;
             jobAvailYear.selectedIndex = 0;
+        }
 
-        };
-
-        function removeEditModalContainer  () {
+        function removeEditModalContainer() {
             let errSiblings = editErrorContainer.previousSibling;
             let succSiblings = editSuccessContainer.previousSibling;
 
@@ -330,10 +369,10 @@ function jobFairsModule() {
             while (succSiblings && succSiblings.nodeType !== 1) {
                 succSiblings = succSiblings.previousSibling;
             }
-            if(errSiblings) {
+            if (errSiblings) {
                 errSiblings.parentNode.removeChild(errSiblings);
             }
-            if(succSiblings) {
+            if (succSiblings) {
                 succSiblings.parentNode.removeChild(succSiblings);
             }
             editErrorContainer.style.display = "none";
@@ -342,17 +381,25 @@ function jobFairsModule() {
             htmlClipped.classList.remove("is-clipped");
         }
 
-        async function updateModalData (event) { 
-
-            if (!jobName.value || !jobStrand.value === "Strand" || !jobAddress.value 
-                || !jobCompany.value || !jobDescription.value || !jobQualification.value
-                || jobPostedDay.value === "Day" || jobAvailMonth.value === "Month" || jobAvailYear.value === "Year" 
-                || jobAvailDay.value === "Day" || jobAvailMonth.value === "Month" || jobAvailYear.value === "Year"
-                ) {
-                editErrorContainer.innerHTML = "<p class=\"has-text-centered\">Incomplete Field or invalid Field! please Complete Required fields!</p>";
+        async function updateModalData(event) {
+            if (
+                !jobName.value ||
+                !jobStrand.value === "Strand" ||
+                !jobAddress.value ||
+                !jobCompany.value ||
+                !jobDescription.value ||
+                !jobQualification.value ||
+                jobPostedDay.value === "Day" ||
+                jobAvailMonth.value === "Month" ||
+                jobAvailYear.value === "Year" ||
+                jobAvailDay.value === "Day" ||
+                jobAvailMonth.value === "Month" ||
+                jobAvailYear.value === "Year"
+            ) {
+                editErrorContainer.innerHTML =
+                    '<p class="has-text-centered">Incomplete Field or invalid Field! please Complete Required fields!</p>';
                 editSuccessContainer.style.display = "block";
             } else {
-
                 try {
                     const responseEditData = await axios.put(
                         `/admin/announcement/jobfair/edit/job/${jobFairId}`,
@@ -370,20 +417,27 @@ function jobFairsModule() {
                     console.log(responseEditData);
 
                     if (responseEditData.data.errors) {
-                        for (let i = 0 , index = responseEditData.data.errors.length; i < index; i++ ) {
+                        for (
+                            let i = 0,
+                                index = responseEditData.data.errors.length;
+                            i < index;
+                            i++
+                        ) {
                             errorsHtml += `<p class="has-text-left">${responseEditData.data.errors[i]}</p>`;
                         }
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
                     } else if (!responseEditData.data.errors) {
-                        editSuccessContainer.innerHTML = "<p class=\"has-text-centered\">Data Successfully Updated!</p>";
+                        editSuccessContainer.innerHTML =
+                            '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
                     }
                     loadInitialPagination();
-                } catch(error) {
+                } catch (error) {
                     console.log(error.response);
                 }
             }
+            editConfirmBtn.removeEventListener("click", updateModalData);
         }
 
         function populateDefaultValue(responseData) {
@@ -405,15 +459,18 @@ function jobFairsModule() {
             jobAvailDay.value = jobEditAvailData[2];
             jobAvailYear.value = jobEditAvailData[0];
 
-            editCancelBtn.addEventListener("click" , removeEditModalContainer , false);
-            editConfirmBtn.addEventListener("click" , updateModalData , false);
+            editCancelBtn.addEventListener(
+                "click",
+                removeEditModalContainer,
+                false
+            );
+            editConfirmBtn.addEventListener("click", updateModalData, false);
         }
 
-        async function showEditModal (id) {
+        async function showEditModal(id) {
             jobFairEditmodal.classList.add("is-active");
             htmlClipped.classList.add("is-clipped");
 
-            
             const getJobFairView = {
                 url: `/admin/announcement/jobfair/view/job?id=${id}`,
                 method: "get",
@@ -430,65 +487,83 @@ function jobFairsModule() {
                 console.log(error);
             }
 
-            jobFairEditClose.addEventListener("click" , removeEditModal , false);
+            jobFairEditClose.addEventListener("click", removeEditModal, false);
         }
 
-        function setEditModal  (event) {
+        function setEditModal(event) {
             const editData = event.target.getAttribute("id").toString();
             showEditModal(editData);
         }
 
-        
-
-        for (let i = 0 , index = editJobFairButton.length ; i < index; i++) {
-            editJobFairButton[i].addEventListener("click" , setEditModal , false);
+        for (let i = 0, index = editJobFairButton.length; i < index; i++) {
+            editJobFairButton[i].addEventListener("click", setEditModal, false);
         }
     }
 
-    function removeJobFairPaginationData  ()  {
-        
-        const removeJobFairButtton = document.querySelectorAll(".delete-jobfair");
+    function removeJobFairPaginationData() {
+        const removeJobFairButtton = document.querySelectorAll(
+            ".delete-jobfair"
+        );
         const jobFairDeletemodal = document.querySelector(
             "#jobfair-delete-modal"
         );
         const jobFairDeleteClose = document.querySelector(
             "#delete-jobfair-modal-close"
         );
-        const jobFairModalConfirmBtn = document.querySelector("#delete-modal-button-confirm");
-        const jobFairModalCancelBtn = document.querySelector("#delete-modal-button-cancel");
+        const jobFairModalConfirmBtn = document.querySelector(
+            "#delete-modal-button-confirm"
+        );
+        const jobFairModalCancelBtn = document.querySelector(
+            "#delete-modal-button-cancel"
+        );
         const htmlClipped = document.querySelector("#clippedmodifier");
 
-        function setDeleteModal  (event) {
-
+        function setDeleteModal(event) {
             const dataToBeDelete = event.target.getAttribute("id").toString();
             jobFairDeletemodal.classList.add("is-active");
             htmlClipped.classList.add("is-clipped");
-            jobFairDeleteClose.addEventListener("click", removeDeleteModal, false);
+            jobFairDeleteClose.addEventListener(
+                "click",
+                removeDeleteModal,
+                false
+            );
 
-
-           async function ConfirmDelete (e) {
+            async function ConfirmDelete(e) {
                 e.preventDefault();
                 try {
-                    const responseData = await axios.delete(`/admin/announcement/jobfair/delete/job/${dataToBeDelete}`);
-                } catch(error) {
+                    const responseData = await axios.delete(
+                        `/admin/announcement/jobfair/delete/job/${dataToBeDelete}`
+                    );
+                } catch (error) {
                     console.log(error);
                 }
                 jobFairDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
+                jobFairModalConfirmBtn.removeEventListener(
+                    "click",
+                    ConfirmDelete
+                );
                 loadInitialPagination();
             }
 
-            function cancelDelete  ()  {
+            function cancelDelete() {
                 jobFairDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
             }
 
-            jobFairModalConfirmBtn.addEventListener("click" , ConfirmDelete , false);
-            jobFairModalCancelBtn.addEventListener("click" , cancelDelete, false);
-        };
+            jobFairModalConfirmBtn.addEventListener(
+                "click",
+                ConfirmDelete,
+                false
+            );
+            jobFairModalCancelBtn.addEventListener(
+                "click",
+                cancelDelete,
+                false
+            );
+        }
 
-        function removeDeleteModal  ()  {
-            
+        function removeDeleteModal() {
             jobFairDeletemodal.classList.remove("is-active");
             htmlClipped.classList.remove("is-clipped");
         }
@@ -505,7 +580,7 @@ function jobFairsModule() {
     manipulateDate("#add_job_avail_year");
     manipulateDate("#edit_job_posted_year");
     manipulateDate("#edit_job_avail_year");
-    function removePrevAndNext  ()  {
+    function removePrevAndNext() {
         paginateNext.style.visibility = "hidden";
         paginatePrev.style.visibility = "hidden";
 
@@ -513,25 +588,24 @@ function jobFairsModule() {
         //paginatePrev.setAttribute("disabled", "");
     }
 
-    function addPrevAndNext () {
+    function addPrevAndNext() {
         const paginationNext = document.querySelectorAll(".pagination-next")[0];
         const paginationPrev = document.querySelectorAll(".pagination-prev")[0];
 
         paginationNext.setAttribute("id", "paginate-next");
         paginationPrev.setAttribute("id", "paginate-prev");
     }
-   
 
-    function loadSelectedPagination  ()  {
+    function loadSelectedPagination() {
         const paginationLink = document.querySelectorAll(".pagination-link");
 
-        function removeIsCurrentClass () {
+        function removeIsCurrentClass() {
             for (let i = 0, index = paginationLink.length; i < index; i++) {
                 paginationLink[i].classList.remove("is-current");
             }
         }
 
-        async function loadPagePerClick (event) {
+        async function loadPagePerClick(event) {
             // revert and add current data
             const pageNextAndPrev = parseInt(event.target.textContent);
             checkNextAndPrevNumber();
@@ -551,7 +625,7 @@ function jobFairsModule() {
                 }
             };
 
-           const responseData = await axios(perPageAxiosOption);
+            const responseData = await axios(perPageAxiosOption);
             PagePerdata = responseData.data.page_url;
             data = PagePerdata.data;
             total = PagePerdata.total;
@@ -567,22 +641,47 @@ function jobFairsModule() {
             for (let i = 0; i < index; i++) {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].strand.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].company}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].address.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_decription.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_qualification.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_posted}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_avail}</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].strand.toUpperCase()}</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].company
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].address.substring(0, 10)}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].job_decription.substring(0, 10)}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].job_qualification.substring(
+                                        0,
+                                        10
+                                    )}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job_posted
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job_avail
+                                    }</td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-success view-jobfair">View</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-info edit-jobfair">Edit</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-danger delete-jobfair">Delete</a>
                                     </td>
                                 </tr>`;
                 dataCount += 1;
@@ -604,7 +703,7 @@ function jobFairsModule() {
             );
         }
     }
-    async function loadInitialPagination  () {
+    async function loadInitialPagination() {
         const response = await axios(jobfairAxiosOption);
         const PaginationData = response.data.page_url;
         let datatotal = PaginationData.total;
@@ -613,27 +712,29 @@ function jobFairsModule() {
         let htmlData = "";
         let dataCount = 1;
 
-        let dataTotalRemainder = (datatotal % 10 >= 1) ? 1 : 0;
-        let dataTotalWithRemainder = (datatotal / 10) + dataTotalRemainder;
-        function checkNextAndPrevNumber  () {
+        let dataTotalRemainder = datatotal % 10 >= 1 ? 1 : 0;
+        let dataTotalWithRemainder = datatotal / 10 + dataTotalRemainder;
+        function checkNextAndPrevNumber() {
             console.log(pageNextAndPrev);
             if (pageNextAndPrev <= 1) {
                 paginatePrev.setAttribute("disabled", "");
                 paginateNext.removeAttribute("disabled");
                 pageNextAndPrev = 1;
-                
-                console.log('previous button is disable button');
-            } else if (pageNextAndPrev > 1 && pageNextAndPrev < Math.floor(dataTotalWithRemainder)) {
+
+                console.log("previous button is disable button");
+            } else if (
+                pageNextAndPrev > 1 &&
+                pageNextAndPrev < Math.floor(dataTotalWithRemainder)
+            ) {
                 console.log(pageNextAndPrev);
-                console.log('don\'t have a disable button');
+                console.log("don't have a disable button");
                 paginatePrev.removeAttribute("disabled");
                 paginateNext.removeAttribute("disabled");
             } else if (pageNextAndPrev >= datatotal / 10) {
-                console.log('next button is disable button');
+                console.log("next button is disable button");
                 paginatePrev.removeAttribute("disabled");
                 paginateNext.setAttribute("disabled", "");
-                
-                
+
                 if (pageNextAndPrev === Math.floor(datatotal / 10)) {
                     pageNextAndPrev = Math.floor(datatotal / 10);
                 } else if (
@@ -647,7 +748,7 @@ function jobFairsModule() {
 
         // set style on next and previous page number box
 
-        function SetPaginatePageOnNextPrev  ()  {
+        function SetPaginatePageOnNextPrev() {
             const paginationsLink = document.querySelectorAll(
                 ".pagination-link"
             );
@@ -664,11 +765,11 @@ function jobFairsModule() {
             paginationsLink[paginationLinkIndex].classList.add("is-current");
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
-        };
+        }
 
         // initialize the first page
         checkNextAndPrevNumber();
-        function fillEmptyTable () {
+        function fillEmptyTable() {
             if (jobfairtabledata.childElementCount < 10) {
                 let remainder = datatotal % 10;
                 let emptyTd = "";
@@ -715,26 +816,51 @@ function jobFairsModule() {
             }
         }
 
-        function loadFirstPagination () {
+        function loadFirstPagination() {
             for (let i = 0, index = PaginationData.to; i < index; i++) {
                 htmlData += `<tr>
                                     <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].strand.toUpperCase()}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].company}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].address.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_description.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_qualification.substring(0,10)}...</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_posted}</td>
-                                    <td class="data-style has-text-centered is-size-7">${data[i].job_avail}</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].strand.toUpperCase()}</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].company
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].address.substring(0, 10)}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].job_description.substring(0, 10)}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${data[
+                                        i
+                                    ].job_qualification.substring(
+                                        0,
+                                        10
+                                    )}...</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job_posted
+                                    }</td>
+                                    <td class="data-style has-text-centered is-size-7">${
+                                        data[i].job_avail
+                                    }</td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-success view-jobfair">View</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-info edit-jobfair">Edit</a>
                                     </td>
                                     <td class="has-text-centered">
-                                        <a id="${data[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                        <a id="${
+                                            data[i].jobfair_id
+                                        }" class="button is-small is-danger delete-jobfair">Delete</a>
                                     </td>
                                 </tr>`;
                 dataCount += 1;
@@ -745,10 +871,10 @@ function jobFairsModule() {
             addJobFairPaginationData();
             editJobFairPaginationData();
             removeJobFairPaginationData();
-        };
+        }
 
         // load
-        function loadPaginationPage (dataTotals)  {
+        function loadPaginationPage(dataTotals) {
             let divquotient = Math.floor(dataTotals / 10);
             let remainder = dataTotals % 10;
             let count = divquotient;
@@ -773,18 +899,18 @@ function jobFairsModule() {
             jobFairPaginationList.innerHTML = pageElement;
         }
 
-        function loadSelectedPagination ()  {
+        function loadSelectedPagination() {
             const paginationLink = document.querySelectorAll(
                 ".pagination-link"
             );
 
-            function removeIsCurrentClass  ()  {
+            function removeIsCurrentClass() {
                 for (let i = 0, index = paginationLink.length; i < index; i++) {
                     paginationLink[i].classList.remove("is-current");
                 }
             }
 
-            async function loadPagePerClick (event) {
+            async function loadPagePerClick(event) {
                 // revert and add current data
                 pageNextAndPrev = parseInt(event.target.textContent);
                 checkNextAndPrevNumber();
@@ -794,7 +920,7 @@ function jobFairsModule() {
                 let pagePerData = "";
                 let perPage = 0;
                 let total = 0;
-        
+
                 const perPageAxiosOption = {
                     url: `/admin/announcement/jobfair/pages?page=${pageNextAndPrev}`,
                     method: "get",
@@ -819,22 +945,50 @@ function jobFairsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].job}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].company}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].address.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].job_description.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].job_qualification.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].job_posted}</td>
-                                        <td class="data-style has-text-centered is-size-7">${data[i].job_avail}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].job
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${data[
+                                            i
+                                        ].strand.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${data[
+                                            i
+                                        ].address.substring(0, 10)}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${data[
+                                            i
+                                        ].job_description.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${data[
+                                            i
+                                        ].job_qualification.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].job_posted
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            data[i].job_avail
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                            <a id="${
+                                                data[i].jobfair_id
+                                            }" class="button is-small is-success view-jobfair">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                            <a id="${
+                                                data[i].jobfair_id
+                                            }" class="button is-small is-info edit-jobfair">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${data[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                            <a id="${
+                                                data[i].jobfair_id
+                                            }" class="button is-small is-danger delete-jobfair">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -857,8 +1011,8 @@ function jobFairsModule() {
             }
         }
 
-        function loadJobFairNextPage  ()  {
-            async function setNextPage (e) {
+        function loadJobFairNextPage() {
+            async function setNextPage(e) {
                 pageNextAndPrev += 1;
                 checkNextAndPrevNumber();
 
@@ -887,22 +1041,50 @@ function jobFairsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].job}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].company}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].address.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].job_description.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].job_qualification.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].job_posted}</td>
-                                        <td class="data-style has-text-centered is-size-7">${nextData[i].job_avail}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].job
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${nextData[
+                                            i
+                                        ].strand.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${nextData[
+                                            i
+                                        ].address.substring(0, 10)}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${nextData[
+                                            i
+                                        ].job_description.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${nextData[
+                                            i
+                                        ].job_qualification.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].job_posted
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            nextData[i].job_avail
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                            <a id="${
+                                                nextData[i].jobfair_id
+                                            }" class="button is-small is-success view-jobfair">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                            <a id="${
+                                                nextData[i].jobfair_id
+                                            }" class="button is-small is-info edit-jobfair">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${nextData[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                            <a id="${
+                                                nextData[i].jobfair_id
+                                            }" class="button is-small is-danger delete-jobfair">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -915,13 +1097,13 @@ function jobFairsModule() {
                 addJobFairPaginationData();
                 editJobFairPaginationData();
                 removeJobFairPaginationData();
-            };
+            }
 
             paginateNext.addEventListener("click", setNextPage, false);
         }
 
-        function loadJobFairPrevPage () {
-            async function setPrevPage (e) {
+        function loadJobFairPrevPage() {
+            async function setPrevPage(e) {
                 pageNextAndPrev -= 1;
                 checkNextAndPrevNumber();
 
@@ -951,22 +1133,50 @@ function jobFairsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${dataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].job}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].company}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].address.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].job_description.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].job_qualification.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].job_posted}</td>
-                                        <td class="data-style has-text-centered is-size-7">${prevData[i].job_avail}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].job
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${prevData[
+                                            i
+                                        ].strand.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${prevData[
+                                            i
+                                        ].address.substring(0, 10)}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${prevData[
+                                            i
+                                        ].job_description.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${prevData[
+                                            i
+                                        ].job_qualification.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].job_posted
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            prevData[i].job_avail
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                            <a id="${
+                                                prevData[i].jobfair_id
+                                            }" class="button is-small is-success view-jobfair">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                            <a id="${
+                                                prevData[i].jobfair_id
+                                            }" class="button is-small is-info edit-jobfair">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${prevData[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                            <a id="${
+                                                prevData[i].jobfair_id
+                                            }" class="button is-small is-danger delete-jobfair">Delete</a>
                                         </td>
                                     </tr>`;
                     dataCount += 1;
@@ -987,7 +1197,7 @@ function jobFairsModule() {
         loadJobFairPrevPage();
         loadSelectedPagination();
     }
-    function fillOptionEmptyTable () {
+    function fillOptionEmptyTable() {
         const dataStyle = document.querySelectorAll(".data-style");
         for (let i = 0, index = dataStyle.length; i < index; i++) {
             dataStyle[i].style.color = "black";
@@ -998,13 +1208,13 @@ function jobFairsModule() {
         removePrevAndNext();
     }
 
-    function loadSearchPagination () {
+    function loadSearchPagination() {
         const jobfairSearch = document.querySelector("#jobfair-search");
         const jobfairSelected = document.querySelector(
             "#jobfair-search-selected"
         );
 
-        function setSelectedValue  (checkData) {
+        function setSelectedValue(checkData) {
             let index = jobfairSelected.options.length;
             if (checkData.length > 0) {
                 for (let i = 0; i < index; i++) {
@@ -1018,9 +1228,7 @@ function jobFairsModule() {
                 jobfairSelected.selectedIndex = 0;
             }
         }
-        function setToDefault () {
-           
-
+        function setToDefault() {
             for (let i = 0, index = jobfairSelected.length; i < index; i++) {
                 jobfairSelected.options[i].removeAttribute("selected");
                 jobfairSelected.options[i].removeAttribute("disabled");
@@ -1031,7 +1239,7 @@ function jobFairsModule() {
             jobfairSelected.selectedIndex = 1;
         }
 
-        async function getJobFairSelected (event) {
+        async function getJobFairSelected(event) {
             let selected = event.target.value.toString();
 
             let selectedPerPage = 0;
@@ -1076,28 +1284,56 @@ function jobFairsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${selectCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].job}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].company}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].address.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].job_description.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].job_qualification.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].job_posted}</td>
-                                        <td class="data-style has-text-centered is-size-7">${selectedData[i].job_avail}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].job
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${selectedData[
+                                            i
+                                        ].strand.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${selectedData[
+                                            i
+                                        ].address.substring(0, 10)}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${selectedData[
+                                            i
+                                        ].job_description.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${selectedData[
+                                            i
+                                        ].job_qualification.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].job_posted
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            selectedData[i].job_avail
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${selectedData[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                            <a id="${
+                                                selectedData[i].jobfair_id
+                                            }" class="button is-small is-success view-jobfair">View</a>
                                         </td>
                                          <td class="has-text-centered">
-                                            <a id="${selectedData[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                            <a id="${
+                                                selectedData[i].jobfair_id
+                                            }" class="button is-small is-info edit-jobfair">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${selectedData[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                            <a id="${
+                                                selectedData[i].jobfair_id
+                                            }" class="button is-small is-danger delete-jobfair">Delete</a>
                                         </td>
                                     </tr>`;
                     selectCount += 1;
                 }
                 jobfairtabledata.innerHTML = htmlData;
-                
+
                 fillOptionEmptyTable();
                 viewJobFairPaginationData();
                 addJobFairPaginationData();
@@ -1106,11 +1342,11 @@ function jobFairsModule() {
             } catch (error) {
                 console.log(error);
             }
-           
+
             removeOptionPagination();
         }
-    
-        async function getJobFairSearch (event) {
+
+        async function getJobFairSearch(event) {
             pageNextAndPrev = 1;
             let searchval = encodeURIComponent(event.target.value);
             addPrevAndNext = 1;
@@ -1129,7 +1365,6 @@ function jobFairsModule() {
             }
             if (searchval.length >= 0) {
                 setSelectedValue(searchval);
-            
             }
             paginateNext.style.visibility = "visible";
             paginatePrev.style.visibility = "visible";
@@ -1158,28 +1393,56 @@ function jobFairsModule() {
                 for (let i = 0; i < index; i++) {
                     htmlData += `<tr>
                                         <td class="data-style has-text-centered is-size-7">${searchdataCount}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].job}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].strand.toUpperCase()}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].company}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].address.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].job_description.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].job_qualification.substring(0,10)}...</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].job_posted}</td>
-                                        <td class="data-style has-text-centered is-size-7">${searchData[i].job_avail}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].job
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${searchData[
+                                            i
+                                        ].strand.toUpperCase()}</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].company
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${searchData[
+                                            i
+                                        ].address.substring(0, 10)}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${searchData[
+                                            i
+                                        ].job_description.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${searchData[
+                                            i
+                                        ].job_qualification.substring(
+                                            0,
+                                            10
+                                        )}...</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].job_posted
+                                        }</td>
+                                        <td class="data-style has-text-centered is-size-7">${
+                                            searchData[i].job_avail
+                                        }</td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].jobfair_id}" class="button is-small is-success view-jobfair">View</a>
+                                            <a id="${
+                                                searchData[i].jobfair_id
+                                            }" class="button is-small is-success view-jobfair">View</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].jobfair_id}" class="button is-small is-info edit-jobfair">Edit</a>
+                                            <a id="${
+                                                searchData[i].jobfair_id
+                                            }" class="button is-small is-info edit-jobfair">Edit</a>
                                         </td>
                                         <td class="has-text-centered">
-                                            <a id="${searchData[i].jobfair_id}" class="button is-small is-danger delete-jobfair">Delete</a>
+                                            <a id="${
+                                                searchData[i].jobfair_id
+                                            }" class="button is-small is-danger delete-jobfair">Delete</a>
                                         </td>
                                     </tr>`;
                     searchdataCount += 1;
                 }
                 jobfairtabledata.innerHTML = htmlData;
-                
+
                 fillOptionEmptyTable();
                 viewJobFairPaginationData();
                 addJobFairPaginationData();
@@ -1192,7 +1455,7 @@ function jobFairsModule() {
         }
 
         jobfairSelected.addEventListener("change", getJobFairSelected, false);
-        jobfairSearch.addEventListener("keyup",getJobFairSearch, false);
+        jobfairSearch.addEventListener("keyup", getJobFairSearch, false);
     }
 
     loadInitialPagination();
