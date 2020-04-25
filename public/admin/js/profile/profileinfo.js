@@ -172,8 +172,8 @@
                 return false;
             };
             const showConfirmModal = () => {
-                confirmUpdateProfileModal.classList.add("is-active");
-                if (checkIfFormHasValue()) {
+                if (checkIfFormHasValue() === true) {
+                    confirmUpdateProfileModal.classList.add("is-active");
                     discardProfileModal.style.zIndex = 70;
                     confirmUpdateProfileModal.style.zIndex = 80;
 

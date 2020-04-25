@@ -1,63 +1,514 @@
 @import "../../mixins";
 @import "../../colors";
 
-#accounts-content {
+.delete-modal-button {
+    height: 2.9rem;
+    width: 4rem;
+    font-size: 0.9rem;
+    @include boxShadow(0px, 0px, 1px, gray);
+}
+#delete-modal-text {
+    padding: 3rem;
+    border: 1px solid black;
+}
+
+.admins-modal-content {
+    width: 80%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+#admins-search-selected {
+    option {
+        text-transform: uppercase;
+        &:focus {
+            text-transform: uppercase;
+        }
+        &:active {
+            text-transform: uppercase;
+        }
+    }
+}
+textarea {
+    resize: none !important;
+}
+
+#first-admins-modal-column,
+#second-admins-modal-column,
+#third-admins-modal-column,
+#fourth-admins-modal-column {
+    padding: 0.5rem;
+    .admins-data-column {
+        padding: 1rem;
+    }
+}
+
+#delete-admins-grad-modal-content {
+    background-color: white !important;
+    width: 25% !important;
+    height: 14rem;
+    padding: 1rem;
+}
+
+.admins-error-container {
+    padding: 1rem;
+    display: none;
+    color: white;
+    background-color: #ef2e55;
+    @include boxShadow(0px, 0px, 2px, gray);
+    margin-top: 1rem;
+    line-height: 2rem;
+    font-size: 0.9rem;
+}
+.admins-success-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    display: none;
+    color: white;
+    line-height: 2rem;
+    background-color: #3abb67;
+    @include boxShadow(0px, 0px, 2px, gray);
+    font-size: 0.9rem;
+}
+#admins-add-button {
+    background-color: #8a2a2b;
+}
+
+#admins-content {
     border: 1px solid black !important;
-    height: 100%;
-    #accounts-container {
-        border: 1px solid black;
+    height: auto;
+    #admins-container {
+        height: auto;
+        @include boxShadow(0px, 0px, 2px, #000);
+        background-color: white;
+        padding-top: 1.7rem;
+        padding-bottom: 1.7rem;
+        .table-header {
+            height: auto;
+            padding: 5px;
+            border: 1px solid lightgray;
+            .table-title {
+                padding: 1rem;
+                padding-bottom: 0.1rem;
+                h2 {
+                    font-size: 1.2rem;
+                    color: black;
+                }
+            }
+            .table-option {
+                padding: 1rem;
+            }
+        }
+        .table-container {
+            margin-bottom: 0;
+            #admins-table {
+                margin-bottom: 0;
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            font-size: 0.8rem;
+                        }
+                        th {
+                            font-size: 0.7rem;
+                            color: black;
+                            font-weight: bold;
+                        }
+                        td {
+                            color: white;
+                            font-weight: normal;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+        .table-footer {
+            height: auto;
+            padding: 1rem;
+            border: 1px solid lightgray;
+        }
+    }
+}
+
+.examinations-modal-content {
+    width: 80%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+#examinations-search-selected {
+    option {
+        text-transform: uppercase;
+        &:focus {
+            text-transform: uppercase;
+        }
+        &:active {
+            text-transform: uppercase;
+        }
+    }
+}
+textarea {
+    resize: none !important;
+}
+
+#first-examinations-modal-column,
+#second-examinations-modal-column,
+#third-examinations-modal-column,
+#fourth-examinations-modal-column {
+    padding: 0.5rem;
+    .examinations-data-column {
+        padding: 1rem;
+    }
+}
+
+#delete-examinations-modal-content {
+    background-color: white !important;
+    width: 25% !important;
+    height: 14rem;
+    padding: 1rem;
+}
+
+.examinations-error-container {
+    padding: 1rem;
+    display: none;
+    color: white;
+    background-color: #ef2e55;
+    @include boxShadow(0px, 0px, 2px, gray);
+    margin-top: 1rem;
+    line-height: 2rem;
+    font-size: 0.9rem;
+}
+.examinations-success-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    display: none;
+    color: white;
+    line-height: 2rem;
+    background-color: #3abb67;
+    @include boxShadow(0px, 0px, 2px, gray);
+    font-size: 0.9rem;
+}
+#examinations-add-button {
+    background-color: #8a2a2b;
+}
+
+#examinations-content {
+    border: 1px solid black !important;
+    height: auto;
+    #examinations-container {
+        height: auto;
+        @include boxShadow(0px, 0px, 2px, #000);
+        background-color: white;
+        padding-top: 1.7rem;
+        padding-bottom: 1.7rem;
+        .table-header {
+            height: auto;
+            padding: 5px;
+            border: 1px solid lightgray;
+            .table-title {
+                padding: 1rem;
+                padding-bottom: 0.1rem;
+                h2 {
+                    font-size: 1.2rem;
+                    color: black;
+                }
+            }
+            .table-option {
+                padding: 1rem;
+            }
+        }
+        .table-container {
+            margin-bottom: 0;
+            #examinations-table {
+                margin-bottom: 0;
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            font-size: 0.8rem;
+                        }
+                        th {
+                            font-size: 0.7rem;
+                            color: black;
+                            font-weight: bold;
+                        }
+                        td {
+                            color: white;
+                            font-weight: normal;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+        .table-footer {
+            height: auto;
+            padding: 1rem;
+            border: 1px solid lightgray;
+        }
+    }
+}
+
+.scholarships-modal-content {
+    width: 80%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+#scholarships-search-selected {
+    option {
+        text-transform: uppercase;
+        &:focus {
+            text-transform: uppercase;
+        }
+        &:active {
+            text-transform: uppercase;
+        }
+    }
+}
+textarea {
+    resize: none !important;
+}
+
+#first-scholarships-modal-column,
+#second-scholarships-modal-column,
+#third-scholarships-modal-column,
+#fourth-scholarships-modal-column {
+    padding: 0.5rem;
+    .scholarships-data-column {
+        padding: 1rem;
+    }
+}
+
+#delete-scholarships-modal-content {
+    background-color: white !important;
+    width: 25% !important;
+    height: 14rem;
+    padding: 1rem;
+}
+
+.scholarships-error-container {
+    padding: 1rem;
+    display: none;
+    color: white;
+    background-color: #ef2e55;
+    @include boxShadow(0px, 0px, 2px, gray);
+    margin-top: 1rem;
+    line-height: 2rem;
+    font-size: 0.9rem;
+}
+.scholarships-success-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    display: none;
+    color: white;
+    line-height: 2rem;
+    background-color: #3abb67;
+    @include boxShadow(0px, 0px, 2px, gray);
+    font-size: 0.9rem;
+}
+#scholarships-add-button {
+    background-color: #8a2a2b;
+}
+
+#scholarships-content {
+    border: 1px solid black !important;
+    height: auto;
+    #scholarships-container {
+        height: auto;
+        @include boxShadow(0px, 0px, 2px, #000);
+        background-color: white;
+        padding-top: 1.7rem;
+        padding-bottom: 1.7rem;
+        .table-header {
+            height: auto;
+            padding: 5px;
+            border: 1px solid lightgray;
+            .table-title {
+                padding: 1rem;
+                padding-bottom: 0.1rem;
+                h2 {
+                    font-size: 1.2rem;
+                    color: black;
+                }
+            }
+            .table-option {
+                padding: 1rem;
+            }
+        }
+        .table-container {
+            margin-bottom: 0;
+            #scholarships-table {
+                margin-bottom: 0;
+                thead,
+                tbody {
+                    tr {
+                        th,
+                        td {
+                            font-size: 0.8rem;
+                        }
+                        th {
+                            font-size: 0.7rem;
+                            color: black;
+                            font-weight: bold;
+                        }
+                        td {
+                            color: white;
+                            font-weight: normal;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+        .table-footer {
+            height: auto;
+            padding: 1rem;
+            border: 1px solid lightgray;
+        }
     }
 }
 
 // for mobile devices
 @media all and (max-width: 768px) {
-    #accounts-content {
-        width: 100%;
+    #delete-modal-text {
+        height: 10rem !important;
     }
-    #accounts-container {
-        width: 100%;
-        height: 28rem;
+    .delete-modal-button {
+        height: 2.9rem;
+        width: 90%;
+        font-size: 0.9rem;
+    }
+
+    #admins-content {
+        text-align: center;
+    }
+
+    #admins-container {
+    }
+
+    #delete-admins-grad-modal-content {
+        background-color: white !important;
+        height: 20rem;
+        width: 90% !important;
+        padding: 1rem;
+    }
+
+    #examinations-content {
+        text-align: center;
+    }
+
+    #examinations-container {
+    }
+
+    #delete-examinations-modal-content {
+        background-color: white !important;
+        height: 20rem;
+        width: 90% !important;
+        padding: 1rem;
+    }
+
+    #scholarships-content {
+        text-align: center;
+    }
+
+    #scholarships-container {
+    }
+
+    #delete-scholarships-modal-content {
+        background-color: white !important;
+        height: 20rem;
+        width: 90% !important;
+        padding: 1rem;
     }
 }
 
 @media all and (min-width: 769px) and (max-width: 1023px) {
-    #accounts-content {
-        width: 100%;
-        #accounts-container {
-            width: 100%;
-            height: 28rem;
-        }
+    #delete-modal-text {
+        height: 20rem !important;
+    }
+    .delete-modal-button {
+        height: 2.9rem;
+        width: 90%;
+        font-size: 0.9rem;
+    }
+
+    #admins-content {
+        text-align: center;
+    }
+    #delete-admins-grad-modal-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    #examinations-content {
+        text-align: center;
+    }
+    #delete-examinations-modal-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    #scholarships-content {
+        text-align: center;
+    }
+    #delete-scholarships-modal-content {
+        width: 90%;
+        padding: 1rem;
     }
 }
 // for desktop
 @media all and (min-width: 1024px) and (max-width: 1215px) {
-    #accounts-content {
-        width: 100%;
-        #accounts-container {
-            width: 100%;
-            height: 30rem;
-        }
+    .delete-modal-button {
+        height: 2.9rem;
+        width: 50%;
+        font-size: 0.9rem;
+    }
+
+    #admins-content {
+    }
+
+    #examinations-content {
+    }
+
+    #scholarships-content {
     }
 }
 
 // for widescreen
 @media all and (min-width: 1216px) and (max-width: 1407px) {
-    #accounts-content {
-        width: 100%;
-        #accounts-container {
-            width: 100%;
-            height: 30rem;
-        }
+    .delete-modal-button {
+        height: 2.9rem;
+        width: 50%;
+        font-size: 0.9rem;
+    }
+
+    #admins-content {
+    }
+    #examinations-content {
+    }
+    #scholarships-content {
     }
 }
 
 // for fullhd
 @media all and (min-width: 1408px) {
-    #accounts-content {
-        width: 100%;
-        #accounts-container {
-            width: 100%;
-            height: 30rem;
-        }
+    .delete-modal-button {
+        height: 2.9rem;
+        width: 50%;
+        font-size: 0.9rem;
+    }
+
+    #admins-content {
+    }
+    #examinations-content {
+    }
+    #scholarships-content {
     }
 }

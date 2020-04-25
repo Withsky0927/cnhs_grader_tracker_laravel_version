@@ -486,12 +486,11 @@ Route::get('/admin/accounts/student', 'admin\accounts\studentsController@getStud
 Route::post('/admin/accounts/admin', 'admin\accounts\adminsController@addAdmins')->middleware(
     'checkIfLogout',
     'checkAdminRole',
-    'checkIfSuperadmin'
-);
-Route::post('/admin/accounts/students', 'admin\accounts\studentsController@addStudents')->middleware(
-    'checkIfLogout',
-    'checkAdminRole',
-    'checkIfSuperadmin'
+    'checkIfSuperadmin',
+    'validateNewAdminAccount',
+    'checkNewAProfileadminExist',
+    'sanitizeNewAdminAccount',
+    'proccessNewAProfileadminAcc'
 );
 
 //* Profile module

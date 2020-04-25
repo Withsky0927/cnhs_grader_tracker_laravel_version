@@ -280,10 +280,19 @@ function reportsModule() {
                         }
                         addErrorContainer.innerHTML = errorsHtml;
                         addErrorContainer.style.display = "block";
+                        addReportForm.removeEventListener(
+                            "click",
+                            insertDataIntoDatabase
+                        );
                     } else if (!responseAddData.data.errors) {
                         addSuccessContainer.innerHTML =
                             '<p class="has-text-centered">Data Successfully Added!</p>';
                         addSuccessContainer.style.display = "block";
+
+                        addReportForm.removeEventListener(
+                            "click",
+                            insertDataIntoDatabase
+                        );
                         loadInitialPagination();
                     }
                 } catch (error) {
@@ -411,12 +420,20 @@ function reportsModule() {
 
                         editErrorContainer.innerHTML = errorsHtml;
                         editErrorContainer.style.display = "block";
+                        editReportForm.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
                     } else if (!responseEditData.data.errors) {
                         editSuccessContainer.innerHTML =
                             '<p class="has-text-centered">Data Successfully Updated!</p>';
                         editSuccessContainer.style.display = "block";
+                        editReportForm.removeEventListener(
+                            "click",
+                            updateModalData
+                        );
+                        loadInitialPagination();
                     }
-                    loadInitialPagination();
                 } catch (error) {
                     //console.log(error.response);
                 }
@@ -513,6 +530,10 @@ function reportsModule() {
                 }
                 reportsDeletemodal.classList.remove("is-active");
                 htmlClipped.classList.remove("is-clipped");
+                reportsModalConfirmBtn.removeEventListener(
+                    "click",
+                    ConfirmDelete
+                );
                 loadInitialPagination();
             }
 

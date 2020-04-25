@@ -87,16 +87,6 @@ class Kernel extends HttpKernel
         'checkStudentRole' => \App\Http\Middleware\checkStudentRole::class,
         'checkIfSuperadmin' => \App\Http\Middleware\admin\checkIfSuperadmin::class,
 
-
-        // for anouncements middlewares
-        'validateJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\validateJobFairData::class,
-        'sanitizeJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\sanitizeJobFairData::class,
-        'validateExaminationData' => \App\Http\Middleware\admin\announcement\examination\validateExaminationData::class,
-        'sanitizeExaminationData' => \App\Http\Middleware\admin\announcement\examination\sanitizeExaminationData::class,
-        'validateScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\validateScholarshipData::class,
-        'sanitizeScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\sanitizeScholarshipData::class,
-
-
         // for reports middleware
         'checkIfReportsIsAdmin' => \App\Http\Middleware\admin\reports\checkIfReportsIsAdmin::class,
         'validateReportsData' => \App\Http\Middleware\admin\reports\validateReportsData::class,
@@ -107,8 +97,24 @@ class Kernel extends HttpKernel
         'updatereport' => \App\Http\Middleware\admin\reports\updatereport::class,
 
 
+        // for anouncements middlewares
+        'validateJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\validateJobFairData::class,
+        'sanitizeJobFairData' => \App\Http\Middleware\admin\announcement\jobfair\sanitizeJobFairData::class,
+        'validateExaminationData' => \App\Http\Middleware\admin\announcement\examination\validateExaminationData::class,
+        'sanitizeExaminationData' => \App\Http\Middleware\admin\announcement\examination\sanitizeExaminationData::class,
+        'validateScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\validateScholarshipData::class,
+        'sanitizeScholarshipData' => \App\Http\Middleware\admin\announcement\scholarship\sanitizeScholarshipData::class,
 
-        // admin profile inforation middleware
+
+        // for accounts middlewares
+
+        // admin middlewares
+        'validatenewAdminAccount' => \App\Http\Middleware\admin\accounts\admin\validateNewAdminAccount::class,
+        'sanitizeNewAdminAccount' => \App\Http\Middleware\admin\accounts\admin\sanitizeNewAdminAccount::class,
+        'proccessNewAProfileadminAcc' => \App\Http\Middleware\admin\accounts\admin\proccessNewAProfileadminAcc::class,
+        'checkNewAProfileadminExist' => \App\Http\Middleware\admin\accounts\admin\checkNewAProfileadminExist::class,
+
+        // admin profile information middleware
         'checkProfileRole' => \App\Http\Middleware\admin\profile\checkProfileRole::class,
         'validateAdminProfile' => \App\Http\Middleware\admin\profile\validateProfile::class,
         'sanitizeAdminProfile' => \App\Http\Middleware\admin\profile\sanitizeProfile::class,

@@ -131,7 +131,8 @@
                                             <label class="label is-size-7" for="update-profile-number">Phone:</label>
                                             <div class="control">
                                                 <div class="control has-icons-left has-icons-right">
-                                                    <input class="input" type="number" id="update-profile-number">
+                                                    <input class="input" type="number" min="10" max="20"
+                                                        id="update-profile-number">
                                                     <span class="icon is-small is-left">
                                                         <i class="fas fa-mobile"></i>
                                                     </span>

@@ -36,8 +36,6 @@ class checkProfileInfoExist
         $checkPhone = DB::table('admins')->where('phone', $phone)->value('phone');
 
 
-
-
         if ($checkUsername) {
             array_push($errors, 'Username is already Exist, Use another');
         }
