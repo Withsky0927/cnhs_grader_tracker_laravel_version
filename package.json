@@ -12,7 +12,7 @@
         "studentscss": "node-sass resources/sass/student/style.scss -o public/student/css/ --watch --output-style compressed"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.21",
         "cross-env": "^5.2.1",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
